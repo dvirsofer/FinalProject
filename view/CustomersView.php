@@ -247,7 +247,7 @@ class CustomersView
         </div>
         <div id="collapseFour" class="panel-collapse collapse">
             <div class="panel-body">
-                <div">
+                <div>
                 <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="workers">';
 
         if(!empty($id))
