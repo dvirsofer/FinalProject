@@ -353,7 +353,6 @@ class CustomersView
                         <th>תאריך כניסה לארץ</th>
                         <th>דרכון</th>
                         <th>תוקף דרכון</th>
-                        <th>ביטוח</th>
                         </tr>
                     </thead>
                        <tbody>";
