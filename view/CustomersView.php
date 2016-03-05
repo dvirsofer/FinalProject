@@ -80,7 +80,7 @@ class CustomersView
                     <div class="panel-body">
                         <form class="form-horizontal" method="post">
                             <select class="form-control col-sm-2" id="customers_dropdown" name="customers_dropdown">';
-                            $html .= $this->getCustomers();
+                            $html .= $this->getCustomers($id);
 
                             $html .= '</select>
                             <div id="customer" style="display: none"></div>
