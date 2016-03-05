@@ -78,7 +78,7 @@ class CustomersView
 
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" method="post">
                             <select class="form-control col-sm-2" id="customers_dropdown" name="customers_dropdown">';
                             $html .= $this->getCustomers();
 
@@ -377,7 +377,7 @@ class CustomersView
         return $str;
     }
 
-    function getCustomers()
+    function getCustomers($id = '')
     {
         $str = "";
         $customers = $this->customerModel->getCustomers();
@@ -385,7 +385,12 @@ class CustomersView
         $str .= '<option value="">בחר לקוח</option>';
         foreach($customers as $row)
         {
-            $str .= "<option value=" .$row->id .">" .$row->customer_name . "</option>";
+            if ($id == $row->id) {
+                $str .= "<option value=" .$row->id ." selected=\"selected\">" .$row->customer_name . "</option>";
+            } else {
+                $str .= "<option value=" .$row->id .">" .$row->customer_name . "</option>";
+            }
+
         }
         return $str;
     }
