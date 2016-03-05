@@ -1,3 +1,5 @@
+var isInitializedTable = false;
+
 (function() {
     $('#forms_panel form').hide();
     $('#search_dropdown').on('change', searchDropdownEvent);
@@ -29,9 +31,11 @@ function customerDropdownEvent(event) {
         success: function(result) {
             // console.log(result);
             $('#workers').html(result);
-            $('#workers').DataTable({
-                responsive: true
-            });
+            if (!isInitializedTable) {
+                $('#workers').DataTable({
+                    responsive: true
+                });
+            }
         }
     });
 
