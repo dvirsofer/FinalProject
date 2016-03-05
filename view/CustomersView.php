@@ -248,7 +248,7 @@ class CustomersView
         <div id="collapseFour" class="panel-collapse collapse">
             <div class="panel-body">
                 <div">
-                <table class="table table-striped table-bordered" id="workers">';
+                <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="workers">';
 
         if(!empty($id))
         {
@@ -341,7 +341,7 @@ class CustomersView
     {
         $workers = $this->workerModel->getAllWorkerOfCustomerInfo($id);
         $str = "";
-        $str .= "
+        $str .= "<tr role=\"row\">
                         <thead>
                         <th>מ'ס</th>
                         <th>מספר עובד</th>
@@ -354,15 +354,14 @@ class CustomersView
                         <th>תוקף דרכון</th>
                         <th>ביטוח</th>
                     </thead>
-
-                        <tbody>";
+                       </tr><tbody>";
 
         foreach($workers as $row){   //Creates a loop to loop through results
             $passportInfo = $this->workerModel->getPassportInfo($row->worker_id);
             $passportNumber = $passportInfo[0]->passport_number;
             $passportValid = $passportInfo[0]->validation_date;
 
-            $str .= "<tr><td>" .
+            $str .= "<tr role=\"row\"><td>" .
                 $row->id . "</td><td>" .
                 $row->worker_id . "</td><td>" .
                 $row->first_name . "</td><td>" .
