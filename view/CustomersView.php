@@ -261,13 +261,13 @@ class CustomersView
                         <th>דרכון</th>
                         <th>תוקף דרכון</th>
                         </tr>
-                    </thead>';
+                    </thead><tbody>';
 
         if(!empty($id))
         {
             $html .= $this->createWorkersTable($id);
         }
-        $html .= '</table>
+        $html .= '</tbody></table>
                 </div>
 
             </div>
@@ -354,8 +354,6 @@ class CustomersView
     {
         $workers = $this->workerModel->getAllWorkerOfCustomerInfo($id);
         $str = "";
-        $str .= "
-                      <tbody>";
 
         foreach($workers as $row){   //Creates a loop to loop through results
             $passportInfo = $this->workerModel->getPassportInfo($row->worker_id);
@@ -374,8 +372,6 @@ class CustomersView
                 $passportValid .
                 "</td></tr>";
         }
-
-        $str .= "</tbody>";
 
         error_log(var_export($str,true));
         return $str;

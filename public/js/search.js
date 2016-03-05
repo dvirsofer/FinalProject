@@ -30,7 +30,7 @@ function customerDropdownEvent(event) {
         data: data,
         success: function(result) {
             // console.log(result);
-            $('#workers').html(result);
+            $('#workers tbody').html(result);
             if (!isInitializedTable) {
                 $('#workers').DataTable({
                     responsive: true
