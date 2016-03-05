@@ -1,10 +1,11 @@
-var isInitializedTable = false;
-
 (function() {
     $('#forms_panel form').hide();
     $('#search_dropdown').on('change', searchDropdownEvent);
     $('#customers_dropdown').on('change', customerDropdownEvent);
     $('#form_by_passport').submit(formByPassportSubmit);
+    $('#workers').DataTable({
+        responsive: true
+    });
 })();
 
 function searchDropdownEvent(event) {
@@ -31,12 +32,10 @@ function customerDropdownEvent(event) {
         success: function(result) {
             // console.log(result);
             $('#workers tbody').html(result);
-            if (!isInitializedTable) {
-                $('#workers').DataTable({
-                    responsive: true
-                });
-                isInitializedTable = true;
-            }
+            $('#workers').dataTable()._fnAjaxUpdate();
+            $('#workers').DataTable({
+                responsive: true
+            });
         }
     });
 
