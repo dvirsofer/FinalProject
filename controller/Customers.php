@@ -29,11 +29,13 @@ class Customers
 
     function index()
     {
-//        if($_SERVER['REQUEST_METHOD'] === 'POST') {
-//            $id = $_POST['customers_dropdown'];
-//            error_log(var_export($id,true));
-//        }
-        $this->customersView->showCustomers();
+        $id = '';
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['customers_dropdown'];
+            error_log(var_export($id,true));
+        }
+        $this->customersView->showCustomers($id);
 
     }
 

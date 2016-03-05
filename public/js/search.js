@@ -17,27 +17,27 @@ function searchDropdownEvent(event) {
 }
 
 function customerDropdownEvent(event) {
-    event.preventDefault();
-
-    var $dropdown = $(event.currentTarget);
-    var selection = $dropdown.val();
-    var data = $dropdown.serialize();
-
-    $('#customer').text(selection);
-    $('#customer').show();
-    $.ajax({
-        type: "POST",
-        url: 'http://52.25.230.58/Customers/getCustomerInfoById',
-        data: data,
-        success: function(result) {
-            // console.log(result);
-            $('#workers tbody').html(result);
-            $('#workers').dataTable()._fnAjaxUpdate();
-            $('#workers').DataTable({
-                responsive: true
-            });
-        }
-    });
+    var $form = $(this).parent();
+    $form.submit();
+    //var $dropdown = $(event.currentTarget);
+    //var selection = $dropdown.val();
+    //var data = $dropdown.serialize();
+    //
+    //$('#customer').text(selection);
+    //$('#customer').show();
+    //$.ajax({
+    //    type: "POST",
+    //    url: 'http://52.25.230.58/Customers/getCustomerInfoById',
+    //    data: data,
+    //    success: function(result) {
+    //        // console.log(result);
+    //        $('#workers tbody').html(result);
+    //        $('#workers').dataTable()._fnAjaxUpdate();
+    //        $('#workers').DataTable({
+    //            responsive: true
+    //        });
+    //    }
+    //});
 
 }
 
