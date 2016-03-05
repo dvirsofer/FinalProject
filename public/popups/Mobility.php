@@ -1,0 +1,66 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h4 class="modal-title">ניוד</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <form class="form-horizontal">
+            <div class="col-md-6">
+                <div class="panel">
+                    <div class="form-group">
+                        <label for="old_employer_name" class="col-md-6 control-label">מעסיק נוכחי</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="old_employer_name">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="new_employer_name" class="col-md-6 control-label">מעסיק קולט</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="new_employer_name">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="passport_number_MOB" class="col-md-6 control-label">מספר דרכון</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="passport_number_MOB">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="start_date" class="col-md-4 control-label">תחילת ניוד</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="start_date">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="end_date" class="col-md-4 control-label">סיום ניוד</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="end_date">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="worker_name" class="col-md-4 control-label">שם העובד</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="worker_name">
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel col-md-offset-5">
+                <button type="button" class="btn btn-primary">שלח למעסיק קולט</button>
+                <button type="button" class="btn btn-primary">שלח למעסיק מנייד</button>
+            </div>
+
+        </form>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+</div>
