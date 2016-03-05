@@ -35,6 +35,7 @@ function customerDropdownEvent(event) {
                 $('#workers').DataTable({
                     responsive: true
                 });
+                isInitializedTable = true;
             }
         }
     });
