@@ -114,7 +114,7 @@ class CustomersView
                             <div class="form-group">
                                 <label for="employer_name" class="col-sm-3 control-label">שם המעסיק </label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" id="employer_name" value="'. $customer->name_in_english .' . ">
+                                    <input type="text" class="form-control" id="employer_name" value="'. $customer[0]->name_in_english .' . ">
                                 </div>
                             </div>
 
