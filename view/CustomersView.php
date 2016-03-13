@@ -355,7 +355,7 @@ class CustomersView
 
     function createWorkersTable($id)
     {
-        $workers = $this->workerModel->getAllWorkerOfCustomerInfo($id);
+        $workers = $this->customerModel->getAllContactsOfCustomerInfo($id);
         $str = "";
 
         foreach($workers as $row){   //Creates a loop to loop through results
