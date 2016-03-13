@@ -112,6 +112,7 @@ class CustomersView
                         $settlement = $this->customerModel->getSettlement($customer[0]->settlement_id);
                         $settlementName = $settlement[0]->settlement_name;
 
+
                         $html .= '<div class="col-md-4">
                             <div class="form-group">
                                 <label for="employer_name" class="col-sm-3 control-label">שם המעסיק </label>
