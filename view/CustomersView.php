@@ -109,7 +109,7 @@ class CustomersView
 
                     if($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $customer = $this->customerModel->getCustomerInfo($id);
-                        error_log(var_export($customer,true));
+                        error_log(var_export($customer->name_in_english,true));
                         $html .= '<div class="col-md-4">
                             <div class="form-group">
                                 <label for="employer_name" class="col-sm-3 control-label">שם המעסיק </label>
