@@ -213,7 +213,7 @@ class CustomersView
         <div id="collapseThree" class="panel-collapse collapse">
             <div class="panel-body">
                 <div class="dataTable_wrapper">
-                    <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="contacts">
+                    <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="workers">
                         <thead>
                             <th>שם</th>
                             <th>תפקיד</th>
