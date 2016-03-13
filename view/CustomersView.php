@@ -107,7 +107,7 @@ class CustomersView
                 <div class="panel-body">
                     <form class="form-horizontal">';
 
-                    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    if(!empty($id)) {
                         $customer = $this->customerModel->getCustomerInfo($id);
                         error_log(var_export($customer->name_in_english,true));
                         $html .= '<div class="col-md-4">
