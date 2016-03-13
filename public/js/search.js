@@ -3,12 +3,12 @@
     $('#search_dropdown').on('change', searchDropdownEvent);
     $('#customers_dropdown').on('change', customerDropdownEvent);
     $('#form_by_passport').submit(formByPassportSubmit);
-    $('#workers','#contacts').DataTable({
+    $('#workers').DataTable({
         responsive: true
     });
-    /*$('#contacts').DataTable({
+    $('#contacts').DataTable({
         responsive: true
-    });*/
+    });
 })();
 
 function searchDropdownEvent(event) {
