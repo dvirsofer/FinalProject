@@ -109,12 +109,12 @@ class CustomersView
 
                     if($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $customer = $this->customerModel->getCustomerInfo($id);
-
+                        error_log(var_export($customer,true));
                         $html .= '<div class="col-md-4">
                             <div class="form-group">
                                 <label for="employer_name" class="col-sm-3 control-label">שם המעסיק </label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" id="employer_name" value="' . $customer->customer_name . '">
+                                    <input type="text" class="form-control" id="employer_name" value="'. $customer->customer_name .' . ">
                                 </div>
                             </div>
 
