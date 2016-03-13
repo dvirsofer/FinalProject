@@ -212,8 +212,8 @@ class CustomersView
         </div>
         <div id="collapseThree" class="panel-collapse collapse">
             <div class="panel-body">
-                <div>';
-                    /*<table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="contacts">
+                <div>
+                    <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="contacts">
                         <thead>
                             <th>מ"ס</th>
                             <th>שם</th>
@@ -226,12 +226,14 @@ class CustomersView
 
                         <tbody>';
 
-        if(!empty($id))
+       /* if(!empty($id))
         {
             $html .= $this->createContactsTable($id);
         }*/
 
-                       $html .= '
+                       $html .= ' </tbody>
+
+                    </table>
                 </div>
             </div>
         </div>
