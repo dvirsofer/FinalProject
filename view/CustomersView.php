@@ -379,7 +379,6 @@ class CustomersView
                 "</td></tr>";
         }
 
-        error_log(var_export($str,true));
         return $str;
     }
 
@@ -400,7 +399,6 @@ class CustomersView
                 "</td></tr>";
         }
 
-        error_log(var_export($str,true));
         return $str;
     }
 
