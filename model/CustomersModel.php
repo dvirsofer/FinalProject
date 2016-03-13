@@ -51,7 +51,6 @@ class CustomersModel
         $db = DB::getInstance();
         $db->checkConnection();
         $result = $this->db->getSettlement($sid);
-        error_log(var_export($result,true));
         return $result;
     }
 

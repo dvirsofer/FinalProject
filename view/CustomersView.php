@@ -110,6 +110,7 @@ class CustomersView
                     if(!empty($id)) {
                         $customer = $this->customerModel->getCustomerInfo($id);
                         $settlement = $this->customerModel->getSettlement($customer[0]->settlement_id);
+                        $settlementName = $settlement[0]->settlement_name;
 
                         $html .= '<div class="col-md-4">
                             <div class="form-group">
@@ -129,7 +130,7 @@ class CustomersView
                             <div class="form-group">
                                 <label for="city" class="col-sm-3 control-label">ישוב</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" id="city" value="'. $settlement .'">
+                                    <input type="text" class="form-control" id="city" value="'. $settlementName .'">
                                 </div>
                             </div>
 
