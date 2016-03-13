@@ -160,6 +160,14 @@ class DB
         return $customers;
     }
 
+    function getAllContactsOfCustomerInfo($customerId)
+    {
+        $sql = "SELECT * FROM contacts WHERE customer_id='$customerId'";
+        $contact = self::$db->query($sql);
+        $contact = $contact->fetchAll(PDO::FETCH_OBJ);
+        return $contact;
+    }
+
     function addNewUser($userFirstName, $userLastName, $userName, $userEmail, $userPhone, $userPosition, $userPassword)
     {
         try{

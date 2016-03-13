@@ -28,4 +28,13 @@ class CustomersModel
         return $result;
     }
 
+    function getAllContactsOfCustomerInfo($id)
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $result = $this->db->getAllContactsOfCustomerInfo($id);
+        return $result;
+
+    }
+
 }

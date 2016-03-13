@@ -213,7 +213,7 @@ class CustomersView
         <div id="collapseThree" class="panel-collapse collapse">
             <div class="panel-body">
                 <div>
-                    <table class="table table-striped table-bordered">
+                    <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="contacts">
                         <thead>
                             <th>מ"ס</th>
                             <th>שם</th>
@@ -221,14 +221,17 @@ class CustomersView
                             <th>טלפון</th>
                             <th>פקס</th>
                             <th>מייל</th>
-                            <th>דיוור</th>
-                            <th>ראשי</th>
                             <th>הערה</th>
                         </thead>
 
-                        <tbody>
+                        <tbody>';
 
-                        </tbody>
+        if(!empty($id))
+        {
+            $html .= $this->createContactsTable($id);
+        }
+
+                       $html .= ' </tbody>
 
                     </table>
                 </div>
@@ -376,6 +379,29 @@ class CustomersView
         error_log(var_export($str,true));
         return $str;
     }
+
+    function createContactsTable($id)
+    {
+        $contacts = $this->workerModel->getAllContactsOfCustomerInfo($id);
+        $str = "";
+
+        foreach($contacts as $contact){   //Creates a loop to loop through results
+
+            $str .= "<tr><td>" .
+                $contact->contact_name . "</td><td>" .
+                $contact->positon . "</td><td>" .
+                $contact->phone_number . "</td><td>" .
+                $contact->fax . "</td><td>" .
+                $contact->email . "</td><td>" .
+                $contact->comment .
+                "</td></tr>";
+        }
+
+        error_log(var_export($str,true));
+        return $str;
+    }
+
+
 
     function getCustomers($id = '')
     {
