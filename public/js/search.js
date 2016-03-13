@@ -3,7 +3,7 @@
     $('#search_dropdown').on('change', searchDropdownEvent);
     $('#customers_dropdown').on('change', customerDropdownEvent);
     $('#form_by_passport').submit(formByPassportSubmit);
-    $('#workers').DataTable({
+    $('#workers','#contacts').DataTable({
         responsive: true
     });
     /*$('#contacts').DataTable({
