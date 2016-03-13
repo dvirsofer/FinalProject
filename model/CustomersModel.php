@@ -42,6 +42,7 @@ class CustomersModel
         $db = DB::getInstance();
         $db->checkConnection();
         $result = $this->db->getCustomerInfo($customerId);
+        json_encode($result);
         return $result;
     }
 
