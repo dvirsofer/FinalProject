@@ -152,6 +152,14 @@ class DB
         return $customers;
     }
 
+    function getCustomerInfo($customerId)
+    {
+        $sql = "SELECT * FROM customer WHERE id='$customerId'";
+        $customers = self::$db->query($sql);
+        $customers = $customers->fetchAll(PDO::FETCH_OBJ);
+        return $customers;
+    }
+
     function getAllCustomersOrder()
     {
         $sql = "SELECT * FROM customer ORDER BY customer_name";

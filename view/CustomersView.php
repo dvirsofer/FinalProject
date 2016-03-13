@@ -105,13 +105,16 @@ class CustomersView
         <div class="row">
             <div id="collapseTwo" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal">';
 
-                        <div class="col-md-4">
+                    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+                        $customer = $this->customerModel->getCustomerInfo($id);
+
+                        $html .= '<div class="col-md-4">
                             <div class="form-group">
                                 <label for="employer_name" class="col-sm-3 control-label">שם המעסיק </label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" id="employer_name">
+                                    <input type="text" class="form-control" id="employer_name" value="' . $customer->customer_name . '">
                                 </div>
                             </div>
 
@@ -192,9 +195,10 @@ class CustomersView
                                 </div>
                             </div>
 
-                        </div>
+                        </div>';
+                            }
 
-                    </form>
+                    $html .= '</form>
                 </div>
             </div>
         </div>

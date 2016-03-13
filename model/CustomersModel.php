@@ -37,4 +37,12 @@ class CustomersModel
 
     }
 
+    function getCustomerInfo($customerId)
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $result = $this->db->getCustomerInfo($customerId);
+        return $result;
+    }
+
 }
