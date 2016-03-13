@@ -6,6 +6,9 @@
     $('#workers').DataTable({
         responsive: true
     });
+    $('#contacts').DataTable({
+        responsive: true
+    });
 })();
 
 function searchDropdownEvent(event) {
