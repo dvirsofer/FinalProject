@@ -215,7 +215,6 @@ class CustomersView
                 <div class="dataTable_wrapper">
                     <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="contacts">
                         <thead>
-                            <th>מ"ס</th>
                             <th>שם</th>
                             <th>תפקיד</th>
                             <th>טלפון</th>
