@@ -109,40 +109,41 @@ class CustomersView
 
                     if(!empty($id)) {
                         $customer = $this->customerModel->getCustomerInfo($id);
-                        error_log(var_export($customer->name_in_english,true));
+                        $settlement = $this->customerModel->getSettlement($customer[0]->settlement_id);
+
                         $html .= '<div class="col-md-4">
                             <div class="form-group">
                                 <label for="employer_name" class="col-sm-3 control-label">שם המעסיק </label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" id="employer_name" value="'. $customer[0]->name_in_english .' . ">
+                                    <input type="text" class="form-control" id="employer_name" value="'. $customer[0]->customer_name .'  ">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="employer_name_en" class="col-sm-3 control-label">שם באנגלית</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" id="employer_name_en">
+                                    <input type="text" class="form-control" id="employer_name_en" value="' . $customer[0]->name_in_english .' ">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="city" class="col-sm-3 control-label">ישוב</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" id="city">
+                                    <input type="text" class="form-control" id="city" value="'. $settlement .'">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="dealer" class="col-sm-3 control-label">רכז</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" id="dealer">
+                                    <input type="text" class="form-control" id="dealer" value="'. $customer[0]->responsible_id .' ">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="open_date" class="col-sm-3 control-label">תאריך פתיחה</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" id="open_date">
+                                    <input type="text" class="form-control" id="open_date" value="'. $customer[0]->opening_date .' ">
                                 </div>
                             </div>
 
@@ -162,7 +163,7 @@ class CustomersView
                             <div class="form-group">
                                 <label for="main_employer" class="col-sm-3 control-label">מעסיק ראשי</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" id="main_employer">
+                                    <input type="text" class="form-control" id="main_employer" value="'. $customer[0]->main_customer .' ">
                                 </div>
                             </div>
 

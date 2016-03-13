@@ -136,6 +136,14 @@ class DB
 
     }
 
+    function getSettlement($sid)
+    {
+        $sql = "SELECT * FROM settlement WHERE id='$sid'";
+        $settlement = self::$db->query($sql);
+        $settlement = $settlement->fetchAll(PDO::FETCH_OBJ);
+        return $settlement;
+    }
+
     function getWorkerPassportInfo($workerId)
     {
         $sql = "SELECT * FROM passport WHERE worker_id='$workerId'";

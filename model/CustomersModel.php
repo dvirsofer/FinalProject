@@ -46,4 +46,12 @@ class CustomersModel
         return $result;
     }
 
+    function getSettlement($sid)
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $result = $this->db->getSettlement($sid);
+        return $result;
+    }
+
 }
