@@ -39,6 +39,18 @@ class Location {
 
         echo json_encode($res);
 
+
+    }
+
+    public function getDistance($placeArray ='')
+    {
+        $source =$placeArray[0];
+        $destination =$placeArray[1];
+        $sourceLatAndLng = self::$model->getGeoLocation($source);
+        $destinationLatAndLng = self::$model->getGeoLocation($destination);
+        $distance=self::$model->getDistance($sourceLatAndLng['lat'],$sourceLatAndLng['lng'],$destinationLatAndLng['lat'],$destinationLatAndLng['lng']);
+        var_dump($distance);
+
     }
 
     public function index()

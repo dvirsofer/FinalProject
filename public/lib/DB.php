@@ -52,11 +52,14 @@ class DB
                 try {
                     self::$db = new PDO($dsn, $username, $password);
                     self::$db-> exec("SET CHARACTER SET utf8");
+                    self::$db-> exec("SET SQL_SAFE_UPDATES=0");
+
                 }
                 catch(PDOException  $e)
                 {
                     var_dump($e->getMessage());
                 }
+
                // var_dump( self::$db);
 
 
@@ -252,35 +255,37 @@ class DB
     function  update($tableName, $setArray, $whereArray)
     {
 
-        if (self::$db != false) {
 
-            $sql = 'update ' . $tableName;
+        $sql = 'update ' . $tableName;
 
-            if (is_array($setArray)) {
-                $sql .= ' set ';
-                foreach ($setArray as $k => $v) {
-                    $sql .= $k . ' = ' . $this->createQuotation($v) . ',';
+        if (is_array($setArray)) {
+            $sql .= ' set ';
+            foreach ($setArray as $k => $v) {
+                $v=str_replace("'","\'",$v);
 
-                }
-
-                $sql =rtrim($sql,',');
-
+                $sql .= $k . ' = ' . $this->createQuotation($v) . ',';
 
             }
 
+            $sql = rtrim($sql, ',');
 
 
-            $sql .= $this->getSQLWhere($whereArray);
+        }
 
 
+        $sql .= $this->getSQLWhere($whereArray);
 
 
+        try {
 
             $statement = self::$db->prepare($sql);
-
+           
             $ff = $statement->execute();
 
             return $ff;
+        }
+        catch(PDOException $e) {
+            echo $e->getMessage();
         }
 
         return false;

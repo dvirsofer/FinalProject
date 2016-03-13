@@ -1,8 +1,6 @@
 <?php
 
 
-
-//phpinfo();exit;
 if(!isset($_SESSION))
     session_start();
 
