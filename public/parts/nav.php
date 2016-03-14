@@ -19,7 +19,7 @@
                     <li><a href="#">טבלה</a></li>
                 </ul>
             </li>
-
+            <?php error_log(var_export($user[0],true)); ?>
             <?php if($user[0]->type_id != 2) { ?>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">עובדים<b class="caret"></b></a>
