@@ -27,6 +27,14 @@ class UserModel
         return $userInfo;
     }
 
+    function getUserById($userId)
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $user = $db->getUserById($userId);
+        return $user;
+    }
+
     function addUser($userFirstName, $userLastName, $userName, $userEmail, $userPhone, $userPosition, $userPassword)
     {
         $db = DB::getInstance();

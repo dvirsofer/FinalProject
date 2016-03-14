@@ -88,6 +88,14 @@ class DB
         return $user;
     }
 
+    function getUserById($userId)
+    {
+        $sql = "SELECT * FROM users WHERE id='$userId'";
+        $user = self::$db->query($sql);
+        $user = $user->fetchAll(PDO::FETCH_OBJ);
+        return $user;
+    }
+
     function getPassportInfo($passportId)
     {
         $sql = "SELECT * FROM passport WHERE worker_id='$passportId'";

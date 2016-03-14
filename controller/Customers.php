@@ -42,9 +42,6 @@ class Customers
     {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['customers_dropdown'];
-//            error_log(var_export($id,true));
-//            $result = $this->workerModel->getAllWorkerOfCustomerInfo($id);
-//            return $result;
             $workerTable = $this->customersView->createWorkersTable($id);
             echo($workerTable);
         }

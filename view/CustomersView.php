@@ -15,12 +15,14 @@ class CustomersView
 {
     private $workerModel;
     private $customerModel;
+    private $userModel;
     private $userName;
 
     function __construct()
     {
         $this->workerModel = new WorkerModel();
         $this->customerModel = new CustomersModel();
+        $this->userModel = new UserModel();
     }
 
     function showCustomers($id='')
@@ -108,10 +110,11 @@ class CustomersView
                     <form class="form-horizontal">';
 
                     if(!empty($id)) {
+                        // get all customer info
                         $customer = $this->customerModel->getCustomerInfo($id);
                         $settlement = $this->customerModel->getSettlement($customer[0]->settlement_id);
                         $settlementName = $settlement[0]->settlement_name;
-
+                        $responsibleName = $this->userModel->getUserById($customer[0]->responsible_id);
 
                         $html .= '<div class="col-md-4">
                             <div class="form-group">
@@ -138,7 +141,7 @@ class CustomersView
                             <div class="form-group">
                                 <label for="dealer" class="col-sm-3 control-label">רכז</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" id="dealer" value="'. $customer[0]->responsible_id .' ">
+                                    <input type="text" class="form-control" id="dealer" value="'. $responsibleName .' ">
                                 </div>
                             </div>
 
@@ -222,12 +225,14 @@ class CustomersView
                 <div class="dataTable_wrapper">
                     <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="contacts">
                         <thead>
-                            <th>שם</th>
-                            <th>תפקיד</th>
-                            <th>טלפון</th>
-                            <th>פקס</th>
-                            <th>מייל</th>
-                            <th>הערה</th>
+                            <tr>
+                            <th> שם</th>
+                            <th> תפקיד</th>
+                            <th> טלפון</th>
+                            <th> פקס</th>
+                            <th> מייל</th>
+                            <th> הערה</th>
+                            </tr>
                         </thead>
 
                         <tbody>';
@@ -260,15 +265,15 @@ class CustomersView
                 <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="workers">
                 <thead>
                         <tr>
-                        <th>מספר</th>
-                        <th>מספר עובד</th>
-                        <th>שם פרטי</th>
-                        <th>שם משפחה</th>
-                        <th>תחילת עבודה</th>
-                        <th>סיום עבודה</th>
-                        <th>תאריך כניסה לארץ</th>
-                        <th>דרכון</th>
-                        <th>תוקף דרכון</th>
+                        <th> מספר</th>
+                        <th> מספר עובד</th>
+                        <th> שם פרטי</th>
+                        <th> שם משפחה</th>
+                        <th> תחילת עבודה</th>
+                        <th> סיום עבודה</th>
+                        <th> תאריך כניסה לארץ</th>
+                        <th> דרכון</th>
+                        <th> תוקף דרכון</th>
                         </tr>
                     </thead><tbody>';
 
