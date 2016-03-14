@@ -20,6 +20,7 @@
                 </ul>
             </li>
 
+            <?php if($user[0]->user_type != 2) { ?>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">עובדים<b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -27,6 +28,8 @@
                     <li><a href="#">טבלה</a></li>
                 </ul>
             </li>
+            <?php } ?>
+
             <li><a href="#">הזמנות</a></li>
             <li><a href="#">חוזים</a></li>
             <li><a href="#">ניודים</a></li>
@@ -40,7 +43,9 @@
                 <ul class="dropdown-menu">
                     <li><a href="http://52.25.230.58/UserProfileController/index">פרופיל</a></li>
                     <li><a href="http://52.25.230.58/UserProfileController/settings">הגדרות</a></li>
+                    <?php if($user[0]->user_type == 1) { ?>
                     <li><a href="http://52.25.230.58/UserProfileController/addUser">הוסף משתמש</a></li>
+                    <?php } ?>
                     <li><a href="http://52.25.230.58/Login/logout">התנתק</a></li>
                 </ul>
             </li>
