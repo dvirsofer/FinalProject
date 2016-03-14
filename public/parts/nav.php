@@ -39,7 +39,7 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="http://52.25.230.58/UserProfileController/index">פרופיל</a></li>
-                    <li><a class="fa-save" href="http://52.25.230.58/UserProfileController/settings">הגדרות</a></li>
+                    <li><a href="http://52.25.230.58/UserProfileController/settings">הגדרות</a></li>
                     <li><a href="http://52.25.230.58/UserProfileController/addUser">הוסף משתמש</a></li>
                     <li><a href="http://52.25.230.58/Login/logout">התנתק</a></li>
                 </ul>
