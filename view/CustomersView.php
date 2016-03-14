@@ -114,8 +114,9 @@ class CustomersView
                         $customer = $this->customerModel->getCustomerInfo($id);
                         $settlement = $this->customerModel->getSettlement($customer[0]->settlement_id);
                         $settlementName = $settlement[0]->settlement_name;
-                        $responsibleName = $this->userModel->getUserById($customer[0]->responsible_id);
-
+                        $responsibleInfo = $this->userModel->getUserById($customer[0]->responsible_id);
+                        $responsibleName = $responsibleInfo[0]->user_name;
+                        
                         $html .= '<div class="col-md-4">
                             <div class="form-group">
                                 <label for="employer_name" class="col-sm-3 control-label">שם המעסיק </label>
