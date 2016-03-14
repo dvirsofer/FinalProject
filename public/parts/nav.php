@@ -20,7 +20,7 @@
                 </ul>
             </li>
 
-            <?php if($user[0]->user_type != 2) { ?>
+            <?php if($user[0]->user_type == 1) { ?>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">עובדים<b class="caret"></b></a>
                 <ul class="dropdown-menu">
