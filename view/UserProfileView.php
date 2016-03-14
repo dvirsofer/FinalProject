@@ -160,7 +160,7 @@ class UserProfileView
           <div class="form-group">
             <label class="col-md-3 control-label"></label>
             <div class="col-md-8">
-                <button type="submit" class="btn btn-primary fa-save">שמור שינויים</button>
+                <button type="submit" class="btn btn-primary">שמור שינויים</button>
               <input type="reset" class="btn btn-default" value="אתחל">
             </div>
           </div>
