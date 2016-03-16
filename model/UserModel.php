@@ -10,16 +10,27 @@
 require_once('./public/lib/Response.php');
 require_once('./public/lib/DB.php');
 
+/**
+ * Class UserModel
+ */
 class UserModel
 {
     private $db;
 
-    function __construct()
+    /**
+     * constructor
+     */
+    public function __construct()
     {
         $this->db = DB::getInstance();
     }
 
-    function getUser($userName, $password)
+    /**
+     * @param $userName
+     * @param $password
+     * @return array - User.
+     */
+    public function getUser($userName, $password)
     {
         $db = DB::getInstance();
         $db->checkConnection();
@@ -27,7 +38,11 @@ class UserModel
         return $userInfo;
     }
 
-    function getUserById($userId)
+    /**
+     * @param $userId
+     * @return array - User.
+     */
+    public function getUserById($userId)
     {
         $db = DB::getInstance();
         $db->checkConnection();
@@ -35,7 +50,17 @@ class UserModel
         return $user;
     }
 
-    function addUser($userFirstName, $userLastName, $userName, $userEmail, $userPhone, $userPosition, $userPassword)
+    /**
+     * @param $userFirstName
+     * @param $userLastName
+     * @param $userName
+     * @param $userEmail
+     * @param $userPhone
+     * @param $userPosition
+     * @param $userPassword
+     * @return string - message if success.
+     */
+    public function addUser($userFirstName, $userLastName, $userName, $userEmail, $userPhone, $userPosition, $userPassword)
     {
         $db = DB::getInstance();
         $db->checkConnection();
@@ -49,7 +74,18 @@ class UserModel
         return $msg;
     }
 
-    function updateUserInfo($id, $userName, $userEmail, $userPhone,
+    /**
+     * @param $id
+     * @param $userName
+     * @param $userEmail
+     * @param $userPhone
+     * @param $userPassword
+     * @param $userPasswordC
+     * @param $userFirstName
+     * @param $userLastName
+     * @return Response - message if success.
+     */
+    public function updateUserInfo($id, $userName, $userEmail, $userPhone,
                             $userPassword, $userPasswordC, $userFirstName, $userLastName)
     {
         $response = new Response();
@@ -78,7 +114,12 @@ class UserModel
         return $response;
     }
 
-    function checkPassword($password, $passwordC)
+    /**
+     * @param $password
+     * @param $passwordC
+     * @return bool - validation password.
+     */
+    private function checkPassword($password, $passwordC)
     {
         if(!empty($password) || !empty($passwordC)) {
             if($password === $passwordC) {
@@ -89,7 +130,6 @@ class UserModel
             }
         }
         return true;
-
     }
 
 }

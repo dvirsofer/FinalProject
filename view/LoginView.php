@@ -6,9 +6,16 @@
  * Time: 18:22
  */
 
+/**
+ * Class LoginView
+ */
 class LoginView {
 
-    function showLogin($isSuccess,$response ='')
+    /**
+     * @param $isSuccess
+     * @param string $response
+     */
+    public function showLogin($isSuccess,$response ='')
     {
         $html=
             '<!DOCTYPE html>

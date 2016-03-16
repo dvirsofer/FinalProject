@@ -10,25 +10,37 @@
 require_once('./model/UserModel.php');
 require_once("./view/UserProfileView.php");
 
+/**
+ * Class UserProfileController
+ */
 class UserProfileController
 {
     private $userModel;
     private $userView;
     private $user;
 
-    function __construct()
+    /**
+     * constructor
+     */
+    public function __construct()
     {
         $this->user = unserialize($_SESSION['user']);
         $this->userModel = new UserModel();
         $this->userView = new UserProfileView();
     }
 
-    function index()
+    /**
+     * Show user profile page.
+     */
+    public function index()
     {
         $this->userView->showUserProfile();
     }
 
-    function settings()
+    /**
+     * Show user settings page.
+     */
+    public function settings()
     {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $userName = $_POST['userName'];
@@ -53,12 +65,18 @@ class UserProfileController
         }
     }
 
-    function addUser()
+    /**
+     * Show add user page.
+     */
+    public function addUser()
     {
         $this->userView->showAddUser();
     }
 
-    function newUser()
+    /**
+     * @return string - message if success.
+     */
+    public function newUser()
     {
         $userFirstName = $_POST['userFirstName'];
         $userLastName = $_POST['userLastName'];
@@ -72,8 +90,5 @@ class UserProfileController
         return $user;
 
     }
-
-
-
 
 }

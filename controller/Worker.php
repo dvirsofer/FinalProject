@@ -10,18 +10,27 @@
 require_once('./model/WorkerModel.php');
 require_once("./view/WorkerView.php");
 
+/**
+ * Class Worker
+ */
 class Worker
 {
     private $workerModel;
     private $workerView;
 
-    function __construct()
+    /**
+     * constructor
+     */
+    public function __construct()
     {
         $this->workerModel = new WorkerModel();
         $this->workerView = new WorkerView();
     }
 
-    function index()
+    /**
+     * Show worker page.
+     */
+    public function index()
     {
         $this->workerView->showWorker();
     }

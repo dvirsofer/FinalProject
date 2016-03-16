@@ -8,16 +8,28 @@
 
 require_once('./public/lib/Response.php');
 require_once('./public/lib/DB.php');
+
+/**
+ * Class LoginModel
+ */
 class LoginModel {
 
     private $db;
 
-    function __construct()
+    /**
+     * constructor
+     */
+    public function __construct()
     {
         $this->db = DB::getInstance();
     }
 
-    function checkLogin($userName,$password)
+    /**
+     * @param $userName
+     * @param $password
+     * @return Response - message if success.
+     */
+    public function checkLogin($userName,$password)
     {
         $response = new Response();
 
@@ -32,7 +44,7 @@ class LoginModel {
         return $response;
     }
 
-    function getUser($userName, $password)
+    /*function getUser($userName, $password)
     {
         $db = DB::getInstance();
         $db->checkConnection();
@@ -41,9 +53,12 @@ class LoginModel {
             $userInfo{0}->user_id, $userInfo{0}->phone_number, $userInfo{0}->email, $userInfo{0}->create_date);
 
         return $user;
-    }
+    }*/
 
-     function lobby()
+    /**
+     * show lobby page.
+     */
+     public function lobby()
      {
          $user = $_SESSION['user'];
          if (empty($user)) {
@@ -54,7 +69,10 @@ class LoginModel {
          }
      }
 
-    function logout()
+    /**
+     * logout.
+     */
+    public function logout()
     {
         // remove all session variables
         session_unset();

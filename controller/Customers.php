@@ -20,14 +20,20 @@ class Customers
     private $customersView;
     private $workerModel;
 
-    function __construct()
+    /**
+     * constructor
+     */
+    public function __construct()
     {
         $this->model = new CustomersModel();
         $this->customersView = new CustomersView();
         $this->workerModel = new WorkerModel();
     }
 
-    function index()
+    /**
+     * show customers.
+     */
+    public function index()
     {
         $id = '';
 
@@ -38,14 +44,14 @@ class Customers
 
     }
 
-    function getCustomerInfoById()
+    /*function getCustomerInfoById()
     {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['customers_dropdown'];
             $workerTable = $this->customersView->createWorkersTable($id);
             echo($workerTable);
         }
-    }
+    }*/
 
 
 

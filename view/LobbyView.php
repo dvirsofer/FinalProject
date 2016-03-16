@@ -15,7 +15,7 @@ class LobbyView {
     /**
      * @param $userName
      */
-    function showLobby($userName)
+    public function showLobby($userName)
     {
         $user = unserialize($_SESSION['user']);
         $this->userName = $user[0]->user_name;

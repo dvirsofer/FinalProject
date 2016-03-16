@@ -18,14 +18,20 @@ class CustomersView
     private $userModel;
     private $userName;
 
-    function __construct()
+    /**
+     * constructor
+     */
+    public function __construct()
     {
         $this->workerModel = new WorkerModel();
         $this->customerModel = new CustomersModel();
         $this->userModel = new UserModel();
     }
 
-    function showCustomers($id='')
+    /**
+     * @param string $id - customer id.
+     */
+    public function showCustomers($id='')
     {
         $user = unserialize($_SESSION['user']);
         $this->userName = $user[0]->user_name;
@@ -365,7 +371,11 @@ class CustomersView
 
     }
 
-    function createWorkersTable($id)
+    /**
+     * @param $id - customer id.
+     * @return string - table of all workers.
+     */
+    private function createWorkersTable($id)
     {
         $workers = $this->workerModel->getAllWorkerOfCustomerInfo($id);
         $str = "";
@@ -391,6 +401,10 @@ class CustomersView
         return $str;
     }
 
+    /**
+     * @param $id - customer id.
+     * @return string - table of all Contacts.
+     */
     function createContactsTable($id)
     {
         $contacts = $this->customerModel->getAllContactsOfCustomerInfo($id);
@@ -411,7 +425,11 @@ class CustomersView
         return $str;
     }
 
-    function getCustomers($id = '')
+    /**
+     * @param string $id
+     * @return string - all customers.
+     */
+    private function getCustomers($id = '')
     {
         $str = "";
         $customers = $this->customerModel->getCustomers();

@@ -14,12 +14,15 @@
 class MailController
 {
 
-    function __construct()
+    public function __construct()
     {
 //        $this->customersView = new CustomersView();
     }
 
-    function send()
+    /**
+     * send mail.
+     */
+    public function send()
     {
         $first_name = $_POST['first_name_FT'];
         $last_name = $_POST['last_name_FT'];

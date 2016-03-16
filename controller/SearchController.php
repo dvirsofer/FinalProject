@@ -17,13 +17,19 @@ class SearchController
 
     private $workerModel;
 
-    function __construct()
+    /**
+     * constructor
+     */
+    public function __construct()
     {
         $this->workerModel = new WorkerModel();
 //        $this->customersView = new CustomersView();
     }
 
-    function searchByPassport()
+    /**
+     * search passport.
+     */
+    public function searchByPassport()
     {
         $passportId = $_POST['passport_number_form'];
 

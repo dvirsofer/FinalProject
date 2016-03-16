@@ -11,19 +11,28 @@ require_once('./model/WorkerModel.php');
 require_once('./model/CustomersModel.php');
 require_once('./model/UserModel.php');
 
+/**
+ * Class WorkerView
+ */
 class WorkerView
 {
     private $workerModel;
     private $customerModel;
     private $userName;
 
-    function __construct()
+    /**
+     * constructor
+     */
+    public function __construct()
     {
         $this->workerModel = new WorkerModel();
         $this->customerModel = new CustomersModel();
     }
 
-    function showWorker()
+    /**
+     * Show worker.
+     */
+    public function showWorker()
     {
         $user = unserialize($_SESSION['user']);
         $this->userName = $user[0]->user_name;
@@ -375,7 +384,10 @@ class WorkerView
         echo $html;
     }
 
-    function createWorkersTable()
+    /**
+     * @return string - table of all workers.
+     */
+    private function createWorkersTable()
     {
         $workers = $this->workerModel->allWorkersInfo();
         $str = "";
@@ -401,7 +413,10 @@ class WorkerView
         return $str;
     }
 
-    function createAllCustomers()
+    /**
+     * @return string - All customers.
+     */
+    private function createAllCustomers()
     {
         $customers = $this->customerModel->getCustomers();
         $str = "";
@@ -413,7 +428,10 @@ class WorkerView
         return $str;
     }
 
-
+    /**
+     * @param $file
+     * @return string
+     */
     private function requireToVar($file){
         ob_start();
         include($file);

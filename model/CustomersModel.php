@@ -10,17 +10,26 @@
 require_once('./public/lib/Response.php');
 require_once('./public/lib/DB.php');
 
+/**
+ * Class CustomersModel
+ */
 class CustomersModel
 {
 
     private $db;
 
-    function __construct()
+    /**
+     * constructor
+     */
+    public function __construct()
     {
         $this->db = DB::getInstance();
     }
 
-    function getCustomers()
+    /**
+     * @return array - All customers
+     */
+    public function getCustomers()
     {
         $db = DB::getInstance();
         $db->checkConnection();
@@ -28,7 +37,11 @@ class CustomersModel
         return $result;
     }
 
-    function getAllContactsOfCustomerInfo($id)
+    /**
+     * @param $id - customer id.
+     * @return array - All contacts of this customer.
+     */
+    public function getAllContactsOfCustomerInfo($id)
     {
         $db = DB::getInstance();
         $db->checkConnection();
@@ -37,7 +50,11 @@ class CustomersModel
 
     }
 
-    function getCustomerInfo($customerId)
+    /**
+     * @param $customerId - customer id.
+     * @return array - All information of this customer.
+     */
+    public function getCustomerInfo($customerId)
     {
         $db = DB::getInstance();
         $db->checkConnection();
@@ -46,7 +63,11 @@ class CustomersModel
         return $result;
     }
 
-    function getSettlement($sid)
+    /**
+     * @param $sid - Settlement id.
+     * @return array - All information of this settlement.
+     */
+    public function getSettlement($sid)
     {
         $db = DB::getInstance();
         $db->checkConnection();

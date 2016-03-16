@@ -10,17 +10,26 @@
 require_once('./public/lib/Response.php');
 require_once('./public/lib/DB.php');
 
+/**
+ * Class WorkerModel
+ */
 class WorkerModel
 {
 
     private $db;
 
-    function __construct()
+    /**
+     * constructor
+     */
+    public function __construct()
     {
         $this->db = DB::getInstance();
     }
 
-    function allWorkersInfo()
+    /**
+     * @return bool|PDOStatement
+     */
+    public function allWorkersInfo()
     {
         $db = DB::getInstance();
         $db->checkConnection();
@@ -30,7 +39,11 @@ class WorkerModel
 
     }
 
-    function getAllWorkerOfCustomerInfo($customerId)
+    /**
+     * @param $customerId
+     * @return array - All workers of the customer.
+     */
+    public function getAllWorkerOfCustomerInfo($customerId)
     {
         $db = DB::getInstance();
         $db->checkConnection();
@@ -38,14 +51,16 @@ class WorkerModel
         return $result;
     }
 
-    function getPassportInfo($workerId)
+    /**
+     * @param $workerId
+     * @return array - Passport of the worker.
+     */
+    public function getPassportInfo($workerId)
     {
         $db = DB::getInstance();
         $db->checkConnection();
         $result = $this->db->getWorkerPassportInfo($workerId);
         return $result;
     }
-
-
 
 }

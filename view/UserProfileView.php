@@ -9,6 +9,9 @@
 
 require_once('./model/UserModel.php');
 
+/**
+ * Class UserProfileView
+ */
 class UserProfileView
 {
     private $userModel;
@@ -21,13 +24,18 @@ class UserProfileView
     private $userFirstName;
     private $userLastName;
 
-
-    function __construct()
+    /**
+     * constructor
+     */
+    public function __construct()
     {
         $this->userModel = new UserModel();
     }
 
-    function showUserProfile()
+    /**
+     * Show user profile.
+     */
+    public function showUserProfile()
     {
         $user = unserialize($_SESSION['user']);
         $this->userName = $user[0]->user_name;
@@ -76,7 +84,12 @@ class UserProfileView
         echo $html;
     }
 
-    function showSettings($isSuccess='',$response ='')
+    /**
+     * @param string $isSuccess
+     * @param string $response
+     * Show user settings.
+     */
+    public function showSettings($isSuccess='',$response ='')
     {
         $user = unserialize($_SESSION['user']);
         $this->userName = $user[0]->user_name;
@@ -192,7 +205,11 @@ class UserProfileView
         echo $html;
     }
 
-    function showAddUser($response='')
+    /**
+     * @param string $response
+     * Show add user.
+     */
+    public function showAddUser($response='')
     {
         $user = unserialize($_SESSION['user']);
         $this->userName = $user[0]->user_name;
@@ -288,7 +305,10 @@ class UserProfileView
 
     }
 
-    function getFullName($user)
+    /**
+     * @param $user
+     */
+    private function getFullName($user)
     {
         $userFullName = $user[0]->full_name;
         $userFullName = array(explode(" ", $userFullName, 2));

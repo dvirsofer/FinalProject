@@ -12,6 +12,9 @@ require_once('./model/LoginModel.php');
 require_once("./view/LoginView.php");
 require_once("./view/LobbyView.php");
 
+/**
+ * Class Login
+ */
 class Login
 {
     private $model;
@@ -19,7 +22,10 @@ class Login
     private $lobbyView;
     private $userModel;
 
-    function __construct()
+    /**
+     * constructor
+     */
+    public function __construct()
     {
         $this->model = new LoginModel();
         $this->loginView = new LoginView();
@@ -27,7 +33,10 @@ class Login
         $this->userModel = new UserModel();
     }
 
-    function index()
+    /**
+     * show lobby - if userName and password in database.
+     */
+    public function index()
     {
         //if user exist -- session exist
         if (!empty($_SESSION['user'])) {
@@ -58,7 +67,10 @@ class Login
         }
     }
 
-    function logout()
+    /**
+     * logout of the user.
+     */
+    public function logout()
     {
         $this->model->logout();
     }
