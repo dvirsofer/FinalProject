@@ -51,6 +51,18 @@ class UserModel
     }
 
     /**
+     * @param $typeId
+     * @return array - user type.
+     */
+    public function getUserType($typeId)
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $userType = $db->getUserType($typeId);
+        return $userType;
+    }
+
+    /**
      * @param $userFirstName
      * @param $userLastName
      * @param $userName
@@ -64,11 +76,6 @@ class UserModel
     {
         $db = DB::getInstance();
         $db->checkConnection();
-        error_log(var_export($userName,true));
-        error_log(var_export($userEmail,true));
-        error_log(var_export($userPhone,true));
-        error_log(var_export($userPosition,true));
-        error_log(var_export($userPassword,true));
         $msg = $db->addNewUser($userFirstName, $userLastName, $userName, $userEmail, $userPhone,
             $userPosition, $userPassword);
         return $msg;

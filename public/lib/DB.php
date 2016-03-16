@@ -144,6 +144,14 @@ class DB
 
     }
 
+    function getUserType($typeId)
+    {
+        $sql = "SELECT * FROM users_type WHERE id='$typeId'";
+        $user = self::$db->query($sql);
+        $user = $user->fetchAll(PDO::FETCH_OBJ);
+        return $user;
+    }
+
     function getSettlement($sid)
     {
         $sql = "SELECT * FROM settlement WHERE id='$sid'";
@@ -158,6 +166,14 @@ class DB
         $passportInfo = self::$db->query($sql);
         $passportInfo = $passportInfo->fetchAll(PDO::FETCH_OBJ);
         return $passportInfo;
+    }
+
+    function getAllWorkers()
+    {
+        $sql = "SELECT * FROM forgen_workes";
+        $workers = self::$db->query($sql);
+        $workers = $workers->fetchAll(PDO::FETCH_OBJ);
+        return $workers;
     }
 
     function getAllCustomers()

@@ -33,10 +33,8 @@ class WorkerModel
     {
         $db = DB::getInstance();
         $db->checkConnection();
-        $result = $this->db->getTableData('forgen_workes');
-
+        $result = $this->db->getAllWorkers();
         return $result;
-
     }
 
     /**

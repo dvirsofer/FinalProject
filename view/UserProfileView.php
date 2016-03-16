@@ -41,7 +41,7 @@ class UserProfileView
         $this->userName = $user[0]->user_name;
         $this->userPassword = $user[0]->user_password;
         $this->userType = $user[0]->type_id;
-        $this->userId = $user[0]->user_id;
+        $this->userId = $this->getUserType($user);
         $this->userPhone = $user[0]->phone_number;
         $this->userEmail = $user[0]->email;
 
@@ -67,6 +67,8 @@ class UserProfileView
     <h1 class="panel-title">פרופיל</h1>
         <div class="panel-body">
             <ul class="list-group">
+            <li class="list-group-item text-right"><span class="pull-left"><strong>שם פרטי</strong></span>' .$this->userFirstName .' </li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>שם משפחה</strong></span>' .$this->userLastName .' </li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>תפקיד</strong></span>' .$this->userType .' </li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>משתמש</strong></span>' .$this->userName .' </li>
             <li class="list-group-item text-right"><span class="pull-left"><strong>מ"ס עובד</strong></span>' .$this->userId .'</li>
@@ -93,7 +95,7 @@ class UserProfileView
     {
         $user = unserialize($_SESSION['user']);
         $this->userName = $user[0]->user_name;
-        $this->userType = $user[0]->type_id;
+        $this->userType = $this->getUserType($user);
         $this->userId = $user[0]->user_id;
         $this->userPhone = $user[0]->phone_number;
         $this->userEmail = $user[0]->email;
@@ -314,6 +316,17 @@ class UserProfileView
         $userFullName = array(explode(" ", $userFullName, 2));
         $this->userFirstName = $userFullName[0][0];
         $this->userLastName = $userFullName[0][1];
+    }
+
+    /**
+     * @param $user
+     * @return array - user type.
+     */
+    private function getUserType($user)
+    {
+        $typeId = $user[0]->type_id;
+        $userType = $this->userModel->getUserType($typeId);
+        return $userType;
     }
 
 }
