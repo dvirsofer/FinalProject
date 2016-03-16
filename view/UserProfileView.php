@@ -38,13 +38,13 @@ class UserProfileView
     public function showUserProfile()
     {
         $user = unserialize($_SESSION['user']);
-        $this->getFullName($user);
         $this->userName = $user[0]->user_name;
         $this->userPassword = $user[0]->user_password;
         $this->userType = $user[0]->type_id;
         $this->userId = $this->getUserType($user);
         $this->userPhone = $user[0]->phone_number;
         $this->userEmail = $user[0]->email;
+        $this->getFullName($user);
 
         if (empty($user)) {
             header('Location: index.php');
