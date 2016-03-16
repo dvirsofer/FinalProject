@@ -5,6 +5,7 @@
  * Date: 26/11/2015
  * Time: 16:17
  */
+require_once('Configure.php');
 
 class Router {
     private static $uriArray;
@@ -18,6 +19,9 @@ class Router {
     {
 
         $config = parse_ini_file('config.ini');
+
+       // if(SERVER_NAME == 'http://localhost:8000/finalProject')
+
         self::$uriArray =explode('/',$url);
         array_shift(self::$uriArray);
         self::checkController($config);
