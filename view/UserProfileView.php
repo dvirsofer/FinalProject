@@ -327,7 +327,8 @@ class UserProfileView
     {
         $typeId = $user[0]->type_id;
         $userType = $this->userModel->getUserType($typeId);
-        return $userType;
+        $userTypeName = $userType->user_type;
+        return $userTypeName;
     }
 
 }
