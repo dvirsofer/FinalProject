@@ -10,6 +10,7 @@
 require_once('./model/WorkerModel.php');
 require_once('./model/CustomersModel.php');
 require_once('./model/UserModel.php');
+require_once('./Configure.php');
 
 class CustomersView
 {
@@ -26,6 +27,7 @@ class CustomersView
         $this->workerModel = new WorkerModel();
         $this->customerModel = new CustomersModel();
         $this->userModel = new UserModel();
+
     }
 
     /**

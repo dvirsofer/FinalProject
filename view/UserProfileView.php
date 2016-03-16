@@ -8,6 +8,7 @@
  */
 
 require_once('./model/UserModel.php');
+require_once('./Configure.php');
 
 /**
  * Class UserProfileView

@@ -10,6 +10,7 @@
 require_once('./model/WorkerModel.php');
 require_once('./model/CustomersModel.php');
 require_once('./model/UserModel.php');
+require_once('./Configure.php');
 
 /**
  * Class WorkerView

@@ -5,7 +5,7 @@
  * Date: 01/12/2015
  * Time: 18:22
  */
-
+require_once('./Configure.php');
 /**
  * Class LoginView
  */
