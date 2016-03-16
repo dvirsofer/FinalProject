@@ -20,7 +20,7 @@ class Router {
 
         $config = parse_ini_file('config.ini');
 
-       // if(SERVER_NAME == 'http://localhost:8000/finalProject')
+       //if(SERVER_NAME == 'http://localhost:8000/finalProject')
 
         self::$uriArray =explode('/',$url);
         array_shift(self::$uriArray);
