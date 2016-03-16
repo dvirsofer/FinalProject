@@ -38,6 +38,7 @@ class UserProfileView
     public function showUserProfile()
     {
         $user = unserialize($_SESSION['user']);
+        $this->getFullName($user);
         $this->userName = $user[0]->user_name;
         $this->userPassword = $user[0]->user_password;
         $this->userType = $user[0]->type_id;
