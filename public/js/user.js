@@ -4,11 +4,6 @@ $("#add_user_form").submit(function(event){
     addUser(event);
 });
 
-
-
-
-
-
 function addUser(event){
 
 
