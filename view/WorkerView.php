@@ -294,7 +294,7 @@ class WorkerView
             <div class="panel-body">
                 <div>';
 
-        $html .= $this->createWorkersTable();
+        //$html .= $this->createWorkersTable();
 
         $html .= '</div>
 
@@ -376,8 +376,9 @@ class WorkerView
          </div>
     </div>
 </div>
-<script src="/public/js/flight.js"></script>
-<script src="/public/js/search.js"></script>
+<script src='.SERVER_NAME .'/public/js/configure.js></script>
+<script src='.SERVER_NAME .'/public/js/flight.js></script>
+<script src='.SERVER_NAME .'/public/js/search.js></script>
 </body>
 </html>';
 
@@ -388,7 +389,7 @@ class WorkerView
     /**
      * @return string - table of all workers.
      */
-    private function createWorkersTable()
+   /* private function createWorkersTable()
     {
         $workers = $this->workerModel->allWorkersInfo();
         $str = "";
@@ -412,7 +413,7 @@ class WorkerView
 
 
         return $str;
-    }
+    }*/
 
     /**
      * @return string - All customers.

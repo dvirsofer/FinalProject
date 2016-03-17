@@ -29,6 +29,11 @@ class UserProfileController
         $this->userView = new UserProfileView();
     }
 
+    public function fFf()
+    {
+        echo 'jjjj';
+    }
+
     /**
      * Show user profile page.
      */

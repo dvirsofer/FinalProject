@@ -55,7 +55,7 @@ function formByPassportSubmit(event) {
     // send to server using AJAX
     $.ajax({
         type: "POST",
-        url: 'http://52.25.230.58/SearchController/searchByPassport',
+        url: develop_server_name+'/SearchController/searchByPassport',
         data: data,
         success: function(result) {
             console.log(result);

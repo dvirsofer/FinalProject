@@ -7,6 +7,7 @@ if(!isset($_SESSION))
 
 
 require_once("Router.php");
+
 Router::route($_SERVER['REQUEST_URI']);
 
 Router::dispatch();
