@@ -10,7 +10,7 @@ function addUser(event){
 
     $.ajax({
         type: "POST",
-        url: 'http://52.25.230.58/UserProfileController/newUser',
+        url: develop_server_name+'/UserProfileController/newUser',
         data: data,
         success: function(result) {
             console.log(result);

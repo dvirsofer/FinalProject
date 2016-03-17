@@ -210,6 +210,7 @@ class DB
 
     function addNewUser($userFirstName, $userLastName, $userName, $userEmail, $userPhone, $userPosition, $userPassword)
     {
+        $userPosition = intval($userPosition);
         try{
             $sql = self::$db->prepare("INSERT INTO users (type_id, user_name, user_password, phone_number, email, full_name)
                                 VALUES(:userPosition, :username, :password, :phone, :email, :fullName)");

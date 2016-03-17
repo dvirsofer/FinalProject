@@ -301,7 +301,9 @@ class UserProfileView
 </div>
 <hr>';
         $html .= '
-<script src="/public/js/user.js"></script>
+<script src='.SERVER_NAME .'/public/js/configure.js></script>
+<script src='.SERVER_NAME .'/public/js/user.js></script>
+
 </body>
 </html>';
 
