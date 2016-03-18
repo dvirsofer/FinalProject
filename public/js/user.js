@@ -1,9 +1,11 @@
-(function() {
-    $('#add_user_form').submit(addUser);
-})();
+$("#add_user_form").submit(function(event){
+    // cancels the form submission
+    event.preventDefault();
+    addUser(event);
+});
 
 function addUser(event){
-    event.preventDefault();
+
 
     var $form = $(event.currentTarget);
     var data = $form.serialize();
