@@ -83,6 +83,7 @@ class UserProfileController
      */
     public function newUser()
     {
+
         $userFirstName = $_POST['userFirstName'];
         $userLastName = $_POST['userLastName'];
         $userName = $_POST['userName'];
