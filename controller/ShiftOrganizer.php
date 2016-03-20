@@ -7,6 +7,7 @@
  */
 
 require_once('./model/ShiftOrganizerModel.php');
+require_once('./model/WorkerModel.php');
 require_once("./view/ShiftOrganizerView.php");
 
 class ShiftOrganizer {
@@ -18,7 +19,6 @@ class ShiftOrganizer {
 
     function __construct()
     {
-
         try
         {
             $this->model = new ShiftOrganizerModel();
@@ -35,9 +35,11 @@ class ShiftOrganizer {
 
     function showWorkers()
     {
+
         if (!empty($_SESSION['user'])) {
-            $workers=$this->workerModel->getAllWorkerOfCustomerInfo($_SESSION['user']);
-            $this->showMainPage($workers);
+
+           // $workers=$this->workerModel->getAllWorkerOfCustomerInfo($_SESSION['user']);
+            $this->view->showMainPage();
         }
     }
 
