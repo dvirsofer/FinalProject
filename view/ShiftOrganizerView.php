@@ -26,5 +26,10 @@ class ShiftOrganizerView
 
     }
 
+    public function showMainPage($workers)
+    {
+        include('../public/parts/addOn_blackPage.html');
+    }
+
 
 }

@@ -11,14 +11,19 @@ require_once("./view/ShiftOrganizerView.php");
 
 class ShiftOrganizer {
 
-    private static $model;
+    private  $model;
+    private  $workerModel;
+    private $view;
+
 
     function __construct()
     {
 
         try
         {
-            self::$model = new ShiftOrganizerModel();
+            $this->model = new ShiftOrganizerModel();
+            $this->workerModel = new WorkerModel();
+            $this->view = new ShiftOrganizerView();
 
         }
         catch(exaption $e)
@@ -26,6 +31,14 @@ class ShiftOrganizer {
             echo $e->getMessage();
         }
 
+    }
+
+    function showWorkers()
+    {
+        if (!empty($_SESSION['user'])) {
+            $workers=$this->workerModel->getAllWorkerOfCustomerInfo($_SESSION['user']);
+            $this->showMainPage($workers);
+        }
     }
 
 }
