@@ -12,8 +12,8 @@ require_once("./view/ShiftOrganizerView.php");
 
 class ShiftOrganizer {
 
-    private  $model;
-    private  $workerModel;
+    private $model;
+    private $workerModel;
     private $view;
 
 

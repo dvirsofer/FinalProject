@@ -238,24 +238,23 @@ class DB
 
      * @return bool|PDOStatement
      */
-    function getTableData($table, $keysArray = null)
+    function getTableData($table, $keysArray = null, $sqlFunction = null)
     {
 
 
         if (self::$db != false) {
 
-
             // only user who has the table will succeed to get a result from the query
-
-
+            if(isset($sqlFunction) && $sqlFunction != null)
+                $sql = 'select '.$sqlFunction.' as funcColumn from' . ' ' . $table;
+                else
                 $sql = 'select * from' . ' ' . $table;
 
 
-           // var_dump($sql);exit;
+
 
                 if(isset($keysArray) && $keysArray != null)
                      $sql .= $this->getSQLWhere($keysArray);
-
 
             $query = self::$db->query($sql);
 
@@ -395,6 +394,18 @@ class DB
         }
 
         return  $value;
+    }
+
+    public function query($sql)
+    {
+        $query = self::$db->query($sql);
+
+        if ($query == false)
+            return $query;
+
+        $query = $query->fetchAll(PDO::FETCH_OBJ);
+
+        return $query;
     }
 
 
