@@ -15,7 +15,7 @@ class ShiftOrganizer {
     private $model;
     private $workerModel;
     private $view;
-    private $test;
+
 
 
     function __construct()
