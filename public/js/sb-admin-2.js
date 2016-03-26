@@ -34,3 +34,7 @@ $(function() {
         element.addClass('active');
     }
 });
+
+$(function() {
+    console.log( "ready!" );
+});
