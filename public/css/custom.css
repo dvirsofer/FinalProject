@@ -10,3 +10,8 @@ body
     float: left;
     text-align: right;
 }
+
+#map
+{
+    height: 300px;
+}
