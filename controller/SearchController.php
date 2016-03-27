@@ -32,6 +32,7 @@ class SearchController
     {
         $employee = $_POST['employer_name_form'];
         $allWorkers = $this->workerModel->getAllWorkerOfCustomerInfo($employee);
+        //error_log(var_export($allWorkers,true));
         echo(json_encode($allWorkers));
     }
 
