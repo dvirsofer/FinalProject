@@ -1,6 +1,5 @@
 <?php
 
-var_dump('dddd');exit;
 include_once('../Configure.php');
 require_once('../public/lib/Response.php');
 require_once('../public/lib/DB.php');
