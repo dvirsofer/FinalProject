@@ -3,5 +3,6 @@
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
     <file url="file://$PROJECT_DIR$/.htaccess" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/public/lib/DB.php" charset="windows-1255" />
+    <file url="file://$PROJECT_DIR$/public/parts/sidebar.php" charset="UTF-8" />
   </component>
 </project>
