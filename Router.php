@@ -31,6 +31,11 @@ class Router {
 
         self::$uriArray =explode('/',$url);
         array_shift(self::$uriArray);
+
+        if(isset(self::$uriArray[0])  && self::$uriArray[0]== 'public')
+        {
+           include($url);die();
+        }
         self::checkController($config);
 
         self::checkAction($config);
@@ -46,6 +51,7 @@ class Router {
             self::$controller = self::$uriArray[0];
             array_shift(self::$uriArray);
         }
+
         else
             self::$controller =$config['default_controller'];
     }
