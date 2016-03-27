@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
    RewriteEngine On
-   RewriteBase /finalProject/
+   RewriteBase /
    RewriteRule ^(.+)[^gif|jpe?g|png|css|js|mp3|ogg]$ index.php
    RewriteCond %{REQUEST_FILENAME} !-f
    RewriteCond %{REQUEST_FILENAME} !-d
