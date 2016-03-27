@@ -3,6 +3,7 @@
     $('#search_dropdown').on('change', searchDropdownEvent);
     $('#customers_dropdown').on('change', customerDropdownEvent);
     $('#form_by_employee').submit(formByEmployeeSubmit);
+    $('#form_by_name').submit(formByNameSubmit);
     $('#form_by_passport').submit(formByPassportSubmit);
     $('#workers').DataTable({
         responsive: true
@@ -59,3 +60,21 @@ function formByPassportSubmit(event) {
     });
 
 }
+
+function formByNameSubmit(event) {
+    event.preventDefault();
+
+    var $form = $(event.currentTarget);
+    var data = $form.serialize();
+
+    // send to server using AJAX
+    $.ajax({
+        type: "POST",
+        url: develop_server_name+'/SearchController/searchByName',
+        data: data,
+        success: function(result) {
+            console.log(result);
+        }
+    });
+}
+
