@@ -94,7 +94,6 @@ class WorkerView
                 <div class="panel-body" id="forms_panel">
 
                     <form class="form-inline panel" id="form_by_employee" style="display: none;">
-
                         <div class="form-group">
                             <label for="employer_name">שם מעסיק</label>
                             <select class="form-control " id="employer_name_form" name="employer_name_form">';
@@ -102,17 +101,14 @@ class WorkerView
                                 $html .= '</select>
                         </div>
                         <button type="submit" class="btn btn-success">חיפוש</button>
-
                     </form>
 
                      <form class="form-inline panel" id="form_by_name" style="display: none;">
-
                         <div class="form-group">
                             <label for="employer_name">שם משפחה</label>
                             <input type="text" class="form-control" id="last_name_form" name="last_name_form">
                         </div>
                         <button type="submit" class="btn btn-success">חיפוש</button>
-
                     </form>
 
                     <form class="form-inline panel" id="form_by_passport" style="display: none;">
@@ -120,10 +116,9 @@ class WorkerView
                             <label for="passport_number">מספר דרכון</label>
                             <input type="text" class="form-control" id="passport_number_form" name="passport_number_form">
                         </div>
-
                         <button type="submit" class="btn btn-success">חיפוש</button>
-
                     </form>
+
                 </div>
             </div>
         </div>

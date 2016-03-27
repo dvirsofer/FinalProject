@@ -2,6 +2,8 @@
     $('#forms_panel form').hide();
     $('#search_dropdown').on('change', searchDropdownEvent);
     $('#customers_dropdown').on('change', customerDropdownEvent);
+    $('#form_by_employee').submit(formByEmployeeSubmit);
+    $('#form_by_name').submit(formByNameSubmit);
     $('#form_by_passport').submit(formByPassportSubmit);
     $('#workers').DataTable({
         responsive: true
@@ -22,29 +24,24 @@ function searchDropdownEvent(event) {
 function customerDropdownEvent(event) {
     var $form = $(this).parent();
     $form.submit();
-    //var $dropdown = $(event.currentTarget);
-    //var selection = $dropdown.val();
-    //var data = $dropdown.serialize();
-    //
-    //$('#customer').text(selection);
-    //$('#customer').show();
-    //$.ajax({
-    //    type: "POST",
-    //    url: 'http://52.25.230.58/Customers/getCustomerInfoById',
-    //    data: data,
-    //    success: function(result) {
-    //        // console.log(result);
-    //        $('#workers tbody').html(result);
-    //        $('#workers').dataTable()._fnAjaxUpdate();
-    //        $('#workers').DataTable({
-    //            responsive: true
-    //        });
-    //    }
-    //});
-
 }
 
+function formByEmployeeSubmit(event) {
+    event.preventDefault();
 
+    var $form = $(event.currentTarget);
+    var data = $form.serialize();
+
+    // send to server using AJAX
+    $.ajax({
+        type: "POST",
+        url: develop_server_name+'/SearchController/searchByEmployee',
+        data: data,
+        success: function(result) {
+            console.log(result);
+        }
+    });
+}
 
 function formByPassportSubmit(event) {
     event.preventDefault();
@@ -63,3 +60,21 @@ function formByPassportSubmit(event) {
     });
 
 }
+
+function formByNameSubmit(event) {
+    event.preventDefault();
+
+    var $form = $(event.currentTarget);
+    var data = $form.serialize();
+
+    // send to server using AJAX
+    $.ajax({
+        type: "POST",
+        url: develop_server_name+'/SearchController/searchByName',
+        data: data,
+        success: function(result) {
+            console.log(result);
+        }
+    });
+}
+

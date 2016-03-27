@@ -23,7 +23,18 @@ class SearchController
     public function __construct()
     {
         $this->workerModel = new WorkerModel();
-//        $this->customersView = new CustomersView();
+    }
+
+    /**
+     * Search the all workers of customer.
+     */
+    public function searchByEmployee()
+    {
+        $employee = $_POST['employer_name_form'];
+        var_dump($employee);
+        $allWorkers = $this->workerModel->getAllWorkerOfCustomerInfo($employee);
+        //error_log(var_export($allWorkers,true));
+        echo(json_encode($allWorkers));
     }
 
     /**
@@ -35,8 +46,16 @@ class SearchController
 
         //search in database
         $passport = $this->workerModel->getPassportInfo($passportId);
-        error_log(var_export($passport,true));
+        //error_log(var_export($passport,true));
         echo(json_encode($passport));
+    }
+
+    public function searchByName()
+    {
+        $name = $_POST['last_name_form'];
+        var_dump($name);
+
+        echo(json_encode($name));
     }
 
 }
