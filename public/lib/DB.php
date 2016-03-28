@@ -33,10 +33,13 @@ class DB
     function checkConnection()
     {
 
-        $config = parse_ini_file('config.ini');
+        $config = parse_ini_file("config.ini");
+        if(!$config)
+            $config = parse_ini_file(realpath("../../config.ini"));
 
 
-       if(isset( $config['username']) &&  isset($config['password'])) {
+
+        if(isset( $config['username']) &&  isset($config['password'])) {
 
            if(!isset(self::$db)) {
 
@@ -396,16 +399,19 @@ class DB
         return  $value;
     }
 
-    public function query($sql)
+    public function sql_query($sql)
     {
-        $query = self::$db->query($sql);
 
-        if ($query == false)
+        if (self::$db != false) {
+
+            $query = self::$db->query($sql);
+
+            if ($query == false)
+                return $query;
+
+            $query = $query->fetchAll(PDO::FETCH_OBJ);
             return $query;
-
-        $query = $query->fetchAll(PDO::FETCH_OBJ);
-
-        return $query;
+        }
     }
 
 
