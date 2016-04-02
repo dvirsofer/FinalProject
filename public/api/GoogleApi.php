@@ -33,6 +33,8 @@ public  function getLatAndLng($name)
         $result= curl_exec ($ch);
         curl_close ($ch);
         $resultsObj = json_decode($result);
+        if($resultsObj->status == 'OK')return $resultsObj->status;
+
         $shortName = mb_strtolower($resultsObj->results[0]->address_components[0]->short_name);
         $longName = mb_strtolower($resultsObj->results[0]->address_components[0]->long_name);
 

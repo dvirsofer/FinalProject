@@ -292,8 +292,10 @@ class DB
 
             $sql = ' where ';
 
-            foreach ($keysArray as $k => $v)
-                $sql .= $k . ' = ' .  $this->createQuotation($v) . ' and ';
+            foreach ($keysArray as $k => $v) {
+                $v=str_replace("'","\'",$v);
+                $sql .= $k . ' = ' . $this->createQuotation($v) . ' and ';
+            }
             // removing "and" from the end of $selectSuffix
 
             $sql = rtrim($sql,' and ');
