@@ -5,7 +5,7 @@ session_start();
 require_once('../../Configure.php');
 require_once('../lib/Response.php');
 require_once('../lib/DB.php');
-require_once('../api/public/GoogleApi.php');
+require_once('../public/api/GoogleApi.php');
 
 
 
