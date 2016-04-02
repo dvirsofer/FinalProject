@@ -38,7 +38,10 @@ function formByEmployeeSubmit(event) {
         url: develop_server_name+'/SearchController/searchByEmployee',
         data: data,
         success: function(result) {
-            console.log(result);
+            var workers = JSON.parse(result);
+            var search = document.getElementById("select_worker");
+            createOptions(workers, search);
+
         }
     });
 }
@@ -77,4 +80,21 @@ function formByNameSubmit(event) {
         }
     });
 }
+
+function createOptions(workers, search) {
+    search.length = 0;
+
+    var newSearch = document.createElement('option');
+    newSearch.text = 'חיפוש נוסף';
+    newSearch.value = '0';
+    search.add(newSearch);
+    var i = 0;
+    for(i; i < workers.length; i++) {
+        var newOption = document.createElement('option');
+        newOption.text = workers[i]['first_name'];
+        newOption.value = workers[i]['id'];
+        search.add(newOption);
+    }
+}
+
 

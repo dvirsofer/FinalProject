@@ -66,6 +66,7 @@ class WorkerView
 </form>
 ';
         $html .= '
+<div class="panel-group" id="accordion">
     <!-- Search Worker -->
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -87,7 +88,6 @@ class WorkerView
                             <option value="form_by_name">לפי שם משפחה</option>
                             <option value="form_by_passport">לפי מספר דרכון</option>
                         </select>
-
                     </div>
                 </div>
 
@@ -120,13 +120,26 @@ class WorkerView
                     </form>
 
                 </div>
+
+                <div class="panel panel-default col-md-12">
+                    <form class="form-inline panel" id="select_worker_form">
+                        <div class="form-group">
+                            <label for="employer_name">כל העובדים</label>
+                            <select class="form-control" id="select_worker" name="select_worker">
+                                <option value="0">חיפוש</option>
+                            </select>
+                        </div>
+
+                    </form>
+                </div>
+
             </div>
         </div>
 
     </div>';
 
         $html .= '
-        <div class="panel-group" id="accordion">
+
     <!-- Worker information -->
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -289,8 +302,6 @@ class WorkerView
             <div class="panel-body">
                 <div>';
 
-        //$html .= $this->createWorkersTable();
-
         $html .= '</div>
 
             </div>
@@ -416,6 +427,18 @@ class WorkerView
     private function createAllCustomers()
     {
         $customers = $this->customerModel->getCustomers();
+        $str = "";
+
+        foreach($customers as $row)
+        {
+            $str .= "<option value=" .$row->id .">" .$row->customer_name . "</option>";
+        }
+        return $str;
+    }
+
+    private function createAllWorkers()
+    {
+        $workers = $this->customerModel->getCustomers();
         $str = "";
 
         foreach($customers as $row)

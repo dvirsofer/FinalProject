@@ -99,13 +99,13 @@ class DB
         return $user;
     }
 
-    function getPassportInfo($passportId)
+    /*function getPassportInfo($passportId)
     {
         $sql = "SELECT * FROM passport WHERE worker_id='$passportId'";
         $user = self::$db->query($sql);
         $user = $user->fetchAll(PDO::FETCH_OBJ);
         return $user;
-    }
+    }*/
 
     function getAllWorkersOfCustomer($customerId)
     {
@@ -163,12 +163,20 @@ class DB
         return $settlement;
     }
 
-    function getWorkerPassportInfo($workerId)
+    function getWorkerPassportInfo($passport)
     {
-        $sql = "SELECT * FROM passport WHERE worker_id='$workerId'";
+        $sql = "SELECT * FROM passport WHERE passport_number='$passport'";
         $passportInfo = self::$db->query($sql);
         $passportInfo = $passportInfo->fetchAll(PDO::FETCH_OBJ);
         return $passportInfo;
+    }
+
+    function getAllPassports()
+    {
+        $sql = "SELECT * FROM passport";
+        $allPassport = self::$db->query($sql);
+        $allPassport = $allPassport->fetchAll(PDO::FETCH_OBJ);
+        return $allPassport;
     }
 
     function getAllWorkers()
