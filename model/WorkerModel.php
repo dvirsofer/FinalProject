@@ -50,14 +50,25 @@ class WorkerModel
     }
 
     /**
-     * @param $workerId
+     * @param $passport
      * @return array - Passport of the worker.
      */
-    public function getPassportInfo($workerId)
+    public function getPassportInfo($passport)
     {
         $db = DB::getInstance();
         $db->checkConnection();
-        $result = $this->db->getWorkerPassportInfo($workerId);
+        $result = $this->db->getWorkerPassportInfo($passport);
+        return $result;
+    }
+
+    /**
+     * @return array - All passports.
+     */
+    public function getAllPassports()
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $result = $this->db->getAllPassports();
         return $result;
     }
 
