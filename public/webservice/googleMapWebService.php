@@ -42,9 +42,9 @@ foreach ($result as $row){
         if( $row->latitude == null || $row->longitude == null)
         {
             $latLogArray=$googleLatAndLog->getLatAndLng( $row->settlement_name);
-            $db->update('settlement',['latitude'=>$latLogArray->latitude,'longitude'=>$latLogArray->longitude],[settlement_name_in_english=> $row->settlement_name]);
-              $row->latitude =  $latLogArray->latitude;
-              $row->longitude =  $latLogArray->longitude;
+            $db->update('settlement',['latitude'=>$latLogArray['latitude'],'longitude'=>$latLogArray['longitude']],[settlement_name_in_english=> $row->settlement_name]);
+              $row->latitude =  $latLogArray['latitude'];
+              $row->longitude =  $latLogArray['longitude'];
 
         }
         $newNode = $doc->addChild("marker");
