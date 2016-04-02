@@ -26,7 +26,7 @@ settlement.settlement_name,
 settlement_name_in_english
 FROM mbtm_workers.customer
  left join settlement on   customer.settlement_id  = settlement.id
- where responsible_id = ". $_SESSION['user_id'] . " group by settlement_id;";
+ where responsible_id = ". $_SESSION['user_id'] . " and settlement_id is not null group by settlement_id;";
 
 $result=$db->sql_query($sql);
 
@@ -37,14 +37,17 @@ if (!$result) {
 $doc  = new SimpleXMLElement('<root></root>');
 foreach ($result as $row){
 
-    if($row->settlement_id!=null);
+    if($row->settlement_id != null );
     {
+
         if( $row->latitude == null || $row->longitude == null)
         {
-            $latLogArray=$googleLatAndLog->getLatAndLng( $row->settlement_name);
-            $db->update('settlement',['latitude'=>$latLogArray['latitude'],'longitude'=>$latLogArray['longitude']],[settlement_name_in_english=> $row->settlement_name]);
-              $row->latitude =  $latLogArray['latitude'];
-              $row->longitude =  $latLogArray['longitude'];
+            $row->settlement_name_in_english =trim($row->settlement_name_in_english);
+            $latLogArray=$googleLatAndLog->getLatAndLng($row->settlement_name_in_english);
+
+            $res=$db->update('settlement',['latitude'=>$latLogArray['lat'],'longitude'=>$latLogArray['lng']],['settlement_name_in_english'=> $row->settlement_name_in_english]);
+            $row->latitude =  $latLogArray['lat'];
+            $row->longitude =  $latLogArray['lng'];
 
         }
         $newNode = $doc->addChild("marker");
