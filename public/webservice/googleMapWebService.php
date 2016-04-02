@@ -5,6 +5,7 @@ session_start();
 require_once('../../Configure.php');
 require_once('../lib/Response.php');
 require_once('../lib/DB.php');
+require_once('../api/public/GoogleApi.php');
 
 
 
@@ -12,6 +13,7 @@ require_once('../lib/DB.php');
 
 
 $db = DB::getInstance();
+$googleLatAndLog = new GoogleApi();
 
 
 
@@ -37,6 +39,14 @@ foreach ($result as $row){
 
     if($row->settlement_id!=null);
     {
+        if( $row->latitude == null || $row->longitude == null)
+        {
+            $latLogArray=$googleLatAndLog->getLatAndLng( $row->settlement_name);
+            $db->update('settlement',['latitude'=>$latLogArray->latitude,'longitude'=>$latLogArray->longitude],[settlement_name_in_english=> $row->settlement_name]);
+              $row->latitude =  $latLogArray->latitude;
+              $row->longitude =  $latLogArray->longitude;
+
+        }
         $newNode = $doc->addChild("marker");
 
         $newNode->addAttribute("name", $row->settlement_name);
