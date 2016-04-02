@@ -5,7 +5,9 @@
  * Date: 26/11/2015
  * Time: 16:17
  */
+
 require_once('Configure.php');
+
 
 class Router {
     private static $uriArray;
@@ -23,7 +25,7 @@ class Router {
 
 
         $prefix = '/finalProject';
-      //  var_dump('kkk');exit;
+
 
         if (substr($url, 0, strlen($prefix)) == $prefix) {
             $url = substr($url, strlen($prefix));
@@ -31,6 +33,11 @@ class Router {
 
         self::$uriArray =explode('/',$url);
         array_shift(self::$uriArray);
+
+        if(isset(self::$uriArray[0])  && self::$uriArray[0]== 'public')
+        {
+            require_once($url);die();
+        }
         self::checkController($config);
 
         self::checkAction($config);
@@ -46,6 +53,7 @@ class Router {
             self::$controller = self::$uriArray[0];
             array_shift(self::$uriArray);
         }
+
         else
             self::$controller =$config['default_controller'];
     }
