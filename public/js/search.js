@@ -58,7 +58,9 @@ function formByPassportSubmit(event) {
         url: develop_server_name+'/SearchController/searchByPassport',
         data: data,
         success: function(result) {
-            console.log(result);
+            var workers = JSON.parse(result);
+            var search = document.getElementById("select_worker");
+            createOptions(workers, search);
         }
     });
 

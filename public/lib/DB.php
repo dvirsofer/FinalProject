@@ -171,6 +171,14 @@ class DB
         return $passportInfo;
     }
 
+    function getWorkerInfo($workerId)
+    {
+        $sql = "SELECT * FROM forgen_workes WHERE worker_id='$workerId'";
+        $workerInfo = self::$db->query($sql);
+        $workerInfo = $workerInfo->fetchAll(PDO::FETCH_OBJ);
+        return $workerInfo;
+    }
+
     function getAllPassports()
     {
         $sql = "SELECT * FROM passport";

@@ -72,4 +72,12 @@ class WorkerModel
         return $result;
     }
 
+    public function getWorkerInfo($workerId)
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $result = $this->db->getWorkerInfo($workerId);
+        return $result;
+    }
+
 }
