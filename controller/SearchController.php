@@ -40,19 +40,19 @@ class SearchController
      */
     public function searchByPassport()
     {
-        $employee = $_POST['employer_name_form'];
+        /*$employee = $_POST['employer_name_form'];
         $allWorkers = $this->workerModel->getAllWorkerOfCustomerInfo($employee);
         //error_log(var_export($allWorkers,true));
         //error_log(print_r($allWorkers, TRUE));
-        echo(json_encode($allWorkers));
+        echo(json_encode($allWorkers));*/
 
-        /*$passport = $_POST['passport_number_form'];
+        $passport = $_POST['passport_number_form'];
 
         //search in database
         $passports = $this->workerModel->getAllPassports();
 
         //error_log(var_export($passport,true));
-        echo(json_encode($passport));*/
+        echo(json_encode($passport));
     }
 
     public function searchByName()
