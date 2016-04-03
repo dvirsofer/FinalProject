@@ -48,13 +48,13 @@ class SearchController
 
         $passport = $_POST['passport_number_form'];
         $passportInfo = $this->workerModel->getPassportInfo($passport);
-        /*if(count($passportInfo) == 1) {
+        if(count($passportInfo) == 1) {
             // get all information of worker
             $workerId = $passportInfo[0]->worker_id;
             $worker = $this->workerModel->getWorkerInfo($workerId);
             echo(json_encode($worker));
         }
-        else {*/
+        else {
             // LCS algorithm
 
             //search in database
@@ -67,15 +67,12 @@ class SearchController
                     array_push($allWorkers, $worker);
                 }
             }
-
             //error_log(print_r($allPassports, TRUE));
             //error_log(var_export($passport,true));
-            error_log(print_r($allWorkers, TRUE));
+            //error_log(print_r($allWorkers, TRUE));
             echo(json_encode($allWorkers));
         }
-
-
-    //}
+    }
 
     public function searchByName()
     {

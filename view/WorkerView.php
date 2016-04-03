@@ -121,7 +121,6 @@ class WorkerView
 
                 </div>
 
-
                 <div class="panel panel-default col-md-12">
                     <form class="form-inline panel" id="select_worker_form">
                         <div class="form-group">
