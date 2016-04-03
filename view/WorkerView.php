@@ -130,7 +130,6 @@ class WorkerView
                                 <option value="0">חיפוש</option>
                             </select>
                         </div>
-
                     </form>
                 </div>
 
