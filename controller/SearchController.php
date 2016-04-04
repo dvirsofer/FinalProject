@@ -61,16 +61,18 @@ class SearchController
             $allPassports = $this->workerModel->getAllPassports();
             $allWorkers = array();
             foreach($allPassports as $pass) {
-                if($this->LCS($passport, $pass) >= 4) {
-                    $workerId = $passportInfo[0]->worker_id;
+                $passportNumber = $pass->passport_number;
+                $lcs = $this->LCS($passport, $passportNumber);
+                if($lcs[strlen($passport)][strlen($passportNumber)] >= 6) {
+                    error_log(print_r($pass, TRUE));
+                    $workerId = $pass->worker_id;
                     $worker = $this->workerModel->getWorkerInfo($workerId);
                     array_push($allWorkers, $worker);
+                    echo(json_encode($worker));
                 }
             }
-            //error_log(print_r($allPassports, TRUE));
-            //error_log(var_export($passport,true));
-            //error_log(print_r($allWorkers, TRUE));
-            echo(json_encode($allWorkers));
+            error_log(print_r($allWorkers, TRUE));
+            //echo(json_encode($allWorkers));
         }
     }
 
