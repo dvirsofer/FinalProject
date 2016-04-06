@@ -79,6 +79,7 @@ function formByNameSubmit(event) {
         data: data,
         success: function(result) {
             var workers = JSON.parse(result);
+            console.log(workers);
             var search = document.getElementById("select_worker");
             createOptions(workers, search);
         }

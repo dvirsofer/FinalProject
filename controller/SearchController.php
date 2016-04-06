@@ -78,23 +78,23 @@ class SearchController
 
         /*$name = $_POST['last_name_form'];
         $worker = $this->workerModel->getWorkerInfoByName($name);
-        error_log(print_r($worker, TRUE));
         if(count($worker) == 1) {
-            error_log(print_r("a", TRUE));
             echo(json_encode($worker));
         }
         else {
             // LCS algorithm
 
             $allWorkers = $this->workerModel->getAllWorkers();
+            $workers = array();
             foreach($allWorkers as $workerInfo) {
                 $workerName = $workerInfo->last_name;
                 $lcs = $this->LCS($name, $workerName);
                 if($lcs[strlen($name)][strlen($workerName)] >= 5) {
-                    error_log(print_r($workerInfo, TRUE));
-                    echo(json_encode($workerInfo));
+                    array_push($workers, $workerInfo);
                 }
             }
+            error_log(print_r($workers, TRUE));
+            echo(json_encode($workers));
         }*/
     }
 
@@ -109,14 +109,16 @@ class SearchController
             // LCS algorithm
 
             $allWorkers = $this->workerModel->getAllWorkers();
+            $workers = array();
             foreach($allWorkers as $workerInfo) {
                 $workerName = $workerInfo->last_name;
                 $lcs = $this->LCS($name, $workerName);
-                
                 if($lcs[strlen($name)][strlen($workerName)] >= 5) {
-                    echo(json_encode($workerInfo));
+                    array_push($workers, $workerInfo);
                 }
             }
+            error_log(print_r($workers, TRUE));
+            echo(json_encode($workers));
         }
     }
 
