@@ -112,6 +112,7 @@ class SearchController
             foreach($allWorkers as $workerInfo) {
                 $workerName = $workerInfo->last_name;
                 $lcs = $this->LCS($name, $workerName);
+                
                 if($lcs[strlen($name)][strlen($workerName)] >= 5) {
                     echo(json_encode($workerInfo));
                 }
