@@ -71,17 +71,52 @@ class SearchController
                     echo(json_encode($worker));
                 }
             }
+
             error_log(print_r($allWorkers, TRUE));
             //echo(json_encode($allWorkers));
         }
+
+        /*$name = $_POST['last_name_form'];
+        $worker = $this->workerModel->getWorkerInfoByName($name);
+        error_log(print_r($worker, TRUE));
+        if(count($worker) == 1) {
+            error_log(print_r("a", TRUE));
+            echo(json_encode($worker));
+        }
+        else {
+            // LCS algorithm
+
+            $allWorkers = $this->workerModel->getAllWorkers();
+            foreach($allWorkers as $workerInfo) {
+                $workerName = $workerInfo->last_name;
+                $lcs = $this->LCS($name, $workerName);
+                if($lcs[strlen($name)][strlen($workerName)] >= 5) {
+                    error_log(print_r($workerInfo, TRUE));
+                    echo(json_encode($workerInfo));
+                }
+            }
+        }*/
     }
 
     public function searchByName()
     {
         $name = $_POST['last_name_form'];
-        var_dump($name);
+        $worker = $this->workerModel->getWorkerInfoByName($name);
+        if(count($worker) == 1) {
+            echo(json_encode($worker));
+        }
+        else {
+            // LCS algorithm
 
-        echo(json_encode($name));
+            $allWorkers = $this->workerModel->getAllWorkers();
+            foreach($allWorkers as $workerInfo) {
+                $workerName = $workerInfo->last_name;
+                $lcs = $this->LCS($name, $workerName);
+                if($lcs[strlen($name)][strlen($workerName)] >= 5) {
+                    echo(json_encode($workerInfo));
+                }
+            }
+        }
     }
 
     function LCS($string1, $string2) {

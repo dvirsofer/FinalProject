@@ -78,7 +78,9 @@ function formByNameSubmit(event) {
         url: develop_server_name+'/SearchController/searchByName',
         data: data,
         success: function(result) {
-            console.log(result);
+            var workers = JSON.parse(result);
+            var search = document.getElementById("select_worker");
+            createOptions(workers, search);
         }
     });
 }
@@ -93,7 +95,7 @@ function createOptions(workers, search) {
     var i = 0;
     for(i; i < workers.length; i++) {
         var newOption = document.createElement('option');
-        newOption.text = workers[i]['first_name'];
+        newOption.text = workers[i]['first_name'] + " " + workers[i]['last_name'];
         newOption.value = workers[i]['id'];
         search.add(newOption);
     }

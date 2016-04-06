@@ -179,6 +179,14 @@ class DB
         return $workerInfo;
     }
 
+    function getWorkerInfoByName($workerName)
+    {
+        $sql = "SELECT * FROM forgen_workes WHERE last_name='$workerName'";
+        $workerInfo = self::$db->query($sql);
+        $workerInfo = $workerInfo->fetchAll(PDO::FETCH_OBJ);
+        return $workerInfo;
+    }
+
     function getAllPassports()
     {
         $sql = "SELECT * FROM passport";

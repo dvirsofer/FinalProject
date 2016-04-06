@@ -80,4 +80,20 @@ class WorkerModel
         return $result;
     }
 
+    public function getWorkerInfoByName($workerName)
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $result = $this->db->getWorkerInfoByName($workerName);
+        return $result;
+    }
+
+    public function getAllWorkers()
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $result = $this->db->getAllWorkers();
+        return $result;
+    }
+
 }
