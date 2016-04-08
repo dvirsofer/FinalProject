@@ -163,9 +163,9 @@ class DB
         return $settlement;
     }
 
-    function getWorkerPassportInfo($passport)
+    function getWorkerPassportInfo($passportNumber)
     {
-        $sql = "SELECT * FROM passport WHERE passport_number='$passport'";
+        $sql = "SELECT * FROM passport WHERE passport_number='$passportNumber'";
         $passportInfo = self::$db->query($sql);
         $passportInfo = $passportInfo->fetchAll(PDO::FETCH_OBJ);
         return $passportInfo;

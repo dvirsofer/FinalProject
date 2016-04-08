@@ -61,6 +61,14 @@ class WorkerModel
         return $result;
     }
 
+    public function getWorkerPassport($passportNumber)
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $result = $this->db->getWorkerPassportInfo($passportNumber);
+        return $result;
+    }
+
     /**
      * @return array - All passports.
      */

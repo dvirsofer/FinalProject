@@ -59,8 +59,9 @@ function formByPassportSubmit(event) {
         data: data,
         success: function(result) {
             var workers = JSON.parse(result);
+            console.log(workers);
             var search = document.getElementById("select_worker");
-            createOptions(workers, search);
+            createOption(workers, search);
         }
     });
 
@@ -75,7 +76,7 @@ function formByNameSubmit(event) {
     // send to server using AJAX
     $.ajax({
         type: "POST",
-        url: develop_server_name+'/SearchController/searchByName',
+        url: develop_server_name+'/SearchController/searchByPassport',
         data: data,
         success: function(result) {
             var workers = JSON.parse(result);
@@ -99,6 +100,26 @@ function createOptions(workers, search) {
         newOption.text = workers[i]['first_name'] + " " + workers[i]['last_name'];
         newOption.value = workers[i]['worker_id'];
         search.add(newOption);
+    }
+}
+
+function createOption(workers, search) {
+    search.length = 0;
+
+    var newSearch = document.createElement('option');
+    newSearch.text = 'חיפוש נוסף';
+    newSearch.value = '0';
+    search.add(newSearch);
+    var i = 0;
+    var j = 0;
+    for(i; i < workers.length; i++) {
+        for(j; j < workers[i].length; j++) {
+            var newOption = document.createElement('option');
+            newOption.text = workers[i][j]['first_name'] + " " + workers[i][j]['last_name'];
+            newOption.value = workers[i][j]['worker_id'];
+            search.add(newOption);
+        }
+
     }
 }
 

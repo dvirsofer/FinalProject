@@ -47,33 +47,37 @@ class SearchController
         echo(json_encode($allWorkers));*/
 
         $passport = $_POST['passport_number_form'];
-        $passportInfo = $this->workerModel->getPassportInfo($passport);
+        $passportInfo = $this->workerModel->getWorkerPassport($passport);
+        $allWorkers = array();
         if(count($passportInfo) == 1) {
             // get all information of worker
+            error_log(print_r("1", TRUE));
             $workerId = $passportInfo[0]->worker_id;
             $worker = $this->workerModel->getWorkerInfo($workerId);
-            echo(json_encode($worker));
+            array_push($allWorkers, $worker);
+            echo(json_encode($allWorkers));
         }
         else {
             // LCS algorithm
 
             //search in database
             $allPassports = $this->workerModel->getAllPassports();
-            $allWorkers = array();
+            error_log(print_r("2", TRUE));
             foreach($allPassports as $pass) {
                 $passportNumber = $pass->passport_number;
                 $lcs = $this->LCS($passport, $passportNumber);
                 if($lcs[strlen($passport)][strlen($passportNumber)] >= 6) {
-                    error_log(print_r($pass, TRUE));
+                    //error_log(print_r($pass, TRUE));
                     $workerId = $pass->worker_id;
                     $worker = $this->workerModel->getWorkerInfo($workerId);
+                    //error_log(print_r($worker, TRUE));
                     array_push($allWorkers, $worker);
-                    echo(json_encode($worker));
+                    //echo(json_encode($worker));
                 }
             }
 
             //error_log(print_r($allWorkers, TRUE));
-            //echo(json_encode($allWorkers));
+            echo(json_encode($allWorkers));
         }
 
         /*$name = $_POST['last_name_form'];
