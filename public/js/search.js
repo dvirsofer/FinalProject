@@ -119,7 +119,6 @@ function createOption(workers, search) {
             newOption.value = workers[i][j]['worker_id'];
             search.add(newOption);
         }
-
     }
 }
 
