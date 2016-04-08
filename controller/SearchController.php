@@ -72,7 +72,7 @@ class SearchController
                 }
             }
 
-            error_log(print_r($allWorkers, TRUE));
+            //error_log(print_r($allWorkers, TRUE));
             //echo(json_encode($allWorkers));
         }
 

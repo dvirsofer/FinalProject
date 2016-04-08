@@ -99,13 +99,13 @@ class DB
         return $user;
     }
 
-    /*function getPassportInfo($passportId)
+    function getPassportInfo($passportId)
     {
         $sql = "SELECT * FROM passport WHERE worker_id='$passportId'";
         $user = self::$db->query($sql);
         $user = $user->fetchAll(PDO::FETCH_OBJ);
         return $user;
-    }*/
+    }
 
     function getAllWorkersOfCustomer($customerId)
     {

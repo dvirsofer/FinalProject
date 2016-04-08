@@ -32,7 +32,13 @@ class Worker
      */
     public function index()
     {
-        $this->workerView->showWorker();
+        $id = '';
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id = $_POST['select_worker'];
+            error_log(print_r($id, TRUE));
+        }
+        $this->workerView->showWorker($id);
     }
 
 }

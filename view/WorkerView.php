@@ -33,7 +33,7 @@ class WorkerView
     /**
      * Show worker.
      */
-    public function showWorker()
+    public function showWorker($id='')
     {
         $user = unserialize($_SESSION['user']);
         $this->userName = $user[0]->user_name;
@@ -122,13 +122,14 @@ class WorkerView
                 </div>
 
                 <div class="panel panel-default col-md-12">
-                    <form class="form-inline panel" id="select_worker_form">
+                    <form class="form-inline panel" id="select_worker_form" method="post">
                         <div class="form-group">
                             <label for="employer_name">כל העובדים</label>
                             <select class="form-control" id="select_worker" name="select_worker">
                                 <option value="0">חיפוש</option>
                             </select>
                         </div>
+                        <button type="submit" class="btn btn-success">הצג פרטים</button>
                     </form>
                 </div>
 
@@ -152,135 +153,142 @@ class WorkerView
         <div class="row">
             <div id="collapseTwo" class="panel-collapse collapse">
                 <div class="panel-body">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal">';
 
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="passport_number" class="col-sm-3 control-label">מספר דרכון</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" id="passport_number">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="last_name" class="col-sm-3 control-label">שם משפחה</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" id="last_name">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="nation" class="col-sm-3 control-label">לאום</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" id="nation">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="date" class="col-sm-3 control-label">תאריך לידה</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" id="date">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="phone_number" class="col-sm-3 control-label">טלפון</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" id="phone_number">
-                                </div>
-                            </div>
-
-                            <div class = "form-group">
-                                <label for="comments" class="col-sm-3 control-label">הערות</label>
-                                <div class="col-md-9">
-                                    <textarea class = "form-control" rows = "5"></textarea>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label for="status" class="col-sm-3 control-label">סטטוס</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" id="status">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="first_name" class="col-sm-3 control-label">שם פרטי</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" id="first_name">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="gender" class="col-sm-3 control-label">מין</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" id="gender">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="arrive" class="col-sm-3 control-label">צורת הגעה</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" id="arrive">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="arrive" class="col-sm-3 control-label">צורת הגעה</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" id="arrive">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="arrival_date" class="col-sm-3 control-label">הגעה לארץ</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="col-md-6 form-control" id="arrival_date">
-                                    <input type="text" class="col-md-6 form-control" id="arrival_date">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="exit_date" class="col-sm-3 control-label">יציאה מהארץ</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" id="exit_date">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="valid_passport" class="col-sm-3 control-label">תוקף דרכון</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" id="valid_passport">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="dereliction_date" class="col-sm-3 control-label">תאריך נטישה</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" id="dereliction_date">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="validity_insurance" class="col-sm-3 control-label">תוקף ביטוח</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" id="validity_insurance">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="valid_driving_license" class="col-sm-3 control-label">תוקף רישיון נהיגה</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" id="valid_driving_license">
-                                </div>
-                            </div>
+        if(!empty($id)) {
+            $workerInfo = $this->workerModel->getWorkerInfo($id);
+            $passport = $this->workerModel->getPassportInfo($id);
+            $customerId = $workerInfo[0]->current_customer_id;
+            $customer = $this->customerModel->getCustomerInfo($customerId);
 
 
-                        </div>
+            $html .= '
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="passport_number" class="col-sm-3 control-label">מספר דרכון</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="passport_number" value="'. $passport[0]->passport_number .'">
+                    </div>
+                </div>
 
+                <div class="form-group">
+                    <label for="last_name" class="col-sm-3 control-label">שם משפחה</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="last_name" value="'. $workerInfo[0]->last_name .'">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="nation" class="col-sm-3 control-label">לאום</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="nation" value="'. $workerInfo[0]->citizen .'">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="date" class="col-sm-3 control-label">תאריך לידה</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="date" value="'. $workerInfo[0]->birthday_date .'">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone_number" class="col-sm-3 control-label">טלפון</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="phone_number" value="'. $workerInfo[0]->phone_number .'">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="customer" class="col-sm-3 control-label">מעסיק</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="customer" value="'. $customer[0]->customer_name .'">
+                    </div>
+                </div>
+
+                <div class = "form-group">
+                    <label for="comments" class="col-sm-3 control-label">הערות</label>
+                    <div class="col-md-9">
+                        <textarea class = "form-control" rows = "5" value="'. $workerInfo[0]->note .'"></textarea>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    <label for="status" class="col-sm-3 control-label">סטטוס</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="status">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="first_name" class="col-sm-3 control-label">שם פרטי</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="first_name" value="'. $workerInfo[0]->first_name .'">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="gender" class="col-sm-3 control-label">מין</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="gender" value="'. $workerInfo[0]->gender .'">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="arrive" class="col-sm-3 control-label">צורת הגעה</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="arrive" value="'. $workerInfo[0]->form_of_eravel .'">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="arrival_date" class="col-sm-3 control-label">הגעה לארץ</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="arrival_date" value="'. $workerInfo[0]->entrance_date .'">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="exit_date" class="col-sm-3 control-label">יציאה מהארץ</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="exit_date">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="valid_passport" class="col-sm-3 control-label">תוקף דרכון</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="valid_passport" value="'. $passport[0]->validation_date .'">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="dereliction_date" class="col-sm-3 control-label">תאריך נטישה</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="dereliction_date">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="validity_insurance" class="col-sm-3 control-label">תוקף ביטוח</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="validity_insurance">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="valid_driving_license" class="col-sm-3 control-label">תוקף רישיון נהיגה</label>
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" id="valid_driving_license">
+                    </div>
+                </div>
+
+            </div>';
+        }
+        $html .= '
                     </form>
                 </div>
             </div>
@@ -435,7 +443,7 @@ class WorkerView
         return $str;
     }
 
-    private function createAllWorkers()
+    /*private function createAllWorkers()
     {
         $workers = $this->customerModel->getCustomers();
         $str = "";
@@ -445,7 +453,7 @@ class WorkerView
             $str .= "<option value=" .$row->id .">" .$row->customer_name . "</option>";
         }
         return $str;
-    }
+    }*/
 
     /**
      * @param $file

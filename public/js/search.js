@@ -97,7 +97,7 @@ function createOptions(workers, search) {
     for(i; i < workers.length; i++) {
         var newOption = document.createElement('option');
         newOption.text = workers[i]['first_name'] + " " + workers[i]['last_name'];
-        newOption.value = workers[i]['id'];
+        newOption.value = workers[i]['worker_id'];
         search.add(newOption);
     }
 }

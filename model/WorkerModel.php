@@ -57,7 +57,7 @@ class WorkerModel
     {
         $db = DB::getInstance();
         $db->checkConnection();
-        $result = $this->db->getWorkerPassportInfo($passport);
+        $result = $this->db->getPassportInfo($passport);
         return $result;
     }
 
