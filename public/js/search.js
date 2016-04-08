@@ -113,7 +113,7 @@ function createOption(workers, search) {
     var i = 0;
     var j = 0;
     for(i; i < workers.length; i++) {
-        for(j; j < workers[i].length; j++) {
+        for(j = 0; j < workers[i].length; j++) {
             var newOption = document.createElement('option');
             newOption.text = workers[i][j]['first_name'] + " " + workers[i][j]['last_name'];
             newOption.value = workers[i][j]['worker_id'];
