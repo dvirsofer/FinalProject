@@ -1,5 +1,5 @@
 <?php
-ini_set('display_errors', 1);
+//ini_set('display_errors', 1);
 date_default_timezone_set('Asia/Tel_Aviv');
 session_start();
 require_once('../../Configure.php');
@@ -34,17 +34,19 @@ if (!$result) {
     die('Invalid query: ' . mysql_error());
 }
 
-$doc  = new SimpleXMLElement('<root></root>');
+$doc  = new SimpleXMLElement('<markers></markers>');
 foreach ($result as $row){
 
     if($row->settlement_id != null );
     {
 
-        if( $row->latitude == null || $row->longitude == null)
+        if( $row->latitude == null || $row->longitude == null || $row->latitude < 30 || $row->longitude < 30)
         {
-            $row->settlement_name_in_english =trim($row->settlement_name_in_english);
-            $latLogArray=$googleLatAndLog->getLatAndLng($row->settlement_name_in_english);
 
+            $row->settlement_name_in_english =trim($row->settlement_name_in_english);
+
+            $latLogArray=$googleLatAndLog->getLatAndLng($row->settlement_name_in_english);
+            if($latLogArray == false){var_dump( $row->settlement_name_in_english);continue;}
             $res=$db->update('settlement',['latitude'=>$latLogArray['lat'],'longitude'=>$latLogArray['lng']],['settlement_name_in_english'=> $row->settlement_name_in_english]);
             $row->latitude =  $latLogArray['lat'];
             $row->longitude =  $latLogArray['lng'];

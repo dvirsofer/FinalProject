@@ -36,10 +36,9 @@ class ShiftOrganizer {
 
     function showWorkers()
     {
-
         if (!empty($_SESSION['user'])) {
 
-           // $workers=$this->workerModel->getAllWorkerOfCustomerInfo($_SESSION['user']);
+            // $workers=$this->workerModel->getAllWorkerOfCustomerInfo($_SESSION['user']);
             $this->view->showMainPage();
         }
     }
