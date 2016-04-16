@@ -15,3 +15,24 @@ body
 {
     height: 300px;
 }
+
+#settlement_list_id {
+    width: 206px;
+    border: 1px solid #eaeaea;
+    position: absolute;
+    z-index: 9;
+    background: #f3f3f3;
+    list-style: none !important;
+    padding-right: 2px;
+}
+#settlement_list_id li {
+    padding: 2px;
+
+}
+#settlement_list_id li:hover {
+    background: #eaeaea;
+}
+#country_list_id {
+    display: none;
+}
+

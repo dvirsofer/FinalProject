@@ -31,6 +31,8 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 
     <![endif]-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-SoKwSDdfdWXwlKwB2s4HaiYujTdLBkk"
+            type="text/javascript"></script>
 
 </head>
 
@@ -470,20 +472,57 @@
                     </div>
                 </div>
             </div>
-            
-            
-             <div class="row">
-               
-                   
-                       <div class="col-lg-12" id="map"></div>
-     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRNiFCZPqNrK_-sQNjuFcIzZ9_4yZYitk"
-         async defer></script>
-                   
-                
+
+
+            <div class="row">
+
+
+                <div class="col-lg-12" id="map"></div>
+
+
+
                 <!-- /.col-lg-12 -->
             </div>
-            
-            
+
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <form role="form">
+                        <div class="form-group">
+                            <label>יישוב שנזקק לעובדים:</label>
+                            <input  class="form-control" id="settlement_id" onkeyup="autoComplete()">
+                            <ul id="settlement_list_id"></ul>
+
+                        </div>
+
+
+
+
+
+
+                        <div class="form-group">
+                            <label>Selects</label>
+                            <select class="form-control">
+                                <?php
+                                    for($i=1;$i<$workersCount;$i++)
+                                       echo ('<option>'.$i.'</option>');
+                                ?>
+
+                            </select>
+                        </div>
+
+
+
+                        <button type="submit" class="btn btn-default">Submit Button</button>
+                        <button type="reset" class="btn btn-default">Reset Button</button>
+                    </form>
+
+                </div>
+
+
+            </div>
+
+
         </div>
         <!-- /.container-fluid -->
     </div>
