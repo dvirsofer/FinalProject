@@ -77,8 +77,9 @@ $(function() {
 
 });
 
-
+//auto Complete settlement
 function autoComplete() {
+
     var min_length = 1;
     var keyword = $('#settlement_id').val();
     if (keyword.length >= min_length) {
