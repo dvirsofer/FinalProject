@@ -16,7 +16,7 @@ function sendMail($mailAddress) {
 
     $.ajax({
         type: "POST",
-        url: develop_server_name+'http://52.25.230.58/MailController/send',
+        url: develop_server_name+'/MailController/send',
         data: data,
         success: function(result) {
             console.log(result);

@@ -38,14 +38,14 @@ class MailController
 
         //$from = 'dvir.sofer90@gmil.com';
         $to = $_POST['mail-address'];
-        $subject = 'джоръ лшийс ийсд мтебг.';
-        $body = "дфшийн щм длшийс ийсд:";
-        $body .= "щн дтебг:"  . $first_name . " " . $last_name . "\n";
-        $body .= "осфш гшлеп " . $passport . "\n";
-        $body .= "осфш имфеп " . $phone . "\n";
-        $body .= "сев лшийс " . $type . "\n";
-        $body .= "мйтг " . $target . "\n";
-        $body .= "одъашйк " . $dereliction_date . " " . "тг мъашйк " . $arrival_date;
+        $subject = 'Ч”Ч–ЧћЧ ЧЄ Ч›ЧЁЧЧ™ЧЎ ЧЧ™ЧЎЧ” ЧњЧўЧ•Ч‘Ч“.';
+        $body = "Ч”Ч¤ЧЁЧЧ™Чќ Ч©Чњ Ч”Ч›ЧЁЧЧ™ЧЎ ЧЧ™ЧЎЧ”:";
+        $body .= "Ч©Чќ Ч”ЧўЧ•Ч‘Ч“:"  . $first_name . " " . $last_name . "\n";
+        $body .= "ЧћЧЎЧ¤ЧЁ Ч“ЧЁЧ›Ч•Чџ " . $passport . "\n";
+        $body .= "ЧћЧЎЧ¤ЧЁ ЧЧњЧ¤Ч•Чџ " . $phone . "\n";
+        $body .= "ЧЎЧ•Ч’ Ч›ЧЁЧЧ™ЧЎ " . $type . "\n";
+        $body .= "ЧњЧ™ЧўЧ“ " . $target . "\n";
+        $body .= "ЧћЧ”ЧЄЧђЧЁЧ™Чљ " . $dereliction_date . " " . "ЧўЧ“ ЧњЧЄЧђЧЁЧ™Чљ " . $arrival_date;
 
 
         $headers = 'From: '.$from."\r\n".
@@ -53,7 +53,7 @@ class MailController
             'X-Mailer: PHP/' . phpversion();
 
         $mailResult = mail($to, $subject, $body, $headers);
-
+        error_log(print_r($mailResult, TRUE));
         echo($mailResult);
     }
 

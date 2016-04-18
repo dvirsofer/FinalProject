@@ -9,7 +9,6 @@
     <?php
 $workerInfo = $this->workerModel->getWorkerInfo($id);
 $passport = $this->workerModel->getPassportInfo($id);
-error_log(print_r($id, TRUE));
 $customerId = $workerInfo[0]->current_customer_id;
 $customer = $this->customerModel->getCustomerInfo($customerId);
 ?>
