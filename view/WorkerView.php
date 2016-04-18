@@ -20,6 +20,7 @@ class WorkerView
     private $workerModel;
     private $customerModel;
     private $userName;
+    private $workerId;
 
     /**
      * constructor
@@ -37,6 +38,7 @@ class WorkerView
     {
         $user = unserialize($_SESSION['user']);
         $this->userName = $user[0]->user_name;
+        $this->workerId = $id;
 
         if (empty($user)) {
             header('Location: index.php');
@@ -461,6 +463,7 @@ class WorkerView
      */
     private function requireToVar($file){
         ob_start();
+        $id = $this->workerId;
         include($file);
         return ob_get_clean();
     }

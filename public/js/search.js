@@ -35,7 +35,7 @@ function formByEmployeeSubmit(event) {
     // send to server using AJAX
     $.ajax({
         type: "POST",
-        url: develop_server_name+'/SearchController/searchByEmployee',
+        url: develop_server_name+'/SearchController/searchByPassport',
         data: data,
         success: function(result) {
             var workers = JSON.parse(result);
