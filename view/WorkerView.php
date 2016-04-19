@@ -62,7 +62,7 @@ class WorkerView
             <button type="button" class="btn btn-primary">נטישה</button>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mobility">ניוד</button>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mna">מנה</button>
-            <button type="button" class="btn btn-primary">הוסף עובד</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_worker">הוסף עובד</button>
         </div>
     </div>
 </form>
@@ -390,45 +390,28 @@ class WorkerView
         $html .= '
          </div>
     </div>
-</div>
+</div>';
+
+        $html .= '
+        <div class="modal fade" id="new_worker" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">';
+        $html .= $this->requireToVar('./public/popups/NewWorker.php');
+        $html .= '
+        </div>
+    </div>
+</div>';
+
+        $html .= '
 <script src='.SERVER_NAME .'/public/js/configure.js></script>
 <script src='.SERVER_NAME .'/public/js/flight.js></script>
 <script src='.SERVER_NAME .'/public/js/search.js></script>
+<script src='.SERVER_NAME .'/public/js/worker.js></script>
 </body>
 </html>';
-
-
         echo $html;
     }
-
-    /**
-     * @return string - table of all workers.
-     */
-   /* private function createWorkersTable()
-    {
-        $workers = $this->workerModel->allWorkersInfo();
-        $str = "";
-        $str .= "<table class='table table-striped table-bordered'>
-                        <thead>
-                            <th>מ'ס</th>
-                            <th>שם מעסיק</th>
-                        </thead>
-
-                        <tbody>";
-
-        foreach($workers as $row){   //Creates a loop to loop through results
-            $str .= "<tr><td>" .
-                $row->user_name . "</td><td>" . $row->user_password .
-                "</td></tr>";
-        }
-
-        $str .= "</tbody>
-
-              </table>";
-
-
-        return $str;
-    }*/
 
     /**
      * @return string - All customers.
@@ -444,18 +427,6 @@ class WorkerView
         }
         return $str;
     }
-
-    /*private function createAllWorkers()
-    {
-        $workers = $this->customerModel->getCustomers();
-        $str = "";
-
-        foreach($customers as $row)
-        {
-            $str .= "<option value=" .$row->id .">" .$row->customer_name . "</option>";
-        }
-        return $str;
-    }*/
 
     /**
      * @param $file

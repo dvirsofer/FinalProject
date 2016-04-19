@@ -52,6 +52,7 @@ class MailController
             'Reply-To: '.$from."\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
+        error_log(print_r($to, TRUE));
         $mailResult = mail($to, $subject, $body, $headers);
         error_log(print_r($mailResult, TRUE));
         echo($mailResult);

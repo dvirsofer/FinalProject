@@ -36,9 +36,13 @@ class Worker
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['select_worker'];
-            error_log(print_r($id, TRUE));
         }
         $this->workerView->showWorker($id);
+    }
+
+    public function newWorker()
+    {
+        error_log(print_r("worker", TRUE));
     }
 
 }

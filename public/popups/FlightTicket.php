@@ -13,9 +13,9 @@ $customerId = $workerInfo[0]->current_customer_id;
 $customer = $this->customerModel->getCustomerInfo($customerId);
 ?>
     <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">כרטיס טיסה</h4>
-    </div>
+    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <h4 class="modal-title">כרטיס טיסה</h4>
+</div>
     <div class="modal-body">
         <div class="row">
             <form id="flight-ticket-form" class="form-horizontal" role="form">

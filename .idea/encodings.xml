@@ -3,7 +3,10 @@
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
     <file url="file://$PROJECT_DIR$/.htaccess" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/controller/MailController.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/controller/Worker.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/public/js/search.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/public/lib/DB.php" charset="windows-1255" />
+    <file url="file://$PROJECT_DIR$/public/popups/FlightTicket.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/public/popups/NewWorker.php" charset="UTF-8" />
   </component>
 </project>
