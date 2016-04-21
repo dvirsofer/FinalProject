@@ -257,6 +257,73 @@ class DB
 
     }
 
+    function newWorker($firstName, $lastName, $bDate, $phone, $nation, $passportNumber, $validPassport, $gender,
+                       $arrive, $arrivalDate, $comments, $userId, $customerId)
+    {
+        $workerId = $this->getMaxWorkerId();
+        $workerId = intval($workerId) + 1;
+        $birth_country = $nation;
+        $userId = intval($userId);
+        $customerId = intval($customerId);
+        try{
+            $sql = self::$db->prepare("INSERT INTO forgen_workes (worker_id, first_name, last_name, gender, entrance_date, form_of_eravel, birth_country, birthday_date, responsible_id, phone_number, citizen, current_customer_id, note)
+                                VALUES(:workerId, :firstName, :lastName, :gender, :arrivalDate, :arrive, :birth_country, :bDate, :userId, :phone, :nation, :customerId, :comments)");
+            $sql->bindParam(':workerId', $workerId);
+            $sql->bindParam(':firstName', $firstName);
+            $sql->bindParam(':lastName', $lastName);
+            $sql->bindParam(':gender', $gender);
+            $sql->bindParam(':arrivalDate', $arrivalDate);
+            $sql->bindParam(':arrive', $arrive);
+            $sql->bindParam(':birth_country', $birth_country);
+            $sql->bindParam(':bDate', $bDate);
+            $sql->bindParam(':userId', $userId);
+            $sql->bindParam(':phone', $phone);
+            $sql->bindParam(':nation', $nation);
+            $sql->bindParam(':customerId', $customerId);
+            $sql->bindParam(':comments', $comments);
+            $sql->execute();
+            //$this->addPassport($workerId, $passportNumber, $validPassport);
+            return $workerId;
+        }
+        catch (Exception $e) {
+            return 'Caught exception: ' . $e->getMessage();
+        }
+    }
+
+    public function addPassport($workerId, $passportNumber, $validPassport)
+    {
+        try{
+            $sql = self::$db->prepare("INSERT INTO passport (worker_id, passport_number, validation_date)
+                                VALUES(:workerId, :passportNumber, :validPassport)");
+            $sql->bindParam(':workerId', $workerId);
+            $sql->bindParam(':passportNumber', $passportNumber);
+            $sql->bindParam(':validPassport', $validPassport);
+            $sql->execute();
+            return "success";
+        }
+        catch (Exception $e) {
+            return 'Caught exception: ' . $e->getMessage();
+        }
+    }
+
+    /*public function getMaxWorkerId()
+    {
+        $sql = "SELECT MAX(worker_id) FROM forgen_workes";
+        $workerId = self::$db->prepare($sql);
+        $workerId->execute();
+        $workerId = $workerId->fetchColumn();
+        return $workerId;
+    }*/
+
+    public function getMaxWorkerId()
+    {
+        $sql = "SELECT MAX(worker_id) FROM passport";
+        $workerId = self::$db->prepare($sql);
+        $workerId->execute();
+        $workerId = $workerId->fetchColumn();
+        return $workerId;
+    }
+
 
     /**
      * print table

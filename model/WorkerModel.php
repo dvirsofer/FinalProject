@@ -104,4 +104,16 @@ class WorkerModel
         return $result;
     }
 
+    public function newWorker($firstName, $lastName, $date, $phone, $nation, $passportNumber, $validPassport, $gender,
+                              $arrive, $arrivalDate, $comments, $userId, $customerId)
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $worker = $this->db->newWorker($firstName, $lastName, $date, $phone, $nation, $passportNumber, $validPassport, $gender,
+            $arrive, $arrivalDate, $comments, $userId, $customerId);
+        $result = $this->db->addPassport($worker, $passportNumber, $validPassport);
+        return $result;
+
+    }
+
 }

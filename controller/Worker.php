@@ -42,7 +42,23 @@ class Worker
 
     public function newWorker()
     {
-        error_log(print_r("worker", TRUE));
+        $firstName = $_POST['first_name'];
+        $lastName = $_POST['last_name'];
+        $date = $_POST['date'];
+        $phone = $_POST['phone_number'];
+        $nation = $_POST['nation'];
+        $passportNumber = $_POST['passport_number'];
+        $validPassport = $_POST['valid_passport'];
+        $gender = $_POST['gender'];
+        $arrive = $_POST['arrive'];
+        $arrivalDate = $_POST['arrival_date'];
+        //$exitDate = $_POST['exit_date'];
+        $comments = $_POST['comments'];
+        $userId = $_POST['user_id'];
+        $customerId = $_POST['customer_id'];
+        $worker =  $this->workerModel->newWorker($firstName, $lastName, $date, $phone, $nation, $passportNumber, $validPassport, $gender,
+            $arrive, $arrivalDate, $comments, $userId, $customerId);
+        return $worker;
     }
 
 }
