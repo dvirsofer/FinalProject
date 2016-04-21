@@ -161,8 +161,13 @@ class WorkerView
             $workerInfo = $this->workerModel->getWorkerInfo($id);
             $passport = $this->workerModel->getPassportInfo($id);
             $customerId = $workerInfo[0]->current_customer_id;
-            $customer = $this->customerModel->getCustomerInfo($customerId);
-
+            if(!empty($customerId)) {
+                $customer = $this->customerModel->getCustomerInfo($customerId);
+                $customerName = $customer[0]->customer_name;
+            }
+            else {
+                $customerName = "";
+            }
 
             $html .= '
             <div class="col-md-4">
@@ -204,7 +209,7 @@ class WorkerView
                 <div class="form-group">
                     <label for="customer" class="col-sm-3 control-label">מעסיק</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="customer" value="'. $customer[0]->customer_name .'">
+                        <input type="text" class="form-control" id="customer" value="'. $customerName .'">
                     </div>
                 </div>
 

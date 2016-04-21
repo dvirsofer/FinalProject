@@ -2,10 +2,17 @@
 $workerInfo = $this->workerModel->getWorkerInfo($id);
 $passport = $this->workerModel->getPassportInfo($id);
 $customerId = $workerInfo[0]->current_customer_id;
-$customer = $this->customerModel->getCustomerInfo($customerId);
+if(!empty($customerId)) {
+    $customer = $this->customerModel->getCustomerInfo($customerId);
+    $customerName = $customer[0]->customer_name;
+}
+else {
+    $customerName = "";
+}
 $customers = $this->customerModel->getCustomers();
 ?>
 
+<?php if(!empty($id)) { ?>
 <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">&times;</button>
     <h4 class="modal-title">מנה</h4>
@@ -40,7 +47,7 @@ $customers = $this->customerModel->getCustomers();
                 <div class="form-group">
                     <label for="old_employer_name_MNA" class="col-md-4 control-label">מעסיק קודם</label>
                     <div class="col-md-8">
-                        <input type="text" class="form-control" id="old_employer_name_MNA" value="<?php echo $customer[0]->customer_name ?>">
+                        <input type="text" class="form-control" id="old_employer_name_MNA" value="<?php echo $customerName ?>">
                     </div>
                 </div>
 
@@ -62,3 +69,4 @@ $customers = $this->customerModel->getCustomers();
 <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 </div>
+<?php } ?>
