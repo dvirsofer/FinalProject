@@ -5,7 +5,7 @@ $("#mobility_form").submit(function(event){
 });
 
 function sendMail(event) {
-    var $form = $(event.currentTarget);
+    var $form = $("#mobility_form");
     var data = $form.serialize();
 
     $.ajax({
