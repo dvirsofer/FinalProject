@@ -121,6 +121,14 @@ class UserModel
         return $response;
     }
 
+    public function addActivity($descriptionId, $status, $userId, $workerId, $description)
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $msg = $this->db->addActivity($descriptionId, $status, $userId, $workerId, $description);
+        return $msg;
+    }
+
     /**
      * @param $password
      * @param $passwordC

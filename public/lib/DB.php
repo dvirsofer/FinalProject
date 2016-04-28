@@ -306,14 +306,25 @@ class DB
         }
     }
 
-    /*public function getMaxWorkerId()
+    function addActivity($descriptionId, $status, $userId, $workerId, $description)
     {
-        $sql = "SELECT MAX(worker_id) FROM forgen_workes";
-        $workerId = self::$db->prepare($sql);
-        $workerId->execute();
-        $workerId = $workerId->fetchColumn();
-        return $workerId;
-    }*/
+        $userId = intval($userId);
+        $workerId = intval($workerId);
+        try{
+            $sql = self::$db->prepare("INSERT INTO activity (description_id, status_description, user_id, worker_id, description)
+                                VALUES(:descriptionId, :status, :userId, :workerId, :description)");
+            $sql->bindParam(':descriptionId', $descriptionId);
+            $sql->bindParam(':status', $status);
+            $sql->bindParam(':userId', $userId);
+            $sql->bindParam(':workerId', $workerId);
+            $sql->bindParam(':description', $description);
+            $sql->execute();
+            return "success";
+        }
+        catch (Exception $e) {
+            return 'Caught exception: ' . $e->getMessage();
+        }
+    }
 
     public function getMaxWorkerId()
     {

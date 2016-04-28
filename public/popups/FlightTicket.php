@@ -29,6 +29,7 @@ if(!empty($id)) { ?>
         <div class="row">
             <form id="flight-ticket-form" class="form-horizontal" role="form">
                 <input type="hidden" id="mail-address" name="mail-address" value="">
+                <input type="hidden" id="worker_id" name="worker_id" value="<?php echo $workerInfo[0]->worker_id ?>">
                 <div class="col-md-6">
                     <div class="panel">
                         <div class="form-group">

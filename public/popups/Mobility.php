@@ -19,7 +19,8 @@ $customers = $this->customerModel->getCustomers();
 </div>
 <div class="modal-body">
     <div class="row">
-        <form class="form-horizontal">
+        <form class="form-horizontal" id="mobility_form" role="form" method="post">
+            <input type="hidden" id="worker_id" name="worker_id" value="<?php echo $workerInfo[0]->worker_id ?>">
             <div class="col-md-6">
                 <div class="panel">
                     <div class="form-group">
@@ -74,8 +75,7 @@ $customers = $this->customerModel->getCustomers();
             </div>
 
             <div class="panel col-md-offset-5">
-                <button type="button" class="btn btn-primary">שלח למעסיק קולט</button>
-                <button type="button" class="btn btn-primary">שלח למעסיק מנייד</button>
+                <button type="submit" class="btn btn-primary" id="send_btn">אישור</button>
             </div>
 
         </form>
