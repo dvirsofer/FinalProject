@@ -326,6 +326,22 @@ class DB
         }
     }
 
+    public function getActivityType($id)
+    {
+        $sql = "SELECT * FROM description_name WHERE id='$id'";
+        $activityType = self::$db->query($sql);
+        $activityType = $activityType->fetchAll(PDO::FETCH_OBJ);
+        return $activityType;
+    }
+
+    public function getAllActivities()
+    {
+        $sql = "SELECT * FROM activity ORDER BY id";
+        $activities = self::$db->query($sql);
+        $activities = $activities->fetchAll(PDO::FETCH_OBJ);
+        return $activities;
+    }
+
     public function getMaxWorkerId()
     {
         $sql = "SELECT MAX(worker_id) FROM passport";
