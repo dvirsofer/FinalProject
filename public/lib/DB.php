@@ -342,6 +342,29 @@ class DB
         return $activities;
     }
 
+    public function getAllOpenActivities()
+    {
+        $sql = "SELECT * FROM activity WHERE status_description='open' ORDER BY id";
+        $activities = self::$db->query($sql);
+        $activities = $activities->fetchAll(PDO::FETCH_OBJ);
+        return $activities;
+    }
+
+    public function editActivity($activityId)
+    {
+        try{
+            $sql = "UPDATE activity
+                SET status_description='close'
+                WHERE id='$activityId'";
+            $update = self::$db->prepare($sql);
+            $update = $update->execute();
+            return true;
+        }
+        catch (Exception $e) {
+            return false;
+        }
+    }
+
     public function getMaxWorkerId()
     {
         $sql = "SELECT MAX(worker_id) FROM passport";

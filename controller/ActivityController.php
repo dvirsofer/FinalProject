@@ -35,6 +35,23 @@ class ActivityController
         $this->activityView->showActivity();
     }
 
+    /**
+     * show all activities page.
+     */
+    public function allActivities()
+    {
+        $this->activityView->showAllActivities();
+    }
+
+    public function editActivity()
+    {
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $activityId = $_POST['activity_id'];
+            $this->activityModel->editActivity($activityId);
+        }
+
+    }
+
 
 
 }

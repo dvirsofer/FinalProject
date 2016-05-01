@@ -29,12 +29,28 @@ class ActivityModel
         return $allActivities;
     }
 
+    public function getAllOpenActivities()
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $activities = $this->db->getAllOpenActivities();
+        return $activities;
+    }
+
     public function getActivityType($id)
     {
         $db = DB::getInstance();
         $db->checkConnection();
         $activityType = $this->db->getActivityType($id);
         return $activityType;
+    }
+
+    public function editActivity($activityId)
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $result = $this->db->editActivity($activityId);
+        return $result;
     }
 
 }

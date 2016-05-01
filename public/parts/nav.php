@@ -33,6 +33,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">פעולות<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href=<?php echo(SERVER_NAME) ."/ActivityController/index"?>>אישור פעולות</a></li>
+                    <li><a href=<?php echo(SERVER_NAME) ."/ActivityController/allActivities"?>>כל הפעולות</a></li>
                 </ul>
             </li>
 
