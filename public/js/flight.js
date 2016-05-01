@@ -7,6 +7,12 @@
     });
 })();
 
+$("#mobility_form").submit(function(event){
+    // cancels the form submission
+    event.preventDefault();
+    sendActivity(event);
+});
+
 
 function sendMail($mailAddress) {
     var $form = $("#flight-ticket-form");
@@ -24,4 +30,18 @@ function sendMail($mailAddress) {
         }
     });
 
+}
+
+function sendActivity(event) {
+    var $form = $("#mobility_form");
+    var data = $form.serialize();
+
+    $.ajax({
+        type: "POST",
+        url: develop_server_name+'/MailController/sendMobility',
+        data: data,
+        success: function(result) {
+            $("#mobility").modal('hide');
+        }
+    });
 }

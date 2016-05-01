@@ -60,10 +60,11 @@ class MailController
             'X-Mailer: PHP/' . phpversion();
 
         $mailResult = mail($to, $subject, $body, $headers);
-        error_log(print_r($mailResult, TRUE));
+        //error_log(print_r($mailResult, TRUE));
 
         // if mail is true
         $descriptionId = 1;
+        error_log(print_r($descriptionId, TRUE));
         $description = "כרטיס טיסה לעובד" . $first_name . " " . $last_name;
         $status = "open";
         $msg = $this->userModel->addActivity($descriptionId, $status, $userId, $workerId, $description);

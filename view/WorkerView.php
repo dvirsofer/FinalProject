@@ -411,7 +411,6 @@ class WorkerView
         $html .= '
 <script src='.SERVER_NAME .'/public/js/configure.js></script>
 <script src='.SERVER_NAME .'/public/js/flight.js></script>
-<script src='.SERVER_NAME .'/public/js/mobility.js></script>
 <script src='.SERVER_NAME .'/public/js/search.js></script>
 <script src='.SERVER_NAME .'/public/js/worker.js></script>
 </body>
