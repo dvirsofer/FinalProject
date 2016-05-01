@@ -52,6 +52,14 @@ class ActivityController
 
     }
 
+    public function cancelActivity()
+    {
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $activityId = $_POST['activity_id'];
+            $this->activityModel->updateCancelActivity($activityId);
+        }
+    }
+
 
 
 }

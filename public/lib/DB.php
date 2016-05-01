@@ -350,6 +350,21 @@ class DB
         return $activities;
     }
 
+    public function updateCancelActivity($activityId)
+    {
+        try{
+            $sql = "UPDATE activity
+                SET status_description='cancel'
+                WHERE id='$activityId'";
+            $update = self::$db->prepare($sql);
+            $update = $update->execute();
+            return true;
+        }
+        catch (Exception $e) {
+            return false;
+        }
+    }
+
     public function editActivity($activityId)
     {
         try{

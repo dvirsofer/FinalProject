@@ -53,4 +53,12 @@ class ActivityModel
         return $result;
     }
 
+    public function updateCancelActivity($activityId)
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $msg = $this->db->updateCancelActivity($activityId);
+        return $msg;
+    }
+
 }
