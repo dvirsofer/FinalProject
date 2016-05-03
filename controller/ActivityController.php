@@ -47,6 +47,7 @@ class ActivityController
     {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $activityId = $_POST['activity_id'];
+            error_log(print_r($activityId, TRUE));
             $this->activityModel->editActivity($activityId);
         }
 

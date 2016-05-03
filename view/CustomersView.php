@@ -18,6 +18,7 @@ class CustomersView
     private $customerModel;
     private $userModel;
     private $userName;
+    private $customerId;
 
     /**
      * constructor
@@ -37,6 +38,8 @@ class CustomersView
     {
         $user = unserialize($_SESSION['user']);
         $this->userName = $user[0]->user_name;
+        $this->customerId = $id;
+
         if (empty($user)) {
             header('Location: index.php');
         }
@@ -54,21 +57,12 @@ class CustomersView
         $html .= '
 <form class="form-inline panel flip">
     <div class="panel panel-default row">
-        <div class="panel-body col-sm-offset-5 col-sm-5">
-            <button type="button" class="btn btn-primary">הזמן עובדים</button>
-            <button type="button" class="btn btn-primary">עדכן אשרות</button>
+        <div class="panel-body col-md-offset-4">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_customer">הוסף לקוח</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update_customer">עדכן לקוח</button>
         </div>
     </div>
-    <div class="form-group">
-        <label for="employer_name">שם המעסיק </label>
-        <input type="text" class="form-control" id="employer_name_form">
-    </div>
-    <div class="form-group">
-        <label for="city">ישוב </label>
-        <input type="text" class="form-control" id="city_form">
-    </div>
-    <button type="submit" class="btn btn-success">הוסף לקוח</button>
-    <button type="button" class="btn btn-success">עדכן לקוח</button>
+
 </form>
 ';
 
@@ -204,9 +198,9 @@ class CustomersView
                             </div>
 
                             <div class="form-group">
-                                <label for="sm" class="col-sm-3 control-label">ס.מ</label>
+                                <label for="sm" class="col-sm-3 control-label">מספר</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" id="sm">
+                                    <input type="text" class="form-control" id="num" value="'. $customer[0]->company_number .' ">
                                 </div>
                             </div>
 
@@ -362,11 +356,36 @@ class CustomersView
 
             </div>
         </div>
-    </div>
+    </div>';
 
+        $html .= '
+<div class="modal fade" id="add_customer" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">';
+        $html .= $this->requireToVar('./public/popups/AddCustomer.php');
+        $html .= '
+        </div>
+    </div>
 </div>
+        ';
+
+        $html .= '
+<div class="modal fade" id="update_customer" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">';
+        $html .= $this->requireToVar('./public/popups/UpdateCustomer.php');
+        $html .= '
+        </div>
+    </div>
+</div>
+        ';
+
+$html .= '</div>
+
 <script src='.SERVER_NAME .'/public/js/configure.js></script>
-<script src='.SERVER_NAME .'/public/js/search.js></script>
+<script src='.SERVER_NAME .'/public/js/customer.js></script>
 </body>
 </html>';
 
@@ -448,6 +467,13 @@ class CustomersView
 
         }
         return $str;
+    }
+
+    private function requireToVar($file){
+        ob_start();
+        $id = $this->customerId;
+        include($file);
+        return ob_get_clean();
     }
 
 }

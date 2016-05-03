@@ -147,6 +147,22 @@ class DB
 
     }
 
+    public function updateCustomer($customerId, $customerName, $customerNameEn, $settlement, $mainCustomer, $companyNumber, $agent)
+    {
+        try{
+            $sql = "UPDATE customer
+                SET customer_name='$customerName', name_in_english='$customerNameEn', company_number='$companyNumber',
+                 settlement_id='$settlement', responsible_id='$agent', main_customer='$mainCustomer'
+                WHERE id='$customerId'";
+            $update = self::$db->prepare($sql);
+            $update = $update->execute();
+            return true;
+        }
+        catch (Exception $e) {
+            return false;
+        }
+    }
+
     function getUserType($typeId)
     {
         $sql = "SELECT * FROM users_type WHERE id='$typeId'";
@@ -158,6 +174,14 @@ class DB
     function getSettlement($sid)
     {
         $sql = "SELECT * FROM settlement WHERE id='$sid'";
+        $settlement = self::$db->query($sql);
+        $settlement = $settlement->fetchAll(PDO::FETCH_OBJ);
+        return $settlement;
+    }
+
+    function getAllSettlements()
+    {
+        $sql = "SELECT * FROM settlement";
         $settlement = self::$db->query($sql);
         $settlement = $settlement->fetchAll(PDO::FETCH_OBJ);
         return $settlement;
@@ -227,6 +251,14 @@ class DB
         return $customers;
     }
 
+    function getAllAgent()
+    {
+        $sql = "SELECT * FROM users WHERE type_id=2";
+        $allAgents = self::$db->query($sql);
+        $allAgents = $allAgents->fetchAll(PDO::FETCH_OBJ);
+        return $allAgents;
+    }
+
     function getAllContactsOfCustomerInfo($customerId)
     {
         $sql = "SELECT * FROM contacts WHERE customer_id='$customerId'";
@@ -284,6 +316,26 @@ class DB
             $sql->execute();
             //$this->addPassport($workerId, $passportNumber, $validPassport);
             return $workerId;
+        }
+        catch (Exception $e) {
+            return 'Caught exception: ' . $e->getMessage();
+        }
+    }
+
+    public function addNewCustomer($customerName, $customerNameEn, $settlement, $mainCustomer, $companyNumber, $agent)
+    {
+        $agent = intval($agent);
+        try{
+            $sql = self::$db->prepare("INSERT INTO customer (customer_name, name_in_english, company_number, settlement_id, responsible_id, main_customer)
+                                VALUES(:customerName, :customerNameEn, :companyNumber, :settlement, :agent, :mainCustomer)");
+            $sql->bindParam(':customerName', $customerName);
+            $sql->bindParam(':customerNameEn', $customerNameEn);
+            $sql->bindParam(':companyNumber', $companyNumber);
+            $sql->bindParam(':settlement', $settlement);
+            $sql->bindParam(':agent', $agent);
+            $sql->bindParam(':mainCustomer', $mainCustomer);
+            $sql->execute();
+            return "success";
         }
         catch (Exception $e) {
             return 'Caught exception: ' . $e->getMessage();

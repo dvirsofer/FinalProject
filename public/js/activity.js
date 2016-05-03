@@ -1,6 +1,8 @@
 (function() {
-    $('#ok_btn').on('click',  editActivity);
-    $('#delete_btn').on('click',  cancelActivity);
+    //$('#ok_btn').on('click',  editActivity);
+    $('.okClass').on('click',  editActivity);
+    //$('#delete_btn').on('click',  cancelActivity);
+    $('.delClass').on('click',  cancelActivity);
     $('#activity').DataTable({
         responsive: true
     });
@@ -10,6 +12,7 @@ function editActivity(){
 
     var $form = $("#activity_table");
     var select_id = $(this).data();
+    var id = document.getElementById("activity_id").value;
 
     document.getElementById("activity_id").value = select_id['id'];
     var data = $form.serialize();

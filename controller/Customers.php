@@ -38,21 +38,41 @@ class Customers
         $id = '';
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $id = $_POST['customers_dropdown'];
+            if(isset($_POST['customers_dropdown'])) {
+                $id = $_POST['customers_dropdown'];
+            }
+            else {
+                $id = "";
+            }
         }
         $this->customersView->showCustomers($id);
 
     }
 
-    /*function getCustomerInfoById()
+    public function newCustomer()
     {
-        if($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $id = $_POST['customers_dropdown'];
-            $workerTable = $this->customersView->createWorkersTable($id);
-            echo($workerTable);
-        }
-    }*/
+        $customerName = $_POST['customer_name'];
+        $customerNameEn = $_POST['customer_name_en'];
+        $settlement = $_POST['settlement'];
+        $mainCustomer = $_POST['main_customer'];
+        $companyNumber = $_POST['company_number'];
+        $agent = $_POST['dealer'];
+        $msg = $this->model->newCustomer($customerName, $customerNameEn, $settlement, $mainCustomer, $companyNumber, $agent);
+        return $msg;
+    }
 
+    public function updateCustomer()
+    {
+        $customerId = $_POST['customer_id'];
+        $customerName = $_POST['customer_name'];
+        $customerNameEn = $_POST['customer_name_en'];
+        $settlement = $_POST['settlement'];
+        $mainCustomer = $_POST['main_customer'];
+        $companyNumber = $_POST['company_number'];
+        $agent = $_POST['dealer'];
+        $msg = $this->model->updateCustomer($customerId, $customerName, $customerNameEn, $settlement, $mainCustomer, $companyNumber, $agent);
+        return $msg;
 
+    }
 
 }

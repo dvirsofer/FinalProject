@@ -162,8 +162,8 @@ class ActivityView
                 $activityType[0]->name . "</tb><td>" .
                 $activity->status_description . "</td><td>" .
                 $activity->description .
-                "<td class='button'><a class='btn btn-default' id='ok_btn' data-id='$activity->id'></span>אישור</a></td>".
-                "<td class='button'><a class='btn btn-default' id='delete_btn' data-id='$activity->id'>מחק</a></td>".
+                "<td class='button'><a class='btn btn-default okClass' id='ok_btn' data-id='$activity->id'></span>אישור</a></td>".
+                "<td class='button'><a class='btn btn-default delClass' id='delete_btn' data-id='$activity->id'>מחק</a></td>".
                 "</td></tr>";
         }
         return $str;

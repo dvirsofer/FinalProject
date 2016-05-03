@@ -75,4 +75,36 @@ class CustomersModel
         return $result;
     }
 
+    public function getAllSettlements()
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $result = $this->db->getAllSettlements();
+        return $result;
+    }
+
+    public function newCustomer($customerName, $customerNameEn, $settlement, $mainCustomer, $companyNumber, $agent)
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $result = $this->db->addNewCustomer($customerName, $customerNameEn, $settlement, $mainCustomer, $companyNumber, $agent);
+        return $result;
+    }
+
+    public function getAllAgent()
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $allAgents = $this->db->getAllAgent();
+        return $allAgents;
+    }
+
+    public function updateCustomer($customerId, $customerName, $customerNameEn, $settlement, $mainCustomer, $companyNumber, $agent)
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $msg = $this->db->updateCustomer($customerId, $customerName, $customerNameEn, $settlement, $mainCustomer, $companyNumber, $agent);
+        return $msg;
+    }
+
 }
