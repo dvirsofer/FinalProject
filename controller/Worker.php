@@ -40,6 +40,11 @@ class Worker
         $this->workerView->showWorker($id);
     }
 
+    public function showWorkersTable()
+    {
+        $this->workerView->showWorkersTable();
+    }
+
     public function newWorker()
     {
         $firstName = $_POST['first_name'];

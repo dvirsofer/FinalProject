@@ -393,6 +393,59 @@ $html .= '</div>
 
     }
 
+    public function showCustomersTable()
+    {
+        $user = unserialize($_SESSION['user']);
+        $this->userName = $user[0]->user_name;
+
+        if (empty($user)) {
+            header('Location: index.php');
+        }
+
+        $html = '<!DOCTYPE html>
+                <html lang="en">';
+
+        include("./public/parts/top.php");
+
+        $html .= '<body>
+             <!--NavBar-->';
+
+        include("./public/parts/nav.php");
+
+        $html .= '
+        <div class="container">
+            <div class="row">
+            <!-- activity table -->
+                <div class="col-md-9 personal-info">
+                <form class="form-horizontal" id="customer_table" role="form" method="post">
+                    <div class="panel-body">
+                        <div class="dataTable_wrapper">
+                        <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="activity">
+                            <thead>
+                                <tr>
+                                    <th> מ"ס</th>
+                                    <th> פעולה</th>
+                                    <th> מצב הפעולה</th>
+                                    <th> תיאור הפעולה</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                            </tbody>
+
+                        </table>
+                        </div>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+      ';
+
+        echo $html;
+    }
+
     /**
      * @param $id - customer id.
      * @return string - table of all workers.

@@ -16,7 +16,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">לקוחות<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href=<?php echo(SERVER_NAME) ."/Customers/index"?>>אלפון</a></li>
-                    <li><a href="#">טבלה</a></li>
+                    <li><a href=<?php echo(SERVER_NAME) ."/Customers/showCustomersTable"?>>טבלה</a></li>
                 </ul>
             </li>
             <?php if($user[0]->type_id != 2) { ?>
@@ -24,7 +24,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">עובדים<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href=<?php echo(SERVER_NAME) ."/Worker/index"?>>אלפון</a></li>
-                    <li><a href="#">טבלה</a></li>
+                    <li><a href=<?php echo(SERVER_NAME) ."/Worker/showWorkersTable"?>>טבלה</a></li>
                 </ul>
             </li>
             <?php } ?>

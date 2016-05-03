@@ -49,6 +49,11 @@ class Customers
 
     }
 
+    public function showCustomersTable()
+    {
+        $this->customersView->showCustomersTable();
+    }
+
     public function newCustomer()
     {
         $customerName = $_POST['customer_name'];
