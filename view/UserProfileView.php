@@ -42,7 +42,7 @@ class UserProfileView
         $this->userName = $user[0]->user_name;
         $this->userPassword = $user[0]->user_password;
         $this->userType = $this->getUserType($user);
-        $this->userId = $user[0]->user_id;
+        $this->userId = $user[0]->id;
         $this->userPhone = $user[0]->phone_number;
         $this->userEmail = $user[0]->email;
         $this->getFullName($user);
@@ -98,7 +98,7 @@ class UserProfileView
         $user = unserialize($_SESSION['user']);
         $this->userName = $user[0]->user_name;
         $this->userType = $this->getUserType($user);
-        $this->userId = $user[0]->user_id;
+        $this->userId = $user[0]->id;
         $this->userPhone = $user[0]->phone_number;
         $this->userEmail = $user[0]->email;
         $this->getFullName($user);

@@ -47,7 +47,7 @@ class MailController
         //$from = 'dvir.sofer90@gmil.com';
         $to = $_POST['mail-address'];
         $subject = 'הזמנת כרטיס טיסה לעובד.';
-        $body = "הפרטים של הכרטיס טיסה:";
+        $body = "הפרטים של הכרטיס טיסה:" ;
         $body .= "שם העובד:"  . $first_name . " " . $last_name . "\n";
         $body .= "מספר דרכון " . $passport . "\n";
         $body .= "מספר טלפון " . $phone . "\n";
@@ -55,16 +55,18 @@ class MailController
         $body .= "ליעד " . $target . "\n";
         $body .= "מהתאריך " . $dereliction_date . " " . "עד לתאריך " . $arrival_date;
 
+        $body = wordwrap($body, 70, "\r\n");
+
         $headers = 'From: '.$from."\r\n".
             'Reply-To: '.$from."\r\n" .
             'X-Mailer: PHP/' . phpversion();
 
+        ini_set("sendmail_from", $from);
         $mailResult = mail($to, $subject, $body, $headers);
-        //error_log(print_r($mailResult, TRUE));
+        error_log(print_r($mailResult, TRUE));
 
         // if mail is true
         $descriptionId = 1;
-        error_log(print_r($descriptionId, TRUE));
         $description = "כרטיס טיסה לעובד" . $first_name . " " . $last_name;
         $status = "open";
         $msg = $this->userModel->addActivity($descriptionId, $status, $userId, $workerId, $description);
