@@ -62,7 +62,7 @@ class MailController
 
         ini_set("sendmail_from", $from);
         $mailResult = mail($to, $subject, $body, $headers);
-        error_log(var_export($mailResult, TRUE));
+        error_log(print_r($mailResult, TRUE));
 
         // if mail is true
         $descriptionId = 1;

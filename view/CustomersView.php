@@ -58,8 +58,8 @@ class CustomersView
 <form class="form-inline panel flip">
     <div class="panel panel-default row">
         <div class="panel-body col-md-offset-4">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add_customer">הוסף לקוח</button>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update_customer">עדכן לקוח</button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add_customer"><span class="fa fa-plus"></span>הוסף לקוח</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update_customer"><span class="fa fa-edit"></span>עדכן לקוח</button>
         </div>
     </div>
 
@@ -73,6 +73,7 @@ class CustomersView
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion"
                    href="#collapseOne">חיפוש עובד
+                   <span class="fa fa-search"></span>
                 </a>
             </h4>
         </div>
@@ -102,6 +103,7 @@ class CustomersView
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion"
                    href="#collapseTwo">פרטי הלקוח
+                   <span class="fa fa-info-circle"></span>
                 </a>
             </h4>
         </div>
@@ -220,6 +222,7 @@ class CustomersView
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion"
                    href="#collapseThree">אנשי קשר
+                   <span class="fa fa-phone"></span>
                 </a>
             </h4>
         </div>
@@ -259,6 +262,7 @@ class CustomersView
             <h4 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion"
                    href="#collapseFour">עובדים של הלקוח
+                   <span class="fa fa-users"></span>
                 </a>
             </h4>
         </div>

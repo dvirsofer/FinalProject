@@ -15,16 +15,16 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">לקוחות<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href=<?php echo(SERVER_NAME) ."/Customers/index"?>>אלפון</a></li>
-                    <li><a href=<?php echo(SERVER_NAME) ."/Customers/showCustomersTable"?>>טבלה</a></li>
+                    <li><a href=<?php echo(SERVER_NAME) ."/Customers/index"?>><span class="fa fa-book"></span>אלפון</a></li>
+                    <li><a href=<?php echo(SERVER_NAME) ."/Customers/showCustomersTable"?>><span class="fa fa-table"></span>טבלה</a></li>
                 </ul>
             </li>
             <?php if($user[0]->type_id != 2) { ?>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">עובדים<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href=<?php echo(SERVER_NAME) ."/Worker/index"?>>אלפון</a></li>
-                    <li><a href=<?php echo(SERVER_NAME) ."/Worker/showWorkersTable"?>>טבלה</a></li>
+                    <li><a href=<?php echo(SERVER_NAME) ."/Worker/index"?>><span class="fa fa-book"></span>אלפון</a></li>
+                    <li><a href=<?php echo(SERVER_NAME) ."/Worker/showWorkersTable"?>><span class="fa fa-table"></span>טבלה</a></li>
                 </ul>
             </li>
             <?php } ?>
@@ -50,12 +50,12 @@
                     <?php echo $this->userName; ?> <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href=<?php echo(SERVER_NAME) ."/UserProfileController/index"?>>פרופיל</a></li>
-                    <li><a href=<?php echo(SERVER_NAME) ."/UserProfileController/settings"?>>הגדרות</a></li>
+                    <li><a href=<?php echo(SERVER_NAME) ."/UserProfileController/index"?>><span class="fa fa-user"></span>פרופיל</a></i></li>
+                    <li><a href=<?php echo(SERVER_NAME) ."/UserProfileController/settings"?>><span class="fa fa-wrench"></span>הגדרות</a></li>
                     <?php if($user[0]->type_id == 1) { ?>
-                    <li><a href=<?php echo(SERVER_NAME) ."/UserProfileController/addUser"?>>הוסף משתמש</a></li>
+                    <li><a href=<?php echo(SERVER_NAME) ."/UserProfileController/addUser"?>><span class="fa fa-plus"></span>הוסף משתמש</a></li>
                     <?php } ?>
-                    <li><a href=<?php echo(SERVER_NAME) ."/Login/logout"?>>התנתק</a></li>
+                    <li><a href=<?php echo(SERVER_NAME) ."/Login/logout"?>><span class="glyphicon glyphicon-log-out"></span>התנתק</a></li>
                 </ul>
             </li>
         </ul>
