@@ -54,7 +54,6 @@ class MailController
         $body .= "סוג כרטיס " . $type . "\n";
         $body .= "ליעד " . $target . "\n";
         $body .= "מהתאריך " . $dereliction_date . " " . "עד לתאריך " . $arrival_date;
-
         $body = wordwrap($body, 70, "\r\n");
 
         $headers = 'From: '.$from."\r\n".
