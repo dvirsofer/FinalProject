@@ -8,6 +8,7 @@
  */
 
 require_once('./model/WorkerModel.php');
+require_once('./public/lib/LCS.php');
 
 /**
  * Class SearchController
@@ -65,7 +66,8 @@ class SearchController
             error_log(print_r("2", TRUE));
             foreach($allPassports as $pass) {
                 $passportNumber = $pass->passport_number;
-                $lcs = $this->LCS($passport, $passportNumber);
+                //$lcs = $this->LCS($passport, $passportNumber);
+                $lcs = LCS::LCSAlgorithm($passport, $passportNumber);
                 if($lcs[strlen($passport)][strlen($passportNumber)] >= 6) {
                     //error_log(print_r($pass, TRUE));
                     $workerId = $pass->worker_id;
@@ -116,7 +118,8 @@ class SearchController
             $workers = array();
             foreach($allWorkers as $workerInfo) {
                 $workerName = $workerInfo->last_name;
-                $lcs = $this->LCS($name, $workerName);
+                //$lcs = $this->LCS($name, $workerName);
+                $lcs = LCS::LCSAlgorithm($name, $workerName);
                 if($lcs[strlen($name)][strlen($workerName)] >= 5) {
                     array_push($workers, $workerInfo);
                 }
@@ -126,7 +129,7 @@ class SearchController
         }
     }
 
-    function LCS($string1, $string2) {
+    /*function LCS($string1, $string2) {
         $lcs = array_fill(0, strlen($string1 + 1), array_fill(0, strlen($string2 + 1), 0));
 
         for($i = 0; $i <= strlen($string1); $i++) {
@@ -147,7 +150,7 @@ class SearchController
             }
         }
         return $lcs;
-    }
+    }*/
 
 
 }
