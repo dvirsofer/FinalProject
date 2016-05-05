@@ -104,6 +104,9 @@ class SearchController
         }*/
     }
 
+    /**
+     * search name.
+     */
     public function searchByName()
     {
         $name = $_POST['last_name_form'];

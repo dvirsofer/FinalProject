@@ -88,6 +88,9 @@ class ActivityView
 
     }
 
+    /**
+     * show all activities.
+     */
     public function showAllActivities()
     {
         $user = unserialize($_SESSION['user']);
@@ -150,6 +153,9 @@ class ActivityView
         echo $html;
     }
 
+    /**
+     * @return string - activity table.
+     */
     private function createActivityTable()
     {
         $activities = $this->activityModel->getAllOpenActivities();
@@ -169,6 +175,9 @@ class ActivityView
         return $str;
     }
 
+    /**
+     * @return string - all activities table.
+     */
     private function createAllActivityTable()
     {
         $activities = $this->activityModel->getAllActivities();

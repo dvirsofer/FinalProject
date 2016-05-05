@@ -43,6 +43,9 @@ class ActivityController
         $this->activityView->showAllActivities();
     }
 
+    /**
+     * show edit activity page.
+     */
     public function editActivity()
     {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -53,6 +56,9 @@ class ActivityController
 
     }
 
+    /**
+     * shoe activity page.
+     */
     public function cancelActivity()
     {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {

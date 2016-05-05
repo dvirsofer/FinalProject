@@ -420,6 +420,9 @@ class WorkerView
         echo $html;
     }
 
+    /**
+     * show workers table.
+     */
     public function showWorkersTable()
     {
         $user = unserialize($_SESSION['user']);

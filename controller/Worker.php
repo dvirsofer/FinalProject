@@ -40,11 +40,17 @@ class Worker
         $this->workerView->showWorker($id);
     }
 
+    /**
+     * show worker table page.
+     */
     public function showWorkersTable()
     {
         $this->workerView->showWorkersTable();
     }
 
+    /**
+     * @return string - message.
+     */
     public function newWorker()
     {
         $firstName = $_POST['first_name'];

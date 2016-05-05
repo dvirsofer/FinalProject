@@ -49,11 +49,17 @@ class Customers
 
     }
 
+    /**
+     * show customers table.
+     */
     public function showCustomersTable()
     {
         $this->customersView->showCustomersTable();
     }
 
+    /**
+     * @return string - message.
+     */
     public function newCustomer()
     {
         $customerName = $_POST['customer_name'];
@@ -66,6 +72,11 @@ class Customers
         return $msg;
     }
 
+    /**
+     * @return bool
+     * true - if update success.
+     * false - else.
+     */
     public function updateCustomer()
     {
         $customerId = $_POST['customer_id'];

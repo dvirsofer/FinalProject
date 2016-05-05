@@ -397,6 +397,9 @@ $html .= '</div>
 
     }
 
+    /**
+     * show customer table.
+     */
     public function showCustomersTable()
     {
         $user = unserialize($_SESSION['user']);
@@ -526,6 +529,10 @@ $html .= '</div>
         return $str;
     }
 
+    /**
+     * @param $file
+     * @return string
+     */
     private function requireToVar($file){
         ob_start();
         $id = $this->customerId;

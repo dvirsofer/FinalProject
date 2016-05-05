@@ -74,6 +74,9 @@ class MailController
         echo($msg);
     }
 
+    /**
+     * send activity.
+     */
     public function sendMobility()
     {
         $user = unserialize($_SESSION['user']);

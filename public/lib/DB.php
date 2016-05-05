@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Class DB
+ */
 class DB
 {
 
@@ -10,6 +13,9 @@ class DB
      */
     private static $db;
 
+    /**
+     * @return DB
+     */
     public static function getInstance()
     {
 
@@ -29,7 +35,9 @@ class DB
     }
 
 
-
+    /**
+     * Check connection of db.
+     */
     function checkConnection()
     {
 
@@ -72,7 +80,14 @@ class DB
 
     }
 
-    function isLogin($userName, $password)
+    /**
+     * @param $userName
+     * @param $password
+     * @return bool
+     * true - if user name and password ok.
+     * false - else.
+     */
+    public function isLogin($userName, $password)
     {
         $sql = "SELECT * FROM users WHERE user_name='$userName' and user_password='$password'";
         $res =  self::$db->query($sql);
@@ -83,7 +98,12 @@ class DB
         return true;
     }
 
-    function getUserInfo($userName, $password)
+    /**
+     * @param $userName
+     * @param $password
+     * @return array - all information of this user.
+     */
+    public function getUserInfo($userName, $password)
     {
         $sql = "SELECT * FROM users WHERE user_name='$userName' and user_password='$password'";
         $user = self::$db->query($sql);
@@ -91,7 +111,11 @@ class DB
         return $user;
     }
 
-    function getUserById($userId)
+    /**
+     * @param $userId
+     * @return array - all information of this user.
+     */
+    public function getUserById($userId)
     {
         $sql = "SELECT * FROM users WHERE id='$userId'";
         $user = self::$db->query($sql);
@@ -99,7 +123,11 @@ class DB
         return $user;
     }
 
-    function getPassportInfo($passportId)
+    /**
+     * @param $passportId
+     * @return array - passport.
+     */
+    public function getPassportInfo($passportId)
     {
         $sql = "SELECT * FROM passport WHERE worker_id='$passportId'";
         $user = self::$db->query($sql);
@@ -107,7 +135,11 @@ class DB
         return $user;
     }
 
-    function getAllWorkersOfCustomer($customerId)
+    /**
+     * @param $customerId
+     * @return array - all worker of this customer.
+     */
+    public function getAllWorkersOfCustomer($customerId)
     {
         $sql = "SELECT * FROM forgen_workes WHERE current_customer_id='$customerId'";
         $workers = self::$db->query($sql);
@@ -115,7 +147,18 @@ class DB
         return $workers;
     }
 
-    function updateUserInfo($id, $userName, $userEmail, $userPhone, $userFirstName, $userLastName)
+    /**
+     * @param $id
+     * @param $userName
+     * @param $userEmail
+     * @param $userPhone
+     * @param $userFirstName
+     * @param $userLastName
+     * @return bool
+     * true - if the update success.
+     * false - else.
+     */
+    public function updateUserInfo($id, $userName, $userEmail, $userPhone, $userFirstName, $userLastName)
     {
         $fullName = $userFirstName . " " . $userLastName;
         try{
@@ -132,7 +175,14 @@ class DB
 
     }
 
-    function updateUserPassword($id, $userPassword)
+    /**
+     * @param $id
+     * @param $userPassword
+     * @return bool
+     * true - if update success.
+     * false - else.
+     */
+    public function updateUserPassword($id, $userPassword)
     {
         try{
             $sql = "UPDATE users SET user_password='$userPassword'
@@ -147,6 +197,18 @@ class DB
 
     }
 
+    /**
+     * @param $customerId
+     * @param $customerName
+     * @param $customerNameEn
+     * @param $settlement
+     * @param $mainCustomer
+     * @param $companyNumber
+     * @param $agent
+     * @return bool
+     * true - if the update success.
+     * false - else.
+     */
     public function updateCustomer($customerId, $customerName, $customerNameEn, $settlement, $mainCustomer, $companyNumber, $agent)
     {
         try{
@@ -163,7 +225,11 @@ class DB
         }
     }
 
-    function getUserType($typeId)
+    /**
+     * @param $typeId
+     * @return array - the user type.
+     */
+    public function getUserType($typeId)
     {
         $sql = "SELECT * FROM users_type WHERE id='$typeId'";
         $user = self::$db->query($sql);
@@ -171,7 +237,11 @@ class DB
         return $user;
     }
 
-    function getSettlement($sid)
+    /**
+     * @param $sid
+     * @return array - settlement.
+     */
+    public function getSettlement($sid)
     {
         $sql = "SELECT * FROM settlement WHERE id='$sid'";
         $settlement = self::$db->query($sql);
@@ -179,7 +249,10 @@ class DB
         return $settlement;
     }
 
-    function getAllSettlements()
+    /**
+     * @return array - all settlements.
+     */
+    public function getAllSettlements()
     {
         $sql = "SELECT * FROM settlement";
         $settlement = self::$db->query($sql);
@@ -187,7 +260,11 @@ class DB
         return $settlement;
     }
 
-    function getWorkerPassportInfo($passportNumber)
+    /**
+     * @param $passportNumber
+     * @return array - passport.
+     */
+    public function getWorkerPassportInfo($passportNumber)
     {
         $sql = "SELECT * FROM passport WHERE passport_number='$passportNumber'";
         $passportInfo = self::$db->query($sql);
@@ -195,7 +272,11 @@ class DB
         return $passportInfo;
     }
 
-    function getWorkerInfo($workerId)
+    /**
+     * @param $workerId
+     * @return array - all of the worker.
+     */
+    public function getWorkerInfo($workerId)
     {
         $sql = "SELECT * FROM forgen_workes WHERE worker_id='$workerId'";
         $workerInfo = self::$db->query($sql);
@@ -203,7 +284,11 @@ class DB
         return $workerInfo;
     }
 
-    function getWorkerInfoByName($workerName)
+    /**
+     * @param $workerName
+     * @return array - all of the worker.
+     */
+    public function getWorkerInfoByName($workerName)
     {
         $sql = "SELECT * FROM forgen_workes WHERE last_name='$workerName'";
         $workerInfo = self::$db->query($sql);
@@ -211,7 +296,10 @@ class DB
         return $workerInfo;
     }
 
-    function getAllPassports()
+    /**
+     * @return array - all passports.
+     */
+    public function getAllPassports()
     {
         $sql = "SELECT * FROM passport";
         $allPassport = self::$db->query($sql);
@@ -219,7 +307,10 @@ class DB
         return $allPassport;
     }
 
-    function getAllWorkers()
+    /**
+     * @return array - all workers.
+     */
+    public function getAllWorkers()
     {
         $sql = "SELECT * FROM forgen_workes";
         $workers = self::$db->query($sql);
@@ -227,7 +318,10 @@ class DB
         return $workers;
     }
 
-    function getAllCustomers()
+    /**
+     * @return array - all customers.
+     */
+    public function getAllCustomers()
     {
         $sql = "SELECT * FROM customer";
         $customers = self::$db->query($sql);
@@ -235,7 +329,11 @@ class DB
         return $customers;
     }
 
-    function getCustomerInfo($customerId)
+    /**
+     * @param $customerId
+     * @return array - customer.
+     */
+    public function getCustomerInfo($customerId)
     {
         $sql = "SELECT * FROM customer WHERE id='$customerId'";
         $customers = self::$db->query($sql);
@@ -243,7 +341,10 @@ class DB
         return $customers;
     }
 
-    function getAllCustomersOrder()
+    /**
+     * @return array - all customers.
+     */
+    public function getAllCustomersOrder()
     {
         $sql = "SELECT * FROM customer ORDER BY customer_name";
         $customers = self::$db->query($sql);
@@ -251,7 +352,10 @@ class DB
         return $customers;
     }
 
-    function getAllAgent()
+    /**
+     * @return array - all user of type agent.
+     */
+    public function getAllAgent()
     {
         $sql = "SELECT * FROM users WHERE type_id=2";
         $allAgents = self::$db->query($sql);
@@ -259,7 +363,11 @@ class DB
         return $allAgents;
     }
 
-    function getAllContactsOfCustomerInfo($customerId)
+    /**
+     * @param $customerId
+     * @return array - all contacts of this customer.
+     */
+    public function getAllContactsOfCustomerInfo($customerId)
     {
         $sql = "SELECT * FROM contacts WHERE customer_id='$customerId'";
         $contact = self::$db->query($sql);
@@ -267,7 +375,17 @@ class DB
         return $contact;
     }
 
-    function addNewUser($userFirstName, $userLastName, $userName, $userEmail, $userPhone, $userPosition, $userPassword)
+    /**
+     * @param $userFirstName
+     * @param $userLastName
+     * @param $userName
+     * @param $userEmail
+     * @param $userPhone
+     * @param $userPosition
+     * @param $userPassword
+     * @return string - message.
+     */
+    public function addNewUser($userFirstName, $userLastName, $userName, $userEmail, $userPhone, $userPosition, $userPassword)
     {
         $userPosition = intval($userPosition);
         try{
@@ -289,7 +407,23 @@ class DB
 
     }
 
-    function newWorker($firstName, $lastName, $bDate, $phone, $nation, $passportNumber, $validPassport, $gender,
+    /**
+     * @param $firstName
+     * @param $lastName
+     * @param $bDate
+     * @param $phone
+     * @param $nation
+     * @param $passportNumber
+     * @param $validPassport
+     * @param $gender
+     * @param $arrive
+     * @param $arrivalDate
+     * @param $comments
+     * @param $userId
+     * @param $customerId
+     * @return int - worker id.
+     */
+    public function newWorker($firstName, $lastName, $bDate, $phone, $nation, $passportNumber, $validPassport, $gender,
                        $arrive, $arrivalDate, $comments, $userId, $customerId)
     {
         $workerId = $this->getMaxWorkerId();
@@ -322,6 +456,15 @@ class DB
         }
     }
 
+    /**
+     * @param $customerName
+     * @param $customerNameEn
+     * @param $settlement
+     * @param $mainCustomer
+     * @param $companyNumber
+     * @param $agent
+     * @return string - message.
+     */
     public function addNewCustomer($customerName, $customerNameEn, $settlement, $mainCustomer, $companyNumber, $agent)
     {
         $agent = intval($agent);
@@ -342,6 +485,12 @@ class DB
         }
     }
 
+    /**
+     * @param $workerId
+     * @param $passportNumber
+     * @param $validPassport
+     * @return string - message.
+     */
     public function addPassport($workerId, $passportNumber, $validPassport)
     {
         try{
@@ -358,7 +507,15 @@ class DB
         }
     }
 
-    function addActivity($descriptionId, $status, $userId, $workerId, $description)
+    /**
+     * @param $descriptionId
+     * @param $status
+     * @param $userId
+     * @param $workerId
+     * @param $description
+     * @return string - message.
+     */
+    public function addActivity($descriptionId, $status, $userId, $workerId, $description)
     {
         $userId = intval($userId);
         $workerId = intval($workerId);
@@ -378,6 +535,10 @@ class DB
         }
     }
 
+    /**
+     * @param $id
+     * @return array - activity type.
+     */
     public function getActivityType($id)
     {
         $sql = "SELECT * FROM description_name WHERE id='$id'";
@@ -386,6 +547,9 @@ class DB
         return $activityType;
     }
 
+    /**
+     * @return array - all activities.
+     */
     public function getAllActivities()
     {
         $sql = "SELECT * FROM activity ORDER BY id";
@@ -394,6 +558,9 @@ class DB
         return $activities;
     }
 
+    /**
+     * @return array - all open activities.
+     */
     public function getAllOpenActivities()
     {
         $sql = "SELECT * FROM activity WHERE status_description='open' ORDER BY id";
@@ -402,6 +569,12 @@ class DB
         return $activities;
     }
 
+    /**
+     * @param $activityId
+     * @return bool
+     * true - if update success.
+     * false - else.
+     */
     public function updateCancelActivity($activityId)
     {
         try{
@@ -417,6 +590,12 @@ class DB
         }
     }
 
+    /**
+     * @param $activityId
+     * @return bool
+     * true - if update success.
+     * false - else.
+     */
     public function editActivity($activityId)
     {
         try{
@@ -432,6 +611,9 @@ class DB
         }
     }
 
+    /**
+     * @return PDOStatement = worker id.
+     */
     public function getMaxWorkerId()
     {
         $sql = "SELECT MAX(worker_id) FROM passport";

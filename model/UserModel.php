@@ -121,6 +121,14 @@ class UserModel
         return $response;
     }
 
+    /**
+     * @param $descriptionId
+     * @param $status
+     * @param $userId
+     * @param $workerId
+     * @param $description
+     * @return string - message.
+     */
     public function addActivity($descriptionId, $status, $userId, $workerId, $description)
     {
         $db = DB::getInstance();

@@ -61,6 +61,10 @@ class WorkerModel
         return $result;
     }
 
+    /**
+     * @param $passportNumber
+     * @return array - passport.
+     */
     public function getWorkerPassport($passportNumber)
     {
         $db = DB::getInstance();
@@ -80,6 +84,10 @@ class WorkerModel
         return $result;
     }
 
+    /**
+     * @param $workerId
+     * @return array - worker of this id.
+     */
     public function getWorkerInfo($workerId)
     {
         $db = DB::getInstance();
@@ -88,6 +96,10 @@ class WorkerModel
         return $result;
     }
 
+    /**
+     * @param $workerName
+     * @return array - worker.
+     */
     public function getWorkerInfoByName($workerName)
     {
         $db = DB::getInstance();
@@ -96,6 +108,9 @@ class WorkerModel
         return $result;
     }
 
+    /**
+     * @return array - all workers.
+     */
     public function getAllWorkers()
     {
         $db = DB::getInstance();
@@ -104,6 +119,22 @@ class WorkerModel
         return $result;
     }
 
+    /**
+     * @param $firstName
+     * @param $lastName
+     * @param $date
+     * @param $phone
+     * @param $nation
+     * @param $passportNumber
+     * @param $validPassport
+     * @param $gender
+     * @param $arrive
+     * @param $arrivalDate
+     * @param $comments
+     * @param $userId
+     * @param $customerId
+     * @return string - message.
+     */
     public function newWorker($firstName, $lastName, $date, $phone, $nation, $passportNumber, $validPassport, $gender,
                               $arrive, $arrivalDate, $comments, $userId, $customerId)
     {

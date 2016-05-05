@@ -16,11 +16,17 @@ class ActivityModel
 {
     private $db;
 
+    /**
+     * constructor
+     */
     public function __construct()
     {
         $this->db = DB::getInstance();
     }
 
+    /**
+     * @return array - all activities.
+     */
     public function getAllActivities()
     {
         $db = DB::getInstance();
@@ -29,6 +35,9 @@ class ActivityModel
         return $allActivities;
     }
 
+    /**
+     * @return array - all open activities.
+     */
     public function getAllOpenActivities()
     {
         $db = DB::getInstance();
@@ -37,6 +46,10 @@ class ActivityModel
         return $activities;
     }
 
+    /**
+     * @param $id
+     * @return array - activity type.
+     */
     public function getActivityType($id)
     {
         $db = DB::getInstance();
@@ -45,6 +58,10 @@ class ActivityModel
         return $activityType;
     }
 
+    /**
+     * @param $activityId
+     * @return bool
+     */
     public function editActivity($activityId)
     {
         $db = DB::getInstance();
@@ -53,6 +70,10 @@ class ActivityModel
         return $result;
     }
 
+    /**
+     * @param $activityId
+     * @return bool
+     */
     public function updateCancelActivity($activityId)
     {
         $db = DB::getInstance();
