@@ -58,11 +58,11 @@ class WorkerView
         <form class="form-inline panel flip">
     <div class="panel panel-default row">
         <div class="panel-body col-md-offset-4">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#flight_ticket"><span class="fa fa-plane"></span>כרטיס טיסה</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#flight_ticket"><span class="fa fa-plane"></span> כרטיס טיסה</button>
             <button type="button" class="btn btn-primary">נטישה</button>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mobility"><span class="glyphicon glyphicon-transfer"></span>ניוד</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mobility"><span class="glyphicon glyphicon-transfer"></span> ניוד</button>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mna">מנה</button>
-            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#new_worker"><span class="fa fa-plus"></span>הוסף עובד</button>
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#new_worker"><span class="fa fa-plus"></span> הוסף עובד</button>
         </div>
     </div>
 </form>

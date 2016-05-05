@@ -15,16 +15,17 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">לקוחות<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href=<?php echo(SERVER_NAME) ."/Customers/index"?>><span class="fa fa-book"></span>אלפון</a></li>
-                    <li><a href=<?php echo(SERVER_NAME) ."/Customers/showCustomersTable"?>><span class="fa fa-table"></span>טבלה</a></li>
+                    <li><a href=<?php echo(SERVER_NAME) ."/Customers/index"?>><span class="fa fa-book"></span> אלפון</a></li>
+                    <li><a href=<?php echo(SERVER_NAME) ."/Customers/showCustomersTable"?>><span class="fa fa-table"></span> טבלה</a></li>
                 </ul>
             </li>
+
             <?php if($user[0]->type_id != 2) { ?>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">עובדים<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href=<?php echo(SERVER_NAME) ."/Worker/index"?>><span class="fa fa-book"></span>אלפון</a></li>
-                    <li><a href=<?php echo(SERVER_NAME) ."/Worker/showWorkersTable"?>><span class="fa fa-table"></span>טבלה</a></li>
+                    <li><a href=<?php echo(SERVER_NAME) ."/Worker/index"?>><span class="fa fa-book"></span> אלפון</a></li>
+                    <li><a href=<?php echo(SERVER_NAME) ."/Worker/showWorkersTable"?>><span class="fa fa-table"></span> טבלה</a></li>
                 </ul>
             </li>
             <?php } ?>
@@ -33,8 +34,8 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">פעולות<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href=<?php echo(SERVER_NAME) ."/ActivityController/index"?>>אישור פעולות</a></li>
-                    <li><a href=<?php echo(SERVER_NAME) ."/ActivityController/allActivities"?>>כל הפעולות</a></li>
+                    <li><a href=<?php echo(SERVER_NAME) ."/ActivityController/index"?>><span class="fa fa-table"></span> אישור פעולות</a></li>
+                    <li><a href=<?php echo(SERVER_NAME) ."/ActivityController/allActivities"?>><span class="fa fa-table"></span> כל הפעולות</a></li>
                 </ul>
             </li>
             <?php } ?>
