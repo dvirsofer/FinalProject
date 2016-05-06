@@ -162,8 +162,7 @@ class WorkerModel
     {
         $db = DB::getInstance();
         $db->checkConnection();
-        $result = $this->db->createExcelFile();
-        return $result;
+        $this->db->createExcelFile();
     }
 
 }

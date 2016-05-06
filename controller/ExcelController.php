@@ -23,7 +23,8 @@ class ExcelController
      */
     public function createExcelFile()
     {
-        error_log(print_r("a", TRUE));
+        $this->workerModel->createExcelFile();
+        /*error_log(print_r("a", TRUE));
         $workers = $this->workerModel->getAllWorkersDetails();
         //error_log(print_r($workers, TRUE));
         $num_fields = count($workers);
@@ -38,7 +39,7 @@ class ExcelController
             header('Pragma: no-cache');
             header('Expires: 0');
             fputcsv($fp, $headers);
-        }
+        }*/
 
     }
 

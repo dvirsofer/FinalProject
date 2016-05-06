@@ -648,7 +648,33 @@ on customer.settlement_id=settlement.id";
 
     public function createExcelFile()
     {
-        
+        $csv_export = '';
+        $csv_filename = 'db_export_workers'.'_'.date('Y-m-d').'.csv';
+        $sql = "select forgen_workes.id, forgen_workes.worker_id, forgen_workes.last_name, forgen_workes.first_name, forgen_workes.entrance_date, forgen_workes.start_date_of_work, forgen_workes.phone_number,  passport.passport_number, passport.validation_date
+from forgen_workes
+inner join passport
+on forgen_workes.id=passport.worker_id";
+        $query = self::$db->query($sql);
+        $field = $query->columnCount();
+        // create line with field names
+        for($i = 0; $i < $field; $i++) {
+            $csv_export.= $query->getColumnMeta($i).';';
+        }
+        // newline (seems to work both on Linux & Windows servers)
+        $csv_export.= '';
+        // loop through database query and fill export variable
+        while($row = $query->fetch(PDO::FETCH_BOTH)) {
+            // create line with field values
+            for($i = 0; $i < $field; $i++) {
+                $csv_export.= '"'.$row[$query->getColumnMeta($i).';'].'";';
+            }
+            $csv_export.= '';
+        }
+        // Export the data and prompt a csv file for download
+        header("Content-type: text/x-csv");
+        header("Content-Disposition: attachment; filename=".$csv_filename."");
+        error_log(print_r($csv_export, TRUE));
+        echo($csv_export);
     }
 
 
