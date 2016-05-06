@@ -25,7 +25,7 @@ class ExcelController
     {
         error_log(print_r("a", TRUE));
         $workers = $this->workerModel->getAllWorkersDetails();
-        error_log(print_r($workers, TRUE));
+        //error_log(print_r($workers, TRUE));
         $num_fields = count($workers);
         $headers = array();
         for ($i = 0; $i < $num_fields; $i++) {
