@@ -651,6 +651,8 @@ on customer.settlement_id=settlement.id";
         $sql = 'SHOW COLUMNS FROM `forgen_workes`';
         $stmt = self::$db->query($sql);
         $stmt->execute();
+        $fields = array();
+        $csv = array();
         while($row = $stmt->fetch(PDO::FETCH_ASSOC))
         {
             array_push($fields, $row['Field']);
