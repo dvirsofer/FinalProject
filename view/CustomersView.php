@@ -277,7 +277,7 @@ class CustomersView
                         <th> שם פרטי</th>
                         <th> שם משפחה</th>
                         <th> תחילת עבודה</th>
-                        <th> סיום עבודה</th>
+                        <th> מספר פלאפון</th>
                         <th> תאריך כניסה לארץ</th>
                         <th> דרכון</th>
                         <th> תוקף דרכון</th>
@@ -423,23 +423,27 @@ $html .= '</div>
         <div class="container">
             <div class="row">
             <!-- activity table -->
-                <div class="col-md-9 personal-info">
+                <div class="col-md-12 personal-info">
                 <form class="form-horizontal" id="customer_table" role="form" method="post">
                     <div class="panel-body">
                         <div class="dataTable_wrapper">
-                        <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="activity">
+                        <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="workers">
                             <thead>
                                 <tr>
                                     <th> מ"ס</th>
-                                    <th> פעולה</th>
-                                    <th> מצב הפעולה</th>
-                                    <th> תיאור הפעולה</th>
+                                    <th> שם הלקוח</th>
+                                    <th> שם באנגלית</th>
+                                    <th> מספר חברה</th>
+                                    <th> ישוב</th>
+                                    <th> רכז</th>
+                                    <th> תאריך כניסה</th>
                                 </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody>';
+        $html .= $this->createCustomersTable();
 
-                            </tbody>
+                            $html .= '</tbody>
 
                         </table>
                         </div>
@@ -448,7 +452,13 @@ $html .= '</div>
                 </div>
             </div>
         </div>
-      ';
+<script src='.SERVER_NAME .'/public/js/configure.js></script>
+<script src='.SERVER_NAME .'/public/js/customer.js></script>
+</body>
+</html>';
+
+        $html .= '
+        ';
 
         echo $html;
     }
@@ -525,6 +535,28 @@ $html .= '</div>
                 $str .= "<option value=" .$row->id .">" .$row->customer_name . "</option>";
             }
 
+        }
+        return $str;
+    }
+
+    /**
+     * @return string - customers table.
+     */
+    private function createCustomersTable()
+    {
+        $customers = $this->customerModel->getAllCustomersDetails();
+        $str = "";
+
+        foreach($customers as $customer) {
+            $str .=  "<tr><td>" .
+                $customer->id . "</td><td>" .
+                $customer->customer_name . "</td><td>" .
+                $customer->name_in_english . "</td><td>" .
+                $customer->company_number . "</td><td>" .
+                $customer->settlement_name . "</td><td>" .
+                $customer->responsible_id . "</td><td>" .
+                $customer->create_date .
+                "</td></tr>";
         }
         return $str;
     }

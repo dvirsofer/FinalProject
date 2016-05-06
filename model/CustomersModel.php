@@ -38,6 +38,17 @@ class CustomersModel
     }
 
     /**
+     * @return array - All customers details.
+     */
+    public function getAllCustomersDetails()
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $result = $this->db->getAllCustomersDetails();
+        return $result;
+    }
+
+    /**
      * @param $id - customer id.
      * @return array - All contacts of this customer.
      */

@@ -120,6 +120,17 @@ class WorkerModel
     }
 
     /**
+     * @return array - All workers details.
+     */
+    public function getAllWorkersDetails()
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $result = $this->db->getAllWorkersDetails();
+        return $result;
+    }
+
+    /**
      * @param $firstName
      * @param $lastName
      * @param $date

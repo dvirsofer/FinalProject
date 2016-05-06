@@ -446,23 +446,30 @@ class WorkerView
         <div class="container">
             <div class="row">
             <!-- activity table -->
-                <div class="col-md-9 personal-info">
+                <div class="col-md-12 personal-info">
                 <form class="form-horizontal" id="worker_table" role="form" method="post">
                     <div class="panel-body">
+                    <button class="btn btn-primary" type="submit" id="excel_button"><span class="fa fa-file-excel-o"></span> excel</button>
                         <div class="dataTable_wrapper">
-                        <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="activity">
+                        <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="workers">
                             <thead>
                                 <tr>
-                                    <th> מ"ס</th>
-                                    <th> פעולה</th>
-                                    <th> מצב הפעולה</th>
-                                    <th> תיאור הפעולה</th>
+                                    <th> מספר</th>
+                                    <th> מספר עובד</th>
+                                    <th> שם פרטי</th>
+                                    <th> שם משפחה</th>
+                                    <th> תחילת עבודה</th>
+                                    <th> מספר פלאפון</th>
+                                    <th> תאריך כניסה לארץ</th>
+                                    <th> דרכון</th>
+                                    <th> תוקף דרכון</th>
                                 </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody>';
+        $html .= $this->createWorkersTable();
 
-                            </tbody>
+                            $html .= '</tbody>
 
                         </table>
                         </div>
@@ -471,7 +478,11 @@ class WorkerView
                 </div>
             </div>
         </div>
-      ';
+<script src='.SERVER_NAME .'/public/js/configure.js></script>
+<script src='.SERVER_NAME .'/public/js/excel_file.js></script>
+<script src='.SERVER_NAME .'/public/js/customer.js></script>
+</body>
+</html>';
 
         echo $html;
     }
@@ -488,6 +499,31 @@ class WorkerView
         {
             $str .= "<option value=" .$row->id .">" .$row->customer_name . "</option>";
         }
+        return $str;
+    }
+
+    /**
+     * @return string - workers table.
+     */
+    private function createWorkersTable()
+    {
+        $workers = $this->workerModel->getAllWorkersDetails();
+        $str = "";
+
+        foreach($workers as $row){   //Creates a loop to loop through results
+            $str .= "<tr><td>" .
+                $row->id . "</td><td>" .
+                $row->worker_id . "</td><td>" .
+                $row->first_name . "</td><td>" .
+                $row->last_name . "</td><td>" .
+                $row->start_date_of_work . "</td><td>" .
+                $row->phone_number . "</td><td>" .
+                $row->entrance_date . "</td><td>" .
+                $row->passport_number . "</td><td>" .
+                $row->validation_date .
+                "</td></tr>";
+        }
+
         return $str;
     }
 

@@ -318,6 +318,17 @@ class DB
         return $workers;
     }
 
+    public function getAllWorkersDetails()
+    {
+        $sql = "select forgen_workes.id, forgen_workes.worker_id, forgen_workes.last_name, forgen_workes.first_name, forgen_workes.entrance_date, forgen_workes.start_date_of_work, forgen_workes.phone_number,  passport.passport_number, passport.validation_date
+from forgen_workes
+inner join passport
+on forgen_workes.id=passport.worker_id";
+        $workers = self::$db->query($sql);
+        $workers = $workers->fetchAll(PDO::FETCH_OBJ);
+        return $workers;
+    }
+
     /**
      * @return array - all customers.
      */
@@ -328,6 +339,18 @@ class DB
         $customers = $customers->fetchAll(PDO::FETCH_OBJ);
         return $customers;
     }
+
+    public function getAllCustomersDetails()
+    {
+        $sql = "select customer.id, customer.customer_name,customer.name_in_english, customer.company_number, customer.responsible_id, customer.create_date, settlement.settlement_name
+from customer
+inner join settlement
+on customer.settlement_id=settlement.id";
+        $customers = self::$db->query($sql);
+        $customers = $customers->fetchAll(PDO::FETCH_OBJ);
+        return $customers;
+    }
+
 
     /**
      * @param $customerId

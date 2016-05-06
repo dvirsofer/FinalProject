@@ -25,7 +25,7 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">עובדים<b class="caret"></b></a>
                 <ul class="dropdown-menu">
                     <li><a href=<?php echo(SERVER_NAME) ."/Worker/index"?>><span class="fa fa-book"></span> אלפון</a></li>
-                    <li><a href=<?php echo(SERVER_NAME) ."/Worker/showWorkersTable"?>><span class="fa fa-table"></span> טבלה</a></li>
+                    <li><a href=<?php echo(SERVER_NAME) ."/Worker/index"?>><span class="fa fa-table"></span> טבלה</a></li>
                 </ul>
             </li>
             <?php } ?>

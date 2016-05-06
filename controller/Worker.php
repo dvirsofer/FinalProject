@@ -32,12 +32,13 @@ class Worker
      */
     public function index()
     {
-        $id = '';
+        $this->workerView->showWorkersTable();
+        /*$id = '';
 
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id = $_POST['select_worker'];
         }
-        $this->workerView->showWorker($id);
+        $this->workerView->showWorker($id);*/
     }
 
     /**
@@ -70,6 +71,11 @@ class Worker
         $worker =  $this->workerModel->newWorker($firstName, $lastName, $date, $phone, $nation, $passportNumber, $validPassport, $gender,
             $arrive, $arrivalDate, $comments, $userId, $customerId);
         return $worker;
+    }
+
+    public function createExcelFile()
+    {
+        error_log(print_r("a", TRUE));
     }
 
 }
