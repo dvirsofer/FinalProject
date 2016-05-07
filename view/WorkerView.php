@@ -21,6 +21,7 @@ class WorkerView
     private $customerModel;
     private $userName;
     private $workerId;
+    private $userFullName;
 
     /**
      * constructor
@@ -37,7 +38,7 @@ class WorkerView
     public function showWorker($id='')
     {
         $user = unserialize($_SESSION['user']);
-        $this->userName = $user[0]->user_name;
+        $this->userFullName = $user[0]->full_name;
         $this->workerId = $id;
 
         if (empty($user)) {
@@ -59,9 +60,7 @@ class WorkerView
     <div class="panel panel-default row">
         <div class="panel-body col-md-offset-4">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#flight_ticket"><span class="fa fa-plane"></span> כרטיס טיסה</button>
-            <button type="button" class="btn btn-primary">נטישה</button>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mobility"><span class="glyphicon glyphicon-transfer"></span> ניוד</button>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mna">מנה</button>
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#new_worker"><span class="fa fa-plus"></span> הוסף עובד</button>
         </div>
     </div>
@@ -274,27 +273,6 @@ class WorkerView
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="dereliction_date" class="col-sm-3 control-label">תאריך נטישה</label>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" id="dereliction_date">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="validity_insurance" class="col-sm-3 control-label">תוקף ביטוח</label>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" id="validity_insurance">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="valid_driving_license" class="col-sm-3 control-label">תוקף רישיון נהיגה</label>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" id="valid_driving_license">
-                    </div>
-                </div>
-
             </div>';
         }
         $html .= '
@@ -322,44 +300,7 @@ class WorkerView
 
             </div>
         </div>
-    </div>
-
-    <!-- Events a customer -->
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion"
-                   href="#collapseFour">אירועים ללקוח
-                </a>
-            </h4>
-        </div>
-        <div id="collapseFour" class="panel-collapse collapse">
-            <div class="panel-body">
-
-                 <div>
-                    <table class="table">
-                        <thead>
-                            <th>מ"ס</th>
-                            <th>סטטוס אירוע לעובד</th>
-                            <th>תאריך האירוע</th>
-                            <th>סוג האירוע</th>
-                            <th>מתאריך</th>
-                            <th>הערה</th>
-                            <th>קישור למסמך עובד</th>
-                        </thead>
-
-                        <tbody>
-
-                        </tbody>
-
-                    </table>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-</div>';
+    </div>';
 
         $html .= '
        <!-- Modals -->
@@ -380,19 +321,6 @@ class WorkerView
         <div class="modal-content">';
 
         $html .= $this->requireToVar('./public/popups/Mobility.php');
-
-        $html .= '
-         </div>
-    </div>
-</div>';
-
-        $html .= '
-        <div class="modal fade" id="mna" role="dialog">
-    <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">';
-
-        $html .= $this->requireToVar('./public/popups/Mna.php');
 
         $html .= '
          </div>
@@ -426,7 +354,7 @@ class WorkerView
     public function showWorkersTable()
     {
         $user = unserialize($_SESSION['user']);
-        $this->userName = $user[0]->user_name;
+        $this->userFullName = $user[0]->full_name;
 
         if (empty($user)) {
             header('Location: index.php');

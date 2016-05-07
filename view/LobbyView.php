@@ -12,6 +12,7 @@ require_once('./Configure.php');
 class LobbyView {
 
     private $userNmae;
+    private $userFullName;
 
     /**
      * @param $userName
@@ -19,7 +20,7 @@ class LobbyView {
     public function showLobby($userName)
     {
         $user = unserialize($_SESSION['user']);
-        $this->userName = $user[0]->user_name;
+        $this->userFullName = $user[0]->full_name;
         include('./public/parts/top.php');
 
         echo "<body>

@@ -648,39 +648,22 @@ on customer.settlement_id=settlement.id";
 
     public function createExcelFile()
     {
-        $sql = 'SHOW COLUMNS FROM `forgen_workes`';
-        $stmt = self::$db->query($sql);
-        $stmt->execute();
-        $fields = array();
-        $csv = array();
-        while($row = $stmt->fetch(PDO::FETCH_ASSOC))
-        {
-            array_push($fields, $row['Field']);
+        // we initialize the output with the headers
+        $output = "id,customer_name,name_in_english,company_number,responsible_id,create_date,settlement_name\n";
+        // select all members
+        $sql = "select customer.id, customer.customer_name,customer.name_in_english, customer.company_number, customer.responsible_id, customer.create_date, settlement.settlement_name
+from customer
+inner join settlement
+on customer.settlement_id=settlement.id";
+        $query = self::$db->prepare($sql);
+        $query->execute();
+        $list = $query->fetchAll();
+        foreach ($list as $rs) {
+            // add new row
+            $output .= $rs['id'].",".$rs['customer_name'].",".$rs['name_in_english'].",".$rs['company_number'].",".$rs['responsible_id'].$rs['create_date'].",".$rs['settlement_name']."\n";
         }
-        array_push($csv, $fields);
-        $sql = "select forgen_workes.id, forgen_workes.worker_id, forgen_workes.last_name, forgen_workes.first_name, forgen_workes.entrance_date, forgen_workes.start_date_of_work, forgen_workes.phone_number,  passport.passport_number, passport.validation_date
-from forgen_workes
-inner join passport
-on forgen_workes.id=passport.worker_id";
-
-        $stmt = self::$db->query($sql);
-        $stmt->execute();
-        $csv = array();
-        while($row = $stmt->fetch(PDO::FETCH_NUM))
-        {
-            array_push($csv, $row);
-        }
-        $fp = fopen('file.csv', 'w');
-        foreach ($csv as $row) {
-            fputcsv($fp, $row);
-        }
-        fclose($fp);
-        header("Content-type: application/csv");
-        header("Content-Disposition: attachment; filename=export.csv");
-        header("Pragma: no-cache");
-        header("Expires: 0");
-        readfile('file.csv');
-        $dbh = null;
+        // export the output
+        return $output;
     }
 
 

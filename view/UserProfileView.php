@@ -24,6 +24,7 @@ class UserProfileView
     private $userEmail;
     private $userFirstName;
     private $userLastName;
+    private $userFullName;
 
     /**
      * constructor
@@ -40,6 +41,7 @@ class UserProfileView
     {
         $user = unserialize($_SESSION['user']);
         $this->userName = $user[0]->user_name;
+        $this->userFullName = $user[0]->full_name;
         $this->userPassword = $user[0]->user_password;
         $this->userType = $this->getUserType($user);
         $this->userId = $user[0]->id;
@@ -97,6 +99,7 @@ class UserProfileView
     {
         $user = unserialize($_SESSION['user']);
         $this->userName = $user[0]->user_name;
+        $this->userFullName = $user[0]->full_name;
         $this->userType = $this->getUserType($user);
         $this->userId = $user[0]->id;
         $this->userPhone = $user[0]->phone_number;
@@ -217,6 +220,7 @@ class UserProfileView
     {
         $user = unserialize($_SESSION['user']);
         $this->userName = $user[0]->user_name;
+        $this->userFullName = $user[0]->full_name;
 
         if (empty($user)) {
             header('Location: index.php');
@@ -316,10 +320,10 @@ class UserProfileView
      */
     private function getFullName($user)
     {
-        $userFullName = $user[0]->full_name;
-        $userFullName = array(explode(" ", $userFullName, 2));
-        $this->userFirstName = $userFullName[0][0];
-        $this->userLastName = $userFullName[0][1];
+        $fullName = $user[0]->full_name;
+        $fullName = array(explode(" ", $fullName, 2));
+        $this->userFirstName = $fullName[0][0];
+        $this->userLastName = $fullName[0][1];
     }
 
     /**

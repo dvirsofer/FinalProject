@@ -9,7 +9,7 @@ require_once('./Configure.php');
 class ActivityView
 {
     private $activityModel;
-    private $userName;
+    private $userFullName;
 
     /**
      * constructor
@@ -25,7 +25,7 @@ class ActivityView
     public function showActivity()
     {
         $user = unserialize($_SESSION['user']);
-        $this->userName = $user[0]->user_name;
+        $this->userFullName = $user[0]->full_name;
 
         if (empty($user)) {
             header('Location: index.php');
@@ -94,7 +94,7 @@ class ActivityView
     public function showAllActivities()
     {
         $user = unserialize($_SESSION['user']);
-        $this->userName = $user[0]->user_name;
+        $this->userFullName = $user[0]->full_name;
 
         if (empty($user)) {
             header('Location: index.php');

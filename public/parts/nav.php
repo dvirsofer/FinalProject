@@ -40,15 +40,12 @@
             </li>
             <?php } ?>
 
-            <li><a href="#">הזמנות</a></li>
-            <li><a href="#">חוזים</a></li>
-            <li><a href="#">ניודים</a></li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                    <?php echo $this->userName; ?> <b class="caret"></b>
+                    <?php echo $this->userFullName; ?> <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href=<?php echo(SERVER_NAME) ."/UserProfileController/index"?>><span class="fa fa-user"></span>פרופיל</a></i></li>

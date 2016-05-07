@@ -19,6 +19,7 @@ class CustomersView
     private $userModel;
     private $userName;
     private $customerId;
+    private $userFullName;
 
     /**
      * constructor
@@ -37,7 +38,7 @@ class CustomersView
     public function showCustomers($id='')
     {
         $user = unserialize($_SESSION['user']);
-        $this->userName = $user[0]->user_name;
+        $this->userFullName = $user[0]->full_name;
         $this->customerId = $id;
 
         if (empty($user)) {
@@ -153,17 +154,7 @@ class CustomersView
                             <div class="form-group">
                                 <label for="open_date" class="col-sm-3 control-label">תאריך פתיחה</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" id="open_date" value="'. $customer[0]->opening_date .' ">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="address" class="col-sm-3 control-label">כתובת</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" placeholder="רחוב מספר בית">
-                                    <input type="text" class="form-control" placeholder="ת.ד">
-                                    <input type="text" class="form-control" placeholder="ד.נ">
-                                    <input type="text" class="form-control" placeholder="מיקוד">
+                                    <input type="text" class="form-control" id="open_date" value="'. $customer[0]->create_date .' ">
                                 </div>
                             </div>
 
@@ -181,21 +172,6 @@ class CustomersView
                                 <label for="status" class="col-sm-3 control-label">סטטוס</label>
                                 <div class="col-md-9">
                                     <input type="text" class="form-control" id="status">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="mna" class="col-sm-3 control-label">מנ"א</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" id="mna">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="type_employer" class="col-sm-3 control-label">סוג מעסיק</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="col-md-6 form-control" id="type_employer" placeholder="סוג">
-                                    <input type="text" class="col-md-6 form-control" id="number_employer" placeholder="מספר">
                                 </div>
                             </div>
 
@@ -293,73 +269,6 @@ class CustomersView
 
             </div>
         </div>
-    </div>
-
-    <!-- Orders -->
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion"
-                   href="#collapseFive">הזמנות
-                </a>
-            </h4>
-        </div>
-        <div id="collapseFive" class="panel-collapse collapse">
-            <div class="panel-body">
-
-                 <table class="table table-striped table-bordered">
-                    <thead>
-                        <th>מ"ס</th>
-                        <th>מספר הזמנה</th>
-                        <th>תאריך פתיחת הזמנה</th>
-                        <th>מספר עובדים</th>
-                        <th>הערות</th>
-                        <th>מתאריך</th>
-                        <th>סטטוס הזמנה</th>
-                        <th>תאריך שינוי סטטוס</th>
-                        <th>כמות חוזים חסרים</th>
-                    </thead>
-
-                    <tbody>
-
-                    </tbody>
-
-                </table>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- Events a customer -->
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion"
-                   href="#collapseSix">אירועים ללקוח
-                </a>
-            </h4>
-        </div>
-        <div id="collapseSix" class="panel-collapse collapse">
-            <div class="panel-body">
-                 <table class="table table-striped table-bordered">
-                    <thead>
-                        <th>מ"ס</th>
-                        <th>סטטוס אירועים ללקוח</th>
-                        <th>תאריך</th>
-                        <th>תאריך יעד</th>
-                        <th>סוג</th>
-                        <th>הערה</th>
-                        <th>שם המסמך וקישור</th>
-                    </thead>
-
-                    <tbody>
-
-                    </tbody>
-
-                </table>
-
-            </div>
-        </div>
     </div>';
 
         $html .= '
@@ -403,7 +312,7 @@ $html .= '</div>
     public function showCustomersTable()
     {
         $user = unserialize($_SESSION['user']);
-        $this->userName = $user[0]->user_name;
+        $this->userFullName = $user[0]->full_name;
 
         if (empty($user)) {
             header('Location: index.php');
