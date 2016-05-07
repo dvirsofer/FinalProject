@@ -24,19 +24,20 @@ class ExcelController
     public function createExcelFile()
     {
         $csv = $this->workerModel->createExcelFile();
-        $now = gmdate("D, d M Y H:i:s");
-        header("Cache-Control: max-age=0, no-cache, must-revalidate, proxy-revalidate");
-        header("Last-Modified: {$now} GMT");
-
-        // force download
-        header("Content-Type: text/csv; charset=utf-8");
-        header("Content-Disposition: attachment; filename=Workers_{$now}.csv");
-
-        $fh = @fopen('php://output', 'w');
-
-        fwrite($fh, $csv);
-
-        fclose($fh);
+        echo $csv;
+//        $now = gmdate("D, d M Y H:i:s");
+//        header("Cache-Control: max-age=0, no-cache, must-revalidate, proxy-revalidate");
+//        header("Last-Modified: {$now} GMT");
+//
+//        // force download
+//        header("Content-Type: text/csv; charset=utf-8");
+//        header("Content-Disposition: attachment; filename=Workers_{$now}.csv");
+//
+//        $fh = @fopen('php://output', 'w');
+//
+//        fwrite($fh, $csv);
+//
+//        fclose($fh);
     }
 
 }
