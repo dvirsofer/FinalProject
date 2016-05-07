@@ -167,9 +167,14 @@ class ActivityView
                 $activity->id . "</td><td>" .
                 $activityType[0]->name . "</tb><td>" .
                 $activity->status_description . "</td><td>" .
-                $activity->description .
-                "<td class='button'><a class='btn btn-success okClass' id='ok_btn' data-id='$activity->id'><span class='glyphicon glyphicon-ok'></span> אישור</a></td>".
-                "<td class='button'><a class='btn btn-danger delClass' id='delete_btn' data-id='$activity->id'><span class='glyphicon glyphicon-remove'></span> מחק</a></td>".
+                $activity->description;
+            if($activity->description_id == 1) {
+                $str .= "<td class='button'><a class='btn btn-success okClass' id='ok_btn' data-id='$activity->id'><span class='glyphicon glyphicon-ok'></span> אישור</a></td>";
+            }
+            else {
+                $str .= "<td class='button'><a class='btn btn-success okMobClass' id='ok_btn' data-id='$activity->id'><span class='glyphicon glyphicon-ok'></span> אישור</a></td>";
+            }
+                $str .="<td class='button'><a class='btn btn-danger delClass' id='delete_btn' data-id='$activity->id'><span class='glyphicon glyphicon-remove'></span> מחק</a></td>".
                 "</td></tr>";
         }
         return $str;

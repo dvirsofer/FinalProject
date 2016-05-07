@@ -1,7 +1,6 @@
 (function() {
-    //$('#ok_btn').on('click',  editActivity);
     $('.okClass').on('click',  editActivity);
-    //$('#delete_btn').on('click',  cancelActivity);
+    $('.okMobClass').on('click',  editMobilityActivity);
     $('.delClass').on('click',  cancelActivity);
     $('#activity').DataTable({
         responsive: true
@@ -20,6 +19,27 @@ function editActivity(){
     $.ajax({
         type: "POST",
         url: develop_server_name+'/ActivityController/editActivity',
+        data: data,
+        success: function(result) {
+            console.log(result);
+            location.reload(true);
+        }
+    });
+
+}
+
+function editMobilityActivity(){
+
+    var $form = $("#activity_table");
+    var select_id = $(this).data();
+    var id = document.getElementById("activity_id").value;
+
+    document.getElementById("activity_id").value = select_id['id'];
+    var data = $form.serialize();
+
+    $.ajax({
+        type: "POST",
+        url: develop_server_name+'/ActivityController/editMobilityActivity',
         data: data,
         success: function(result) {
             console.log(result);

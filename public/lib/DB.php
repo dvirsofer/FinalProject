@@ -318,6 +318,9 @@ class DB
         return $workers;
     }
 
+    /**
+     * @return array - all workers details.
+     */
     public function getAllWorkersDetails()
     {
         $sql = "select forgen_workes.id, forgen_workes.worker_id, forgen_workes.last_name, forgen_workes.first_name, forgen_workes.entrance_date, forgen_workes.start_date_of_work, forgen_workes.phone_number,  passport.passport_number, passport.validation_date
@@ -340,6 +343,9 @@ on forgen_workes.id=passport.worker_id";
         return $customers;
     }
 
+    /**
+     * @return array - all customers details.
+     */
     public function getAllCustomersDetails()
     {
         $sql = "select customer.id, customer.customer_name,customer.name_in_english, customer.company_number, customer.responsible_id, customer.create_date, settlement.settlement_name
@@ -559,6 +565,38 @@ on customer.settlement_id=settlement.id";
     }
 
     /**
+     * @param $descriptionId
+     * @param $status
+     * @param $userId
+     * @param $workerId
+     * @param $description
+     * @param $customerId
+     * @param $newEmployer
+     * @return string - message.
+     */
+    public function addMobilityActivity($descriptionId, $status, $userId, $workerId, $description, $customerId, $newEmployer)
+    {
+        $userId = intval($userId);
+        $workerId = intval($workerId);
+        try{
+            $sql = self::$db->prepare("INSERT INTO activity (description_id, status_description, user_id, worker_id, description, customer_id, new_customer_id)
+                                VALUES(:descriptionId, :status, :userId, :workerId, :description, :customerId, :newEmployer)");
+            $sql->bindParam(':descriptionId', $descriptionId);
+            $sql->bindParam(':status', $status);
+            $sql->bindParam(':userId', $userId);
+            $sql->bindParam(':workerId', $workerId);
+            $sql->bindParam(':description', $description);
+            $sql->bindParam(':customerId', $customerId);
+            $sql->bindParam(':newEmployer', $newEmployer);
+            $sql->execute();
+            return "success";
+        }
+        catch (Exception $e) {
+            return 'Caught exception: ' . $e->getMessage();
+        }
+    }
+
+    /**
      * @param $id
      * @return array - activity type.
      */
@@ -579,6 +617,18 @@ on customer.settlement_id=settlement.id";
         $activities = self::$db->query($sql);
         $activities = $activities->fetchAll(PDO::FETCH_OBJ);
         return $activities;
+    }
+
+    /**
+     * @param $activityId
+     * @return array - activity.
+     */
+    public function getActivity($activityId)
+    {
+        $sql = "SELECT * FROM activity WHERE id='$activityId'";
+        $activity = self::$db->query($sql);
+        $activity = $activity->fetchAll(PDO::FETCH_OBJ);
+        return $activity;
     }
 
     /**
@@ -625,6 +675,28 @@ on customer.settlement_id=settlement.id";
             $sql = "UPDATE activity
                 SET status_description='close'
                 WHERE id='$activityId'";
+            $update = self::$db->prepare($sql);
+            $update = $update->execute();
+            return true;
+        }
+        catch (Exception $e) {
+            return false;
+        }
+    }
+
+    /**
+     * @param $workerId
+     * @param $customerId
+     * @return bool
+     * true - if update success.
+     * false - else.
+     */
+    public function updateCustomerOfWorker($workerId, $customerId)
+    {
+        try{
+            $sql = "UPDATE forgen_workes
+                SET current_customer_id='$customerId'
+                WHERE worker_id='$workerId'";
             $update = self::$db->prepare($sql);
             $update = $update->execute();
             return true;

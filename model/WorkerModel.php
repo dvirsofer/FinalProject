@@ -169,4 +169,19 @@ class WorkerModel
         return $csv;
     }
 
+    /**
+     * @param $workerId
+     * @param $customerId
+     * @return bool
+     * true - if update success.
+     * false - else.
+     */
+    public function updateCustomerOfWorker($workerId, $customerId)
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $msg = $this->db->updateCustomerOfWorker($workerId, $customerId);
+        return $msg;
+    }
+
 }

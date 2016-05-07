@@ -82,6 +82,7 @@ class MailController
         $user = unserialize($_SESSION['user']);
         $userId = $user[0]->id;
         $workerId = $_POST['worker_id'];
+        $customerId = $_POST['customer_id'];
         $oldEmployer = $_POST['old_employer_name'];
         $newEmployer = $_POST['new_employer_name'];
         $startDate = $_POST['start_date'];
@@ -92,7 +93,7 @@ class MailController
         $descriptionId = 2;
         $description =  $workerName . " מלקוח " . $oldEmployer . " ללקוח " . $customer[0]->customer_name;
         $status = "open";
-        $msg = $this->userModel->addActivity($descriptionId, $status, $userId, $workerId, $description);
+        $msg = $this->userModel->addMobilityActivity($descriptionId, $status, $userId, $workerId, $description, $customerId, $newEmployer);
 
         echo($msg);
     }

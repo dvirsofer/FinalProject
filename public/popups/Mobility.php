@@ -21,6 +21,7 @@ $customers = $this->customerModel->getCustomers();
     <div class="row">
         <form class="form-horizontal" id="mobility_form" role="form" method="post">
             <input type="hidden" id="worker_id" name="worker_id" value="<?php echo $workerInfo[0]->worker_id ?>">
+            <input type="hidden" id="customer_id" name="customer_id" value="<?php echo $customerId ?>">
             <div class="col-md-6">
                 <div class="panel">
                     <div class="form-group">

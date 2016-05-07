@@ -138,6 +138,24 @@ class UserModel
     }
 
     /**
+     * @param $descriptionId
+     * @param $status
+     * @param $userId
+     * @param $workerId
+     * @param $description
+     * @param $customerId
+     * @param $newEmployer
+     * @return string - message.
+     */
+    public function addMobilityActivity($descriptionId, $status, $userId, $workerId, $description, $customerId, $newEmployer)
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $msg = $this->db->addMobilityActivity($descriptionId, $status, $userId, $workerId, $description, $customerId, $newEmployer);
+        return $msg;
+    }
+
+    /**
      * @param $password
      * @param $passwordC
      * @return bool - validation password.

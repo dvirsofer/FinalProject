@@ -60,6 +60,18 @@ class ActivityModel
 
     /**
      * @param $activityId
+     * @return array - activity.
+     */
+    public function getActivity($activityId)
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $activity = $this->db->getActivity($activityId);
+        return $activity;
+    }
+
+    /**
+     * @param $activityId
      * @return bool
      */
     public function editActivity($activityId)

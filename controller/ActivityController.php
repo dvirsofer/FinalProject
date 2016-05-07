@@ -8,6 +8,7 @@
  */
 
 require_once('./model/ActivityModel.php');
+require_once('./model/WorkerModel.php');
 require_once("./view/ActivityView.php");
 
 /**
@@ -17,6 +18,7 @@ class ActivityController
 {
     private $activityModel;
     private $activityView;
+    private $workerModel;
 
     /**
      * constructor
@@ -25,6 +27,7 @@ class ActivityController
     {
         $this->activityModel = new ActivityModel();
         $this->activityView = new ActivityView();
+        $this->workerModel = new WorkerModel();
     }
 
     /**
@@ -50,10 +53,24 @@ class ActivityController
     {
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $activityId = $_POST['activity_id'];
-            error_log(print_r($activityId, TRUE));
             $this->activityModel->editActivity($activityId);
         }
 
+    }
+
+    /**
+     * edit mobility activity.
+     */
+    public function editMobilityActivity()
+    {
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $activityId = $_POST['activity_id'];
+            $activity = $this->activityModel->getActivity($activityId);
+            $workerId = $activity[0]->worker_id;
+            $customerId = $activity[0]->new_customer_id;
+            $this->activityModel->editActivity($activityId);
+            $this->workerModel->updateCustomerOfWorker($workerId, $customerId);
+        }
     }
 
     /**
