@@ -6,16 +6,6 @@ $("#worker_table").submit(function(event){
 });
 
 function createExcelFile(event) {
-    var $form = $(event.currentTarget);
-    var data = $form.serialize();
-
-    $.ajax({
-        type: "POST",
-        url: develop_server_name+'/ExcelController/createExcelFile',
-        data: data,
-        success: function(result) {
-            console.log(result);
-        }
-    });
-
+    var export_url = develop_server_name+'/ExcelController/createExcelFile';
+    $('#workers-export').attr('src', export_url);
 }

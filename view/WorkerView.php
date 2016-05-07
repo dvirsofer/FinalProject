@@ -406,6 +406,7 @@ class WorkerView
                 </div>
             </div>
         </div>
+        <iframe id="workers-export"></iframe>
 <script src='.SERVER_NAME .'/public/js/configure.js></script>
 <script src='.SERVER_NAME .'/public/js/excel_file.js></script>
 <script src='.SERVER_NAME .'/public/js/customer.js></script>
