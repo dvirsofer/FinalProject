@@ -646,7 +646,33 @@ on customer.settlement_id=settlement.id";
         return $workerId;
     }
 
-    public function createExcelFile()
+    /**
+     * @return string - all workers.
+     */
+    public function createWorkersFile()
+    {
+        // we initialize the output with the headers
+        $output = "id,worker_id,last_name,first_name,entrance_date,start_date_of_work,phone_number,passport_number,validation_date\n";
+        // select all members
+        $sql = "select forgen_workes.id, forgen_workes.worker_id, forgen_workes.last_name, forgen_workes.first_name, forgen_workes.entrance_date, forgen_workes.start_date_of_work, forgen_workes.phone_number,  passport.passport_number, passport.validation_date
+from forgen_workes
+inner join passport
+on forgen_workes.id=passport.worker_id";
+        $query = self::$db->prepare($sql);
+        $query->execute();
+        $list = $query->fetchAll();
+        foreach ($list as $rs) {
+            // add new row
+            $output .= $rs['id'].",".$rs['worker_id'].",".$rs['last_name'].",".$rs['first_name'].",".$rs['entrance_date'].",".$rs['start_date_of_work'].",".$rs['phone_number'].",".$rs['passport_number'].",".$rs['validation_date']."\n";
+        }
+        // export the output
+        return $output;
+    }
+
+    /**
+     * @return string - all customers.
+     */
+    public function createCustomersFile()
     {
         // we initialize the output with the headers
         $output = "id,customer_name,name_in_english,company_number,responsible_id,create_date,settlement_name\n";
@@ -660,7 +686,7 @@ on customer.settlement_id=settlement.id";
         $list = $query->fetchAll();
         foreach ($list as $rs) {
             // add new row
-            $output .= $rs['id'].",".$rs['customer_name'].",".$rs['name_in_english'].",".$rs['company_number'].",".$rs['responsible_id'].$rs['create_date'].",".$rs['settlement_name']."\n";
+            $output .= $rs['id'].",".$rs['customer_name'].",".$rs['name_in_english'].",".$rs['company_number'].",".$rs['responsible_id'].",".$rs['create_date'].",".$rs['settlement_name']."\n";
         }
         // export the output
         return $output;

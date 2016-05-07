@@ -158,11 +158,14 @@ class WorkerModel
 
     }
 
-    public function createExcelFile()
+    /**
+     * @return string - all workers.
+     */
+    public function createWorkersFile()
     {
         $db = DB::getInstance();
         $db->checkConnection();
-        $csv = $this->db->createExcelFile();
+        $csv = $this->db->createWorkersFile();
         return $csv;
     }
 

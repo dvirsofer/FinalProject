@@ -1,25 +1,48 @@
 $("#worker_table").submit(function(event){
     // cancels the form submission
     event.preventDefault();
-    createExcelFile(event)
+    createWorkerFile(event)
 
 });
 
-function createExcelFile(event) {
+$("#customer_table").submit(function(event){
+    // cancels the form submission
+    event.preventDefault();
+    createCustomersFile(event)
+
+});
+
+function createWorkerFile(event) {
     var $form = $(event.currentTarget);
     var data = $form.serialize();
 
     $.ajax({
         type: "POST",
-        url: develop_server_name+'/ExcelController/createExcelFile',
+        url: develop_server_name+'/ExcelController/createWorkersFile',
         data: data,
         success: function(result) {
-            console.log(result);
             download("Workers.csv", result);
         }
     });
 
 }
+
+function createCustomersFile(event) {
+    var $form = $(event.currentTarget);
+    var data = $form.serialize();
+
+    $.ajax({
+        type: "POST",
+        url: develop_server_name+'/ExcelController/createCustomersFile',
+        data: data,
+        success: function(result) {
+            download("Customers.csv", result);
+        }
+    });
+
+}
+
+
 
 function download(filename, text) {
     var element = document.createElement('a');

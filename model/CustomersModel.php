@@ -86,6 +86,9 @@ class CustomersModel
         return $result;
     }
 
+    /**
+     * @return array - all settlements.
+     */
     public function getAllSettlements()
     {
         $db = DB::getInstance();
@@ -94,6 +97,15 @@ class CustomersModel
         return $result;
     }
 
+    /**
+     * @param $customerName
+     * @param $customerNameEn
+     * @param $settlement
+     * @param $mainCustomer
+     * @param $companyNumber
+     * @param $agent
+     * @return string - message.
+     */
     public function newCustomer($customerName, $customerNameEn, $settlement, $mainCustomer, $companyNumber, $agent)
     {
         $db = DB::getInstance();
@@ -102,6 +114,9 @@ class CustomersModel
         return $result;
     }
 
+    /**
+     * @return array - all agents.
+     */
     public function getAllAgent()
     {
         $db = DB::getInstance();
@@ -110,12 +125,35 @@ class CustomersModel
         return $allAgents;
     }
 
+    /**
+     * @param $customerId
+     * @param $customerName
+     * @param $customerNameEn
+     * @param $settlement
+     * @param $mainCustomer
+     * @param $companyNumber
+     * @param $agent
+     * @return bool
+     * true - if update success.
+     * false - else.
+     */
     public function updateCustomer($customerId, $customerName, $customerNameEn, $settlement, $mainCustomer, $companyNumber, $agent)
     {
         $db = DB::getInstance();
         $db->checkConnection();
         $msg = $this->db->updateCustomer($customerId, $customerName, $customerNameEn, $settlement, $mainCustomer, $companyNumber, $agent);
         return $msg;
+    }
+
+    /**
+     * @return string - all customers.
+     */
+    public function createCustomersFile()
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $csv = $this->db->createCustomersFile();
+        return $csv;
     }
 
 }

@@ -1,6 +1,7 @@
 <?php
 
 require_once('./model/WorkerModel.php');
+require_once('./model/CustomersModel.php');
 require_once('./Configure.php');
 
 /**
@@ -9,6 +10,7 @@ require_once('./Configure.php');
 class ExcelController
 {
     private $workerModel;
+    private $customerModel;
 
     /**
      * constructor
@@ -16,28 +18,25 @@ class ExcelController
     public function __construct()
     {
         $this->workerModel = new WorkerModel();
+        $this->customerModel = new CustomersModel();
     }
 
     /**
-     * create excel file.
+     * create workers file.
      */
-    public function createExcelFile()
+    public function createWorkersFile()
     {
-        $csv = $this->workerModel->createExcelFile();
+        $csv = $this->workerModel->createWorkersFile();
         echo $csv;
-//        $now = gmdate("D, d M Y H:i:s");
-//        header("Cache-Control: max-age=0, no-cache, must-revalidate, proxy-revalidate");
-//        header("Last-Modified: {$now} GMT");
-//
-//        // force download
-//        header("Content-Type: text/csv; charset=utf-8");
-//        header("Content-Disposition: attachment; filename=Workers_{$now}.csv");
-//
-//        $fh = @fopen('php://output', 'w');
-//
-//        fwrite($fh, $csv);
-//
-//        fclose($fh);
+    }
+
+    /**
+     * create customers file.
+     */
+    public function createCustomersFile()
+    {
+        $csv = $this->customerModel->createCustomersFile();
+        echo $csv;
     }
 
 }

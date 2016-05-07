@@ -335,6 +335,7 @@ $html .= '</div>
                 <div class="col-md-12 personal-info">
                 <form class="form-horizontal" id="customer_table" role="form" method="post">
                     <div class="panel-body">
+                    <button class="btn btn-primary" type="submit" id="excel_button"><span class="fa fa-file-excel-o"></span> excel</button>
                         <div class="dataTable_wrapper">
                         <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="workers">
                             <thead>
@@ -362,12 +363,10 @@ $html .= '</div>
             </div>
         </div>
 <script src='.SERVER_NAME .'/public/js/configure.js></script>
+<script src='.SERVER_NAME .'/public/js/excel_file.js></script>
 <script src='.SERVER_NAME .'/public/js/customer.js></script>
 </body>
 </html>';
-
-        $html .= '
-        ';
 
         echo $html;
     }
