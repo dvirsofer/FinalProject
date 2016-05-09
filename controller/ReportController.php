@@ -1,7 +1,7 @@
 <?php
 
 require_once('./model/ReportModel.php');
-require_once('./View/ReportView.php');
+require_once('./view/ReportView.php');
 
 /**
  * Class ReportController

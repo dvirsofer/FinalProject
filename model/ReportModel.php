@@ -1,5 +1,8 @@
 <?php
 
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+set_time_limit(300);
 require_once('./public/lib/DB.php');
 require_once('./public/lib/LCS.php');
 
@@ -22,7 +25,7 @@ class ReportModel
     {
         $sameWorkers = array();
 
-        for($i = 0; $i < count($workers); $i++) {
+        /*for($i = 0; $i < count($workers); $i++) {
             $workerName = $workers[$i]->last_name;
             $workerPassport = $workers[$i]->passport_number;
             for($j = $i + 1; $j < count($workers); $j++) {
@@ -37,7 +40,7 @@ class ReportModel
                     error_log(print_r(count($workers), TRUE));
                 }
             }
-        }
+        }*/
         return $sameWorkers;
     }
 
