@@ -1,6 +1,5 @@
 <?php
 
-ini_set("display_errors", 1);
 set_time_limit(300);
 require_once('./public/lib/DB.php');
 require_once('./public/lib/LCS.php');
