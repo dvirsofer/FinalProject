@@ -25,7 +25,9 @@ class ReportController
      */
     public function index()
     {
-        $this->reportView->showReport();
+        echo "aaa";
+        exit;
+        //$this->reportView->showReport();
     }
 
 }
