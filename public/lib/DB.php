@@ -904,7 +904,7 @@ on customer.settlement_id=settlement.id";
         $sql = 'insert into' . ' ' . $table . $sqlKeys .   ' values ' . $sqlValues;
 
 
-        self::$db = $this->checkConnection();
+       // self::$db = $this->checkConnection();
         if ( self::$db != false)
         {
 
@@ -912,7 +912,8 @@ on customer.settlement_id=settlement.id";
 
 
 
-           return $statement->execute();
+           if($statement->execute())
+               self::$db->lastInsertId();
         }
 
         return false;
