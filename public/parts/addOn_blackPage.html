@@ -34,6 +34,9 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-SoKwSDdfdWXwlKwB2s4HaiYujTdLBkk"
             type="text/javascript"></script>
 
+
+
+
 </head>
 
 <body>
@@ -487,22 +490,19 @@
 
             <div class="row">
                 <div class="col-lg-6">
-                    <form role="form">
+                    <form role="form" id="get_worker_form" >
                         <div class="form-group">
-                            <label>יישוב שנזקק לעובדים:</label>
-                            <input  class="form-control" id="settlement_id" onkeyup="autoComplete()">
+                            <label>מעסיק שנזקק לעובדים:</label>
+                            <input  class="form-control" id="settlement_id" name="settlement_id" onkeyup="autoComplete()">
                             <ul id="settlement_list_id"></ul>
 
                         </div>
 
 
 
-
-
-
                         <div class="form-group">
-                            <label>Selects</label>
-                            <select class="form-control">
+                            <label>בחר כמות עובדים רצויה:</label>
+                            <select multiple class="form-control" name="workers_amount">
                                 <?php
                                     for($i=1;$i<$workersCount;$i++)
                                        echo ('<option>'.$i.'</option>');
@@ -511,14 +511,23 @@
                             </select>
                         </div>
 
+                        <div  id="extra-form-group"></div>
 
 
-                        <button type="submit" class="btn btn-default">Submit Button</button>
-                        <button type="reset" class="btn btn-default">Reset Button</button>
+
+
+
+
+                        <button type="submit" class="btn btn-default">אישור</button>
+                        <button type="reset" class="btn btn-default">איפוס</button>
                     </form>
 
                 </div>
 
+                <div class="col-lg-6" id="workers_to_choose">
+
+
+                </div>
 
             </div>
 
@@ -542,6 +551,12 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="../public/dist/js/sb-admin-2.js"></script>
+
+<script src="../public/js/shiftOrganizer.js"></script>
+
+<!-- DataTables JavaScript -->
+<script src="../public/bower_components/datatables/media/js/jquery.dataTables.min.js"></script>
+<script src="../public/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 
 
 

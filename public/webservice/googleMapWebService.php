@@ -23,7 +23,8 @@ customer.settlement_id,
 settlement.latitude,
 settlement.longitude,
 settlement.settlement_name,
-settlement_name_in_english
+settlement_name_in_english,
+setelment_type
 FROM mbtm_workers.customer
  left join settlement on   customer.settlement_id  = settlement.id
  where responsible_id = ". $_SESSION['user_id'] . " and settlement_id is not null group by settlement_id;";
@@ -58,7 +59,7 @@ foreach ($result as $row){
         $newNode->addAttribute("address", $row->settlement_name);
         $newNode->addAttribute("lat", $row->latitude);
         $newNode->addAttribute("lng", $row->longitude);
-        $newNode->addAttribute("type", "city");
+        $newNode->addAttribute("type", $row->setelment_type);
 
     }
 

@@ -1,5 +1,8 @@
 <?php
 
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+set_time_limit(300);
 /**
  * Created by PhpStorm.
  * User: Admin
@@ -9,7 +12,7 @@
 
 require_once('./model/CustomersModel.php');
 require_once('./model/UserModel.php');
-require_once('./public/lib/class.PHPMailer.php');
+require_once('./public/lib/class.phpmailer.php');
 require_once('./public/lib/class.smtp.php');
 
 
@@ -30,6 +33,7 @@ class MailController
         $this->customerModel = new CustomersModel();
         $this->userModel = new UserModel();
         $this->mail = new PHPMailer();
+        date_default_timezone_set("Asia/Jerusalem");
     }
 
     /**
@@ -37,6 +41,7 @@ class MailController
      */
     public function send()
     {
+
         $user = unserialize($_SESSION['user']);
         $from = $user[0]->email;
         $userId = $user[0]->id;
@@ -111,7 +116,7 @@ class MailController
     private function sendMail($to,$from,$subject,$body)
     {
         $this->mail->IsSMTP();                                      // set mailer to use SMTP
-       // $this->mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+        // $this->mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
         $this->mail->SMTPAuth = true; // authentication enabled
         $this->mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
         $this->mail->Host = "smtp.gmail.com";
@@ -126,9 +131,9 @@ class MailController
         $this->mail->SetFrom('mbtmProject@gmail.com', 'b@gmail.com');
         $this->mail->AddAddress($to);
 
-       // $this->mail->AddReplyTo("info@example.com", "Information");
+        // $this->mail->AddReplyTo("info@example.com", "Information");
 
-       // $this->mail->WordWrap = 50;                                 // set word wrap to 50 characters
+        // $this->mail->WordWrap = 50;                                 // set word wrap to 50 characters
 
         //$this->mail->IsHTML(true);                                  // set email format to HTML
 

@@ -1,0 +1,28 @@
+<div class="form-group">
+    <label>תחום עיסוק מבוקש</label>
+    <select multiple class="form-control" name="workers_amount">
+        <?php
+                                    foreach ($workerList as $value)
+                                       echo ('<option onclick=is_new_field_show(false)>'.$value->activity_name.'</option>');
+
+
+        ?>
+        <option onclick=is_new_field_show(true)>אחר</option>
+    </select>
+</div>
+
+<script>
+    function is_new_field_show(action)
+    {
+        if(action == true)
+            $('#new_area_field_form-group').show();
+        else
+            $('#new_area_field_form-group').hide();
+    }
+
+</script>
+
+<div class="form-group" id="new_area_field_form-group" style="display: none">
+    <label>הזן תחום עיסוק</label>
+    <input  class="form-control"  name="new_area_field">
+</div>

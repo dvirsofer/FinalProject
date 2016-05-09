@@ -1,3 +1,8 @@
+
+var map;
+var infoWindow;
+
+
 $(function() {
 
     initMap();
@@ -6,14 +11,14 @@ $(function() {
 
 
     var customIcons = {
-        restaurant: {
+        other: {
+            icon: 'http://labs.google.com/ridefinder/images/mm_20_green.png'
+        },
+        moshav: {
             icon: 'http://labs.google.com/ridefinder/images/mm_20_blue.png'
         },
-        bar: {
-            icon: 'http://labs.google.com/ridefinder/images/mm_20_red.png'
-        },
 
-        city: {
+        kibbutz: {
             icon: 'http://labs.google.com/ridefinder/images/mm_20_red.png'
         }
     };
@@ -24,17 +29,19 @@ $(function() {
             infoWindow.open(map, marker);
         });
     }
-    var map;
-    var infoWindow;
+
     function initMap() {
         var mapDiv = document.getElementById('map');
         map = new google.maps.Map(mapDiv, {
             center: {lat:  32.076672, lng: 34.855951},
-            zoom: 14
+            zoom: 12
         });
         infoWindow = new google.maps.InfoWindow;
 
     }
+
+
+
 
 
     function downloadUrl(url) {
@@ -59,7 +66,7 @@ $(function() {
         for (var i = 0; i < markers.length; i++) {
             var name = markers[i].getAttribute("name");
             var address = markers[i].getAttribute("address");
-            var type = markers[i].getAttribute("type");
+            var type = (markers[i].getAttribute("type")=="")?"other":markers[i].getAttribute("type");
             var point = new google.maps.LatLng(
                 parseFloat(markers[i].getAttribute("lat")),
                 parseFloat(markers[i].getAttribute("lng")));
@@ -75,6 +82,48 @@ $(function() {
     }
 
 });
+
+
+//auto Complete settlement
+function autoComplete() {
+
+    var min_length = 1;
+    var keyword = $('#settlement_id').val();
+    if (keyword.length >= min_length) {
+        $.ajax({
+            url: 'http://52.25.230.58/public/webservice/customer_refresh.php',
+            type: 'POST',
+            data: {keyword: keyword},
+            success: function (data) {
+                $('#settlement_list_id').show();
+                $('#settlement_list_id').html(data);
+            }
+        });
+    } else {
+        $('#settlement_list_id').hide();
+    }
+}
+
+function set_item(item,latlog) {
+    // change input value
+    $('#settlement_id').val(item);
+    // hide proposition list
+    $('#settlement_list_id').hide();
+
+    map.setCenter(latlog);
+
+    $.ajax({
+        url: 'http://52.25.230.58/public/webservice/customer_fields.php',
+        type: 'POST',
+        data: {customer_name: item},
+        success: function (data) {
+            $('#extra-form-group').html(data);
+         console.log(data);
+        }
+    });
+}
+
+
 
 //Loads the correct sidebar on window load,
 //collapses the sidebar on window resize.
