@@ -326,7 +326,7 @@ class DB
         $sql = "select forgen_workes.id, forgen_workes.worker_id, forgen_workes.last_name, forgen_workes.first_name, forgen_workes.entrance_date, forgen_workes.start_date_of_work, forgen_workes.phone_number,  passport.passport_number, passport.validation_date
 from forgen_workes
 inner join passport
-on forgen_workes.id=passport.worker_id";
+on forgen_workes.worker_id=passport.worker_id";
         $workers = self::$db->query($sql);
         $workers = $workers->fetchAll(PDO::FETCH_OBJ);
         return $workers;

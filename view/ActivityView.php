@@ -71,7 +71,7 @@ class ActivityView
                         </table>
                         </div>
                     </div>
-                    </<form>
+                    </form>
                 </div>
             </div>
         </div>

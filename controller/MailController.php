@@ -9,6 +9,11 @@
 
 require_once('./model/CustomersModel.php');
 require_once('./model/UserModel.php');
+require_once('./public/lib/class.PHPMailer.php');
+require_once('./public/lib/class.smtp.php');
+
+
+
 
 /**
  * Class MailController
@@ -18,11 +23,13 @@ class MailController
 
     private $customerModel;
     private $userModel;
+    private $mail;
 
     public function __construct()
     {
         $this->customerModel = new CustomersModel();
         $this->userModel = new UserModel();
+        $this->mail = new PHPMailer();
     }
 
     /**
@@ -61,8 +68,11 @@ class MailController
             'X-Mailer: PHP/' . phpversion();
 
         ini_set("sendmail_from", $from);
-        $mailResult = mail($to, $subject, $body, $headers);
-        error_log(print_r($mailResult, TRUE));
+
+        $this->sendMail($to,$from,$subject,$body);
+
+        //$mailResult = mail($to, $subject, $body, $headers);
+        //error_log(print_r($mailResult, TRUE));
 
         // if mail is true
         $descriptionId = 1;
@@ -96,6 +106,44 @@ class MailController
         $msg = $this->userModel->addMobilityActivity($descriptionId, $status, $userId, $workerId, $description, $customerId, $newEmployer);
 
         echo($msg);
+    }
+
+    private function sendMail($to,$from,$subject,$body)
+    {
+        $this->mail->IsSMTP();                                      // set mailer to use SMTP
+       // $this->mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+        $this->mail->SMTPAuth = true; // authentication enabled
+        $this->mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
+        $this->mail->Host = "smtp.gmail.com";
+        $this->mail->Port = 465; // or 587
+        $this->mail->Username = "mbtmProject@gmail.com";  // SMTP username
+        $this->mail->Password = "mbtm1234"; // SMTP password
+
+
+
+        //$this->mail->From = $from;
+        //$this->mail->FromName =$from;
+        $this->mail->SetFrom('mbtmProject@gmail.com', 'b@gmail.com');
+        $this->mail->AddAddress($to);
+
+       // $this->mail->AddReplyTo("info@example.com", "Information");
+
+       // $this->mail->WordWrap = 50;                                 // set word wrap to 50 characters
+
+        //$this->mail->IsHTML(true);                                  // set email format to HTML
+
+        $this->mail->Subject = $subject;
+        $this->mail->Body    = $body;
+        //$this->mail->AltBody = "This is the body in plain text for non-HTML mail clients";
+
+        if(!$this->mail->Send())
+        {
+            echo "Message could not be sent. <p>";
+            echo "Mailer Error: " . $this->mail->ErrorInfo;
+            exit;
+        }
+
+        echo "Message has been sent";
     }
 
 }

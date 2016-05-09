@@ -40,6 +40,15 @@
             </li>
             <?php } ?>
 
+            <?php if($user[0]->type_id == 1) { ?>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">דוחות<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href=<?php echo(SERVER_NAME) ."/ReportController/index"?>>רשימות דומות</a></li>
+                    </ul>
+                </li>
+            <?php } ?>
+
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
