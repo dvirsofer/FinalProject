@@ -32,12 +32,6 @@ class MailController
         $this->mail = new PHPMailer();
     }
 
-    public function test()
-    {
-        echo "aaa";
-        exit;
-    }
-
     /**
      * send mail.
      */
