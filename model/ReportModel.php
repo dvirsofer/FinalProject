@@ -25,7 +25,7 @@ class ReportModel
     {
         $sameWorkers = array();
 
-        /*for($i = 0; $i < count($workers); $i++) {
+        for($i = 0; $i < count($workers); $i++) {
             $workerName = $workers[$i]->last_name;
             $workerPassport = $workers[$i]->passport_number;
             for($j = $i + 1; $j < count($workers); $j++) {
@@ -40,7 +40,7 @@ class ReportModel
                     error_log(print_r(count($workers), TRUE));
                 }
             }
-        }*/
+        }
         return $sameWorkers;
     }
 
