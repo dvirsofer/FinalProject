@@ -126,8 +126,6 @@ class MailController
         //$this->mail->Password = "mbtm1234";
         $this->mail->Password = "F5sGK4AK9mPoY"; // SMTP password
 
-
-
         //$this->mail->From = $from;
         //$this->mail->FromName =$from;
         $this->mail->SetFrom($from, $from);
