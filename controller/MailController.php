@@ -57,15 +57,16 @@ class MailController
         $arrival_date = $_POST['arrival_date_FT'];
 
         //$from = 'dvir.sofer90@gmil.com';
+
         $to = $_POST['mail-address'];
         $subject = 'הזמנת כרטיס טיסה לעובד.';
-        $body = "הפרטים של הכרטיס טיסה:" ;
-        $body .= "שם העובד:"  . $first_name . " " . $last_name . "\n";
-        $body .= "מספר דרכון " . $passport . "\n";
-        $body .= "מספר טלפון " . $phone . "\n";
-        $body .= "סוג כרטיס " . $type . "\n";
-        $body .= "ליעד " . $target . "\n";
-        $body .= "מהתאריך " . $dereliction_date . " " . "עד לתאריך " . $arrival_date;
+        $body = "הפרטים של הכרטיס טיסה";
+        $body .= "שם העובד ". $first_name . " " . $last_name . "\n";
+        $body .= "מספר דרכון" . $passport . "\n";
+        $body .= "מספר פלאפון" . $phone . "\n";
+        $body .= "סוג כרטיס" . $type . "\n";
+        $body .= "ליעד ". $target . "\n";
+        $body .= "מתאריך " .$dereliction_date . " " . "עד תאריך " . $arrival_date;
         $body = wordwrap($body, 70, "\r\n");
 
         $headers = 'From: '.$from."\r\n".
@@ -81,7 +82,7 @@ class MailController
 
         // if mail is true
         $descriptionId = 1;
-        $description = "כרטיס טיסה לעובד" . $first_name . " " . $last_name;
+        $description = "כרטיס טיסה לעובד ". $first_name . " " . $last_name;
         $status = "open";
         $msg = $this->userModel->addActivity($descriptionId, $status, $userId, $workerId, $description);
 
