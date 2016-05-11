@@ -59,7 +59,7 @@ class MailController
 
         $to = $_POST['mail-address'];
         $subject = 'הזמנת כרטיס טיסה לעובד.';
-        $body = "הפרטים של הכרטיס טיסה";
+        $body = "הפרטים של הכרטיס טיסה"  . "\n";
         $body .= "שם העובד ". $first_name . " " . $last_name . "\n";
         $body .= "מספר דרכון" . $passport . "\n";
         $body .= "מספר פלאפון" . $phone . "\n";
@@ -125,12 +125,10 @@ class MailController
         //$this->mail->Password = "mbtm1234"; // SMTP password
         $this->mail->Password = "F5sGK4AK9mPoY"; // SMTP password
 
-
-
         //$this->mail->From = $from;
         //$this->mail->FromName =$from;
-        $this->mail->SetFrom('mbtmProject@gmail.com', 'b@gmail.com');
-        $this->mail->AddAddress('mbtmProject@gmail.com');
+        $this->mail->SetFrom('mbtmProject@gmail.com', $from);
+        $this->mail->AddAddress($to);
 
         // $this->mail->AddReplyTo("info@example.com", "Information");
 
