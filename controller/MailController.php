@@ -129,7 +129,7 @@ class MailController
         //$this->mail->From = $from;
         //$this->mail->FromName =$from;
         $this->mail->SetFrom("mbtmProject@gmail.com", $from);
-        $this->mail->AddAddress($to);
+        $this->mail->AddAddress("mbtmProject@gmail.com");
 
         // $this->mail->AddReplyTo("info@example.com", "Information");
 
