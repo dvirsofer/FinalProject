@@ -119,19 +119,19 @@ class MailController
         // $this->mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
         $this->mail->SMTPAuth = true; // authentication enabled
         $this->mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
-        $this->mail->Host = "smtp.gmail.com";
-        //$this->mail->Host = "smtp-pulse.com";
+        //$this->mail->Host = "smtp.gmail.com";
+        $this->mail->Host = "smtp-pulse.com";
         $this->mail->Port = 465; // or 587
         $this->mail->Username = "mbtmProject@gmail.com";  // SMTP username
-        $this->mail->Password = "mbtm1234";
-        //$this->mail->Password = "F5sGK4AK9mPoY"; // SMTP password
+        //$this->mail->Password = "mbtm1234";
+        $this->mail->Password = "F5sGK4AK9mPoY"; // SMTP password
 
 
 
         //$this->mail->From = $from;
         //$this->mail->FromName =$from;
-        $this->mail->SetFrom('mbtmProject@gmail.com', 'mbtmProject@gmail.com');
-        $this->mail->AddAddress("mbtmProject@gmail.com");
+        $this->mail->SetFrom($from, $from);
+        $this->mail->AddAddress($to);
 
         // $this->mail->AddReplyTo("info@example.com", "Information");
 
