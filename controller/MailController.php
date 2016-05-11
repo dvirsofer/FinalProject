@@ -41,7 +41,6 @@ class MailController
      */
     public function send()
     {
-
         $user = unserialize($_SESSION['user']);
         $from = $user[0]->email;
         $userId = $user[0]->id;
