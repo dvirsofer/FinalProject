@@ -16,7 +16,7 @@ body
     height: 300px;
 }
 
-#settlement_list_id {
+#settlement_list_id ,#new_area_field_list {
     width: 206px;
     border: 1px solid #eaeaea;
     position: absolute;
@@ -25,14 +25,14 @@ body
     list-style: none !important;
     padding-right: 2px;
 }
-#settlement_list_id li {
+#settlement_list_id li  ,#new_area_field_list li {
     padding: 2px;
 
 }
-#settlement_list_id li:hover {
+#settlement_list_id li:hover ,#new_area_field_list:hover {
     background: #eaeaea;
 }
-#country_list_id {
+#country_list_id  {
     display: none;
 }
 
