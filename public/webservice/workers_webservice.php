@@ -141,10 +141,23 @@ function search_worker_by_experience($db,$area)
     }
     $likeSql= rtrim($likeSql,"or");
 
-    $fieldArr =$db->sql_query("select id from activity_fields WHERE activity_name " . $likeSql);
 
 
+    $fieldArr =$db->sql_query("select group_concat(id) as fields_id from activity_fields WHERE activity_name " . $likeSql);
+
+    $sql = "select
+            history.forgen_worker_id
+            from (
+                select
+                history.forgen_worker_id
+                from
+                history
+                where
+                working_field in (" .$fieldArr[0]->fields_id .")) as history
+                left join
+                (SELECT * FROM mbtm_workers.forgen_workes) as forgen_workes
+                 on
+                 history.forgen_worker_id = forgen_workes.id" ;
 }
-
 
 ?>
