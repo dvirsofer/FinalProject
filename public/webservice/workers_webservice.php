@@ -5,6 +5,9 @@ session_start();
 require_once('../../Configure.php');
 require_once('../lib/Response.php');
 require_once('../lib/DB.php');
+require_once('../lib/class.security.php');
+
+Security::checkGetPostSqlInjection();
 
 $customer_name_in_hebrew = $_POST['settlement_id'];
 $workers_amount = $_POST['workers_amount'];
@@ -17,6 +20,7 @@ if(isset($_POST['new_area_field']) && strlen($_POST['new_area_field']) >2)
 {
     update_customer_area_fields($_POST['new_area_field'],$customer_name_in_hebrew,$db);
 }
+
 
 $sql ="SELECT
 settlement.latitude,
@@ -87,7 +91,6 @@ function sort_by_dist($distance1,$distance2)
 
 function update_customer_area_fields($fields,$customer_name_in_hebrew,$db)
 {
-    //$fieldsarr = explode($fields," ");
     $customerId = $db->getTableData("customer", ['customer_name' =>$customer_name_in_hebrew]);
     $list=$db->sql_query("select id from activity_fields WHERE activity_name = '".$fields."' limit 0,1");
 

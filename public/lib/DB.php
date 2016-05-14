@@ -766,13 +766,14 @@ on customer.settlement_id=settlement.id";
 
 
     /**
-     * print table
+     * get table data
      * @param $table
      * @param null $keysArray
-
-     * @return bool|PDOStatement
+     * @param null $sqlFunction  - is sql is function
+     * @param bool $sqlSingleRow - to return single row
+     * @return array|bool|PDOStatement
      */
-    function getTableData($table, $keysArray = null, $sqlFunction = null)
+    function getTableData($table, $keysArray = null, $sqlFunction = null,$sqlSingleRow = false)
     {
 
 
@@ -790,12 +791,21 @@ on customer.settlement_id=settlement.id";
                 if(isset($keysArray) && $keysArray != null)
                      $sql .= $this->getSQLWhere($keysArray);
 
+            if($sqlSingleRow)
+                $sql .=' Limit 0,1';
+
             $query = self::$db->query($sql);
 
             if ($query == false)
                 return $query;
 
-            $query = $query->fetchAll(PDO::FETCH_OBJ);
+
+
+                $query = $query->fetchAll(PDO::FETCH_OBJ);
+
+            if($sqlSingleRow)
+                return $query[0];
+
 
             return $query;
 
