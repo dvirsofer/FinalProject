@@ -84,7 +84,7 @@ $(function() {
 });
 
 
-//auto Complete settlement
+//auto Complete Employer
 function autoCompleteEmployer() {
 
     var min_length = 1;
@@ -104,7 +104,7 @@ function autoCompleteEmployer() {
     }
 }
 
-//auto Complete settlement
+//auto Complete Field
 function autoCompleteField() {
 
     var min_length = 1;

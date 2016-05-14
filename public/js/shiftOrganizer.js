@@ -26,9 +26,14 @@ $("#get_worker_form").submit(function(e) {
 
 function set_activity_item(item) {
     // change input value
-    $('#new_area_field').val(item);
+    $("[name='new_area_field']").val(item);
     // hide proposition list
     $('#new_area_field_list').hide();
 
 
 }
+
+$("[name='new_area_field']").click(function(e) {
+
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+});
