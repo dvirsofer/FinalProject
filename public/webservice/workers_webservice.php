@@ -25,7 +25,8 @@ if(isset($_POST['new_area_field']) && strlen($_POST['new_area_field']) >2)
 $sql ="SELECT
 settlement.latitude,
 settlement.longitude,
-settlement.settlement_name
+settlement.settlement_name,
+settlement.settlement_type
 FROM mbtm_workers.customer
  RIGHT join settlement on   customer.settlement_id  = settlement.id
  where responsible_id = ". $_SESSION['user_id'] . " and customer.customer_name  = ('".$customer_name_in_hebrew."') LIMIT 0, 1;";
@@ -38,13 +39,14 @@ settlement.latitude,
 settlement.longitude,
 settlement.settlement_name,
 customer.customer_name,
+settlement.settlement_type,
 forgen_workes.ammount_of_workers
 FROM mbtm_workers.customer
  left join settlement on   customer.settlement_id  = settlement.id
  INNER JOIN (SELECT current_customer_id,count(current_customer_id) as ammount_of_workers FROM mbtm_workers.forgen_workes
  where responsible_id = ". $_SESSION['user_id'] . " group by current_customer_id) as forgen_workes on customer.id = current_customer_id
 
- where responsible_id = ". $_SESSION['user_id'] . " and customer.customer_name  <> ('".$customer_name_in_hebrew."') GROUP BY customer.customer_name ORDER BY customer.customer_name ASC;";
+ where responsible_id = ". $_SESSION['user_id'] . " and settlement.settlement_type = '". $list1[0]->settlement_type . "'  and customer.customer_name  <> ('".$customer_name_in_hebrew."') GROUP BY customer.customer_name ORDER BY customer.customer_name ASC;";
 
 
 $list = $db->sql_query($sql);
