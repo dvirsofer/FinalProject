@@ -29,9 +29,10 @@ body
     padding: 2px;
 
 }
-#settlement_list_id li:hover ,#new_area_field_list:hover {
+#settlement_list_id li:hover ,#new_area_field_list li:hover {
     background: #eaeaea;
 }
+
 #country_list_id  {
     display: none;
 }

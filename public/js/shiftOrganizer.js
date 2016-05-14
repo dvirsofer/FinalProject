@@ -33,3 +33,10 @@ function set_activity_item(item) {
 
 }
 
+$("#settlement_list_id li").mouseout(function(){
+    $("#settlement_list_id li").css("display", "none");
+});
+
+$("#new_area_field_list li").mouseout(function(){
+    $("#new_area_field_list li").css("display", "none");
+});
