@@ -2,13 +2,13 @@
     <label>הצג לפי:</label>
     <div class="radio">
         <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios1" value="kilometer" checked="">
+            <input type="radio" name="userOptionsRadios" id="optionsRadios1" value="kilometer" checked="">
             מרחק גאוגרפי
         </label>
     </div>
     <div class="radio">
         <label>
-            <input type="radio" name="optionsRadios" id="optionsRadios2" value="work_experience">
+            <input type="radio" name="userOptionsRadios" id="optionsRadios2" value="work_experience">
             ניסיון תעסוקתי
         </label>
     </div>
@@ -18,7 +18,7 @@
 
 <div class="form-group">
     <label>תחום העיסוק המבוקש:</label>
-    <select multiple class="form-control" name="workers_amount">
+    <select multiple class="form-control" name="workers_fields">
         <?php
                                     foreach ($workerList as $value)
                                        echo ('<option onclick=is_new_field_show(false)>'.$value->activity_name.'</option>');
