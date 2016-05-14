@@ -10,6 +10,9 @@ session_start();
 require_once('../../Configure.php');
 require_once('../lib/Response.php');
 require_once('../lib/DB.php');
+require_once('../lib/class.security.php');
+
+Security::checkGetPostSqlInjection([$_POST['keyword']]);
 
 $db = DB::getInstance();
 $db->checkConnection();
@@ -33,7 +36,10 @@ foreach ($list as $result) {
    // $result->settlement_name = trim($result->settlement_name);
 
     $customer_name = str_replace($_POST['keyword'], '<b>'.$_POST['keyword'].'</b>', $result->{$columnLookIn});
+    $hebrewCustomerName =str_replace("'", "\'", $result->customer_name);
+    $hebrewCustomerName =str_replace('"', '\"', $hebrewCustomerName);
     // add new option
-   echo '<li onclick="set_item(\''.str_replace("'", "\'", $result->customer_name).'\',{lat: '.$result->latitude.', lng: '.$result->longitude.'})">'.$customer_name.'</li>';
+   echo '<li onclick="set_item(\''.$hebrewCustomerName.'\',{lat: '.$result->latitude.', lng: '.$result->longitude.'})">'.$customer_name.'</li>';
 }
+
 ?>

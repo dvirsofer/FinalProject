@@ -5,6 +5,9 @@ session_start();
 require_once('../../Configure.php');
 require_once('../lib/Response.php');
 require_once('../lib/DB.php');
+require_once('../lib/class.security.php');
+
+Security::checkGetPostSqlInjection([$_POST['customer_name']]);
 
 $customer_name_in_hebrew = $_POST['customer_name'];
 $db = DB::getInstance();
