@@ -7,24 +7,35 @@
  */
 class Security
 {
-    public static function checkGetPostSqlInjection()
+    public static function checkGetPostSqlInjection($checkArr ="")
     {
         $checkExpressionsArr = [";", "1=1", '""=""', "''=''"];
 
-        foreach ($_POST as $value) {
-            foreach ($checkExpressionsArr as $expValue)
-                if (strpos($value, $expValue)!= false) {
-                    die('Error');
-                }
+        if($checkArr !="")
+        {
+            foreach ($checkArr as $value) {
+                foreach ($checkExpressionsArr as $expValue)
+                    if (strpos($value, $expValue)!= false) {
+                        die('Error');
+                    }
+            }
         }
+        else {
 
-        foreach ($_GET as $value) {
-            foreach ($checkExpressionsArr as $expValue)
-                if (strpos($value, $expValue) != false) {
-                    die('Error');
-                }
+            foreach ($_POST as $value) {
+                foreach ($checkExpressionsArr as $expValue)
+                    if (strpos($value, $expValue) != false) {
+                        die('Error');
+                    }
+            }
+
+            foreach ($_GET as $value) {
+                foreach ($checkExpressionsArr as $expValue)
+                    if (strpos($value, $expValue) != false) {
+                        die('Error');
+                    }
+            }
         }
-
     }
 }
 

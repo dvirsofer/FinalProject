@@ -85,7 +85,7 @@ $(function() {
 
 
 //auto Complete settlement
-function autoComplete() {
+function autoCompleteEmployer() {
 
     var min_length = 1;
     var keyword = $('#settlement_id').val();
@@ -104,6 +104,26 @@ function autoComplete() {
     }
 }
 
+//auto Complete settlement
+function autoCompleteField() {
+
+    var min_length = 1;
+    var keyword = $("[name='new_area_field']").val();
+    if (keyword.length >= min_length) {
+        $.ajax({
+            url: 'http://52.25.230.58/public/webservice/field_refresh.php',
+            type: 'POST',
+            data: {keyword: keyword},
+            success: function (data) {
+                $('#new_area_field_list').show();
+                $('#new_area_field_list').html(data);
+            }
+        });
+    } else {
+        $('#new_area_field_list').hide();
+    }
+}
+
 function set_item(item,latlog) {
     // change input value
     $('#settlement_id').val(item);
@@ -118,10 +138,13 @@ function set_item(item,latlog) {
         data: {customer_name: item},
         success: function (data) {
             $('#extra-form-group').html(data);
-         console.log(data);
         }
     });
 }
+
+
+
+
 
 
 

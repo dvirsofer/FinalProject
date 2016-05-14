@@ -1,0 +1,34 @@
+/**
+ * Created by IgorB on 14/05/2016.
+ */
+
+
+$("#get_worker_form").submit(function(e) {
+
+    var url = "http://52.25.230.58/public/webservice/workers_webservice.php";  // the script where you handle the form input.
+
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: $("#get_worker_form").serialize(), // serializes the form's elements.
+        success: function(data)
+        {
+            $("#workers_to_choose").html(data);
+            // alert(data); // show response from the php script.
+        }
+    });
+
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+});
+
+
+
+
+function set_activity_item(item) {
+    // change input value
+    $('#activity_item').val(item);
+    // hide proposition list
+    $('#activity_list_id').hide();
+
+
+}
