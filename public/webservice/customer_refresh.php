@@ -37,7 +37,7 @@ foreach ($list as $result) {
 
     $customer_name = str_replace($_POST['keyword'], '<b>'.$_POST['keyword'].'</b>', $result->{$columnLookIn});
     $hebrewCustomerName =str_replace("'", "\'", $result->customer_name);
-    $hebrewCustomerName =str_replace('"', '\"', $hebrewCustomerName);
+    $hebrewCustomerName =str_replace('"', '&quot', $hebrewCustomerName);
     // add new option
    echo '<li onclick="set_item(\''.$hebrewCustomerName.'\',{lat: '.$result->latitude.', lng: '.$result->longitude.'})">'.$customer_name.'</li>';
 }
