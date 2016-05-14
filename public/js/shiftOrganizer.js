@@ -33,7 +33,3 @@ function set_activity_item(item) {
 
 }
 
-$("[name='new_area_field']").click(function(e) {
-
-    e.preventDefault(); // avoid to execute the actual submit of the form.
-});

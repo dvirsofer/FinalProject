@@ -17,11 +17,11 @@ body
 }
 
 #settlement_list_id ,#new_area_field_list {
-    width: 206px;
+    width: 94%;
     border: 1px solid #eaeaea;
     position: absolute;
     z-index: 9;
-    background: #f3f3f3;
+    background: #ffffff;
     list-style: none !important;
     padding-right: 2px;
 }
