@@ -35,11 +35,11 @@ function set_activity_item(item) {
 
 $(function() {
     $("#settlement_list_id").mouseout(function () {
-        $("#settlement_list_id").css("display", "none");
+      //  $("#settlement_list_id").css("display", "none");
     });
 
     $("#new_area_field_list").mouseout(function () {
-        $("#new_area_field_list").css("display", "none");
+        //$("#new_area_field_list").css("display", "none");
     });
 
 })
