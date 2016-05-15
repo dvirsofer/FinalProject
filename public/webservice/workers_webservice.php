@@ -146,18 +146,42 @@ function search_worker_by_experience($db,$area)
     $fieldArr =$db->sql_query("select group_concat(id) as fields_id from activity_fields WHERE activity_name " . $likeSql);
 
     $sql = "select
-            history.forgen_worker_id
+            history.forgen_worker_id,
+            history.activity_name,
+            forgen_workes.first_name,
+            forgen_workes.last_name,
+            forgen_workes.current_custemer_id,
+            forgen_workes.customer_name
+
             from (
                 select
-                history.forgen_worker_id
+                history.forgen_worker_id,
+                activity_fields.activity_name
                 from
-                history
+                history INNER JOIN (SELECT activity_name from activity_fields WHERE id in (" .$fieldArr[0]->fields_id .")
+                as activity_fields
+                on  activity_fields.id = history.working_field
+                )
                 where
-                working_field in (" .$fieldArr[0]->fields_id .")) as history
+                working_field in (" .$fieldArr[0]->fields_id .")
+                ) as history
                 left join
-                (SELECT * FROM mbtm_workers.forgen_workes) as forgen_workes
-                 on
+                (SELECT
+                 forgen_workes.first_name,
+            forgen_workes.last_name,
+            forgen_workes.current_custemer_id,
+            customer.customer_name
+                 FROM mbtm_workers.forgen_workes
+                inner join
+                customer on
+                ) as forgen_workes
+                 on forgen_workes.current_customer_id = customer.id
                  history.forgen_worker_id = forgen_workes.id" ;
+
+    echo include('../parts/free_workers_by_experience.html');
+    die();
+
+
 }
 
 ?>

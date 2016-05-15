@@ -12,8 +12,6 @@
                     <th>שם העובד</th>
                     <th>ניסיון</th>
                     <th>מעסיק</th>
-                    <th>ישוב</th>
-                    <th>מרחק</th>
                     <th>בקשה להעברה</th>
                 </tr>
                 </thead>
@@ -25,10 +23,7 @@
                         echo ("<tr class='odd gradeX'>
                 <td>".$value['first_name'].' '.$value['last_name'] ."</td>
                 <td> . $value['activity_name']
-                        <td>".$value['customer_name']."</td>".
-                        "<td>".$value['settlement_name']."</td>".
-                        "<td>".round($value['distance'], 2)."</td>
-
+                <td>".$value['current_custemer_id']."</td>
                 <td><button type='button' worker_id = ".
                 $value['customer_id'].
                 " class='btn btn-primary'>הצג</button></td>
