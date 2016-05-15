@@ -3,11 +3,10 @@ $("#new_worker_form").submit(function(event){
     event.preventDefault();
     addWorker(event);
 });
-/*$("#workers_table").submit(function(event){
-    // cancels the form submission
-    event.preventDefault();
-    getAllWorker(event);
-});*/
+
+(function() {
+    $('.delClass').on('click',  updateWorker);
+})();
 
 function addWorker(event){
 
@@ -24,17 +23,19 @@ function addWorker(event){
     });
 }
 
-/*function getAllWorker(event){
+function updateWorker() {
+    var $form = $("#workers_table");
+    var select_id = $(this).data();
 
-    var $form = $(event.currentTarget);
+    document.getElementById("worker_id").value = select_id['id'];
     var data = $form.serialize();
 
     $.ajax({
         type: "POST",
-        url: develop_server_name+'/ReportController/getAllSameWorkers',
+        url: develop_server_name+'/Worker/updateWorker',
         data: data,
         success: function(result) {
             console.log(result);
         }
     });
-}*/
+}

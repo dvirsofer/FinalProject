@@ -25,30 +25,43 @@ class ReportController
      */
     public function index()
     {
-        $this->reportView->showReport();
+        $sameWorkers = array();
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $sameWorkers = $this->getAllSameWorkers();
+        }
+        $this->reportView->showReport($sameWorkers);
     }
 
-    public function getAllSameWorkers()
+    /**
+     * @return array - all the duplicate workers.
+     */
+    private function getAllSameWorkers()
     {
         $workers = $this->reportModel->getAllWorkers();
         $sameWorkers = array();
 
-        for($i = 0; $i < count($workers); $i++) {
+        for($i = 0; $i < 500; $i++) {
+            $allWorkers = array();
             $workerName = $workers[$i]->last_name;
             $workerPassport = $workers[$i]->passport_number;
-            for($j = $i + 1; $j < count($workers); $j++) {
-                $lcsMatrix1 = LCS::LCSAlgorithm($workerName, $workers[$j]->last_name);
-                $lcsMatrix2 = LCS::LCSAlgorithm($workerPassport, $workers[$j]->passport_number);
-                if(($lcsMatrix1[strlen($workerName)][strlen($workers[$j]->last_name)] >= 6) &&
-                    ($lcsMatrix2[strlen($workerPassport)][strlen($workers[$j]->passport_number)] >= 6)) {
-                    array_push($sameWorkers, $workers[$j]);
+            array_push($allWorkers, $workers[$i]);
+            for($j = $i + 1; $j < 500; $j++) {
+                $currWorker = $workers[$j];
+                $lcsMatrix1 = LCS::LCSAlgorithm($workerName, $currWorker->last_name);
+                $lcsMatrix2 = LCS::LCSAlgorithm($workerPassport, $currWorker->passport_number);
+                if(($lcsMatrix1[strlen($workerName)][strlen($currWorker->last_name)] >= 6) &&
+                    ($lcsMatrix2[strlen($workerPassport)][strlen($currWorker->passport_number)] >= 6)) {
+                    array_push($allWorkers, $workers[$j]);
                     unset($workers[$j]);
                     $workers = array_values($workers);
-                    error_log(print_r($workers[$j], TRUE));
-                    error_log(print_r(count($workers), TRUE));
+                    //error_log(print_r($workers[$j], TRUE));
+                    //error_log(print_r(count($workers), TRUE));
                 }
             }
-            error_log(var_export($i, TRUE));
+            if(count($allWorkers) > 1) {
+                array_push($sameWorkers, $allWorkers);
+            }
+            //error_log(print_r($sameWorkers, TRUE));
         }
         return $sameWorkers;
     }

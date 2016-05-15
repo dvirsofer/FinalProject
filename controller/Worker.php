@@ -72,9 +72,16 @@ class Worker
         return $worker;
     }
 
-    public function createExcelFile()
+    public function updateWorker()
+    {
+        $workerId = $_POST['worker_id'];
+        error_log(print_r($workerId, TRUE));
+    }
+
+    /*public function createExcelFile()
     {
         error_log(print_r("a", TRUE));
     }
+    */
 
 }
