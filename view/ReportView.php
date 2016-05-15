@@ -25,22 +25,11 @@ class ReportView
     /**
      * show report page.
      */
-    public function showReport()
+    public function showReport($workers = '')
     {
         $user = unserialize($_SESSION['user']);
         $this->userFullName = $user[0]->full_name;
-
-        $allWorkers = $this->workerModel->getAllWorkersDetails();
-        //error_log(print_r($allWorkers, TRUE));
-       /* for($i = 0; $i < count($allWorkers); $i++) {
-            $worker = $allWorkers[$i];
-            $sameWorkers = $this->reportModel->getAllSameWorkers($allWorkers, $worker);
-            error_log(print_r($sameWorkers, TRUE));
-        }*/
-        $sameWorkers = $this->reportModel->getAllSameWorkers($allWorkers);
-        error_log(print_r($sameWorkers, TRUE));
-
-
+        
         if (empty($user)) {
             header('Location: index.php');
         }
@@ -61,8 +50,34 @@ class ReportView
             <div class="row">
             <!-- activity table -->
                 <div class="col-md-9 personal-info">
-                    <form class="form-horizontal" id="activity_table" role="form" method="post">
+                    <form class="form-horizontal" id="workers_table" role="form" method="post">
+                    <input type="hidden" id="worker_id" name="worker_id" value="">
+                        <button type="submit" class="btn btn-success">חיפוש</button>
+                        <div class="panel-body">
+                            <div class="dataTable_wrapper">
+                            <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline">
+                                <thead>
+                                    <tr>
+                                        <th> מ"ס</th>
+                                        <th> מספר עובד</th>
+                                        <th> שם פרטי</th>
+                                        <th> שם משפחה</th>
+                                        <th> מספר דרכון</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
 
+                                <tbody>';
+
+        if(!empty($workers)) {
+            $html .= $this->createWorkersTable($workers);
+        }
+
+        $html .= '</tbody>
+
+                            </table>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -70,6 +85,8 @@ class ReportView
       ';
 
         $html .= '
+<script src='.SERVER_NAME .'/public/js/configure.js></script>
+<script src='.SERVER_NAME .'/public/js/worker.js></script>
         </body>
 </html>';
 
@@ -77,6 +94,30 @@ class ReportView
 
     }
 
+    private function createWorkersTable($workers)
+    {
+        $str = "";
 
+        for($i = 0; $i < count($workers); $i++) {
+            for($j = 0; $j < count($workers[$i]); $j++) {
+                if($i % 2 == 0) {
+                    $str .= "<tr class='success'>";
+                }
+                else {
+                    $str .= "<tr class='info'>";
+                }
+                $data = $workers[$i][$j]->worker_id;
+                $str .= "<td>" .
+                    $workers[$i][$j]->id . "</td><td>" .
+                    $workers[$i][$j]->worker_id . "</td><td>" .
+                    $workers[$i][$j]->first_name . "</td><td>" .
+                    $workers[$i][$j]->last_name . "</td><td>" .
+                    $workers[$i][$j]->passport_number . "</td>" .
+                    "<td class='button'><a class='btn btn-danger delClass' id='delete_btn' data-id='$data'><span class='glyphicon glyphicon-remove'></span> מחק</a></td>" .
+                    "</tr>";
+            }
+        }
+        return $str;
+    }
 
 }
