@@ -19,7 +19,18 @@ class ReportModel
         $this->db = DB::getInstance();
     }
 
-    public function getAllSameWorkers($workers)
+    /**
+     * @return array - all workers.
+     */
+    public function getAllWorkers()
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $allWorkers = $this->db->getAllWorkers();
+        return $allWorkers;
+    }
+
+    /*public function getAllSameWorkers($workers)
     {
         $sameWorkers = array();
 
@@ -40,7 +51,7 @@ class ReportModel
             }
         }
         return $sameWorkers;
-    }
+    }*/
 
 
 

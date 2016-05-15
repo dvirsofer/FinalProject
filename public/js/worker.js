@@ -3,6 +3,11 @@ $("#new_worker_form").submit(function(event){
     event.preventDefault();
     addWorker(event);
 });
+/*$("#workers_table").submit(function(event){
+    // cancels the form submission
+    event.preventDefault();
+    getAllWorker(event);
+});*/
 
 function addWorker(event){
 
@@ -18,3 +23,18 @@ function addWorker(event){
         }
     });
 }
+
+/*function getAllWorker(event){
+
+    var $form = $(event.currentTarget);
+    var data = $form.serialize();
+
+    $.ajax({
+        type: "POST",
+        url: develop_server_name+'/ReportController/getAllSameWorkers',
+        data: data,
+        success: function(result) {
+            console.log(result);
+        }
+    });
+}*/
