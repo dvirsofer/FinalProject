@@ -36,7 +36,7 @@ $workerList = $db->sql_query($sql);
 
 $dis_array = array_slice($dis_array,0,10);
 
-echo include('../parts/customer_area_fields.html');die();
+ include('../parts/customer_area_fields.html');die();
 
 
 

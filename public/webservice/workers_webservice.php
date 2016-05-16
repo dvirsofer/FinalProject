@@ -86,7 +86,7 @@ FROM mbtm_workers.customer
     $dis_array = array_slice($dis_array, 0, 10);
 
 
-    echo include('../parts/free_workers_by_distance.html');
+     include('../parts/free_workers_by_distance.html');
     die();
 }
 function sort_by_dist($distance1,$distance2)
@@ -188,7 +188,7 @@ function search_worker_by_experience($db,$area)
                  on
                  h.forgen_workers_id = fw.id";
     $dis_array =$db->sql_query($sql);
-    echo include('../parts/free_workers_by_experience.html');
+     include('../parts/free_workers_by_experience.html');
     die();
 
 
