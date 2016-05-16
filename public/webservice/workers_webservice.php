@@ -132,52 +132,62 @@ function update_customer_area_fields($fields,$customer_name_in_hebrew,$db)
 function search_worker_by_experience($db,$area)
 {
 
-   // $field = $db->getTableData("activity_fields",[activity_name=>$area],null,true);
+    // $field = $db->getTableData("activity_fields",[activity_name=>$area],null,true);
     $subFieldsArr=explode (" ",$area);
     $likeSql="";
     foreach($subFieldsArr as $value)
     {
-        $likeSql = " like %". $value . "% or";
+        $likeSql .= "activity_name like '%". $value . "%' or ";
     }
-    $likeSql= rtrim($likeSql,"or");
+    $likeSql= rtrim($likeSql,"or ");
 
 
 
-    $fieldArr =$db->sql_query("select group_concat(id) as fields_id from activity_fields WHERE activity_name " . $likeSql);
+    $fieldArr =$db->sql_query("select group_concat(id) as fields_id from activity_fields WHERE  " . $likeSql);
 
-    $sql = "select
-            history.forgen_worker_id,
-            history.activity_name,
-            forgen_workes.first_name,
-            forgen_workes.last_name,
-            forgen_workes.current_custemer_id,
-            forgen_workes.customer_name
+
+
+    $sql =
+        "select
+            h.forgen_workers_id,
+            h.activity_name,
+            fw.first_name,
+            fw.last_name,
+            fw.current_customer_id,
+            fw.customer_name
 
             from (
                 select
-                history.forgen_worker_id,
-                activity_fields.activity_name
-                from
-                history INNER JOIN (SELECT activity_name from activity_fields WHERE id in (" .$fieldArr[0]->fields_id .")
-                as activity_fields
-                on  activity_fields.id = history.working_field
-                )
+					history.forgen_workers_id,
+					activity_fields.activity_name
+					from
+					history INNER JOIN
+(
+    SELECT activity_name,id from activity_fields WHERE id in (" .$fieldArr[0]->fields_id .")
+					)
+					as activity_fields
+					on  activity_fields.id = history.working_field
+
                 where
                 working_field in (" .$fieldArr[0]->fields_id .")
-                ) as history
+                ) as h
                 left join
-                (SELECT
-                 forgen_workes.first_name,
-            forgen_workes.last_name,
-            forgen_workes.current_custemer_id,
-            customer.customer_name
-                 FROM mbtm_workers.forgen_workes
+(
+    SELECT
+                    forgen_workes.id,
+						forgen_workes.first_name,
+						forgen_workes.last_name,
+						forgen_workes.current_customer_id,
+						customer.customer_name
+					FROM
+						mbtm_workers.forgen_workes
                 inner join
-                customer on
-                ) as forgen_workes
-                 on forgen_workes.current_customer_id = customer.id
-                 history.forgen_worker_id = forgen_workes.id" ;
-
+(select id,customer_name from customer) as customer
+                on forgen_workes.current_customer_id = customer.id
+                ) as fw
+                 on
+                 h.forgen_workers_id = fw.id";
+    $dis_array =$db->sql_query($sql);
     echo include('../parts/free_workers_by_experience.html');
     die();
 
