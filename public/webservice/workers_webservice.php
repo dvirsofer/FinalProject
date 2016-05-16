@@ -171,7 +171,7 @@ function search_worker_by_experience($db,$area)
                 where
                 working_field in (" .$fieldArr[0]->fields_id .")
                 ) as h
-                left join
+                inner join
 (
     SELECT
                     forgen_workes.id,
@@ -182,7 +182,7 @@ function search_worker_by_experience($db,$area)
 					FROM
 						mbtm_workers.forgen_workes
                 inner join
-(select id,customer_name from customer) as customer
+(select id,customer_name from customer where responsible_id = ".$_SESSION['user_id']." ) as customer
                 on forgen_workes.current_customer_id = customer.id
                 ) as fw
                  on

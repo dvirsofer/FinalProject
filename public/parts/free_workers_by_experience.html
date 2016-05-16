@@ -1,6 +1,6 @@
 <label>
     עובדים עם ניסיון
-    </label>
+</label>
 <div class="panel panel-default">
 
     <!-- /.panel-heading -->
@@ -21,15 +21,15 @@
                    foreach($dis_array as $value)
                     {
                         echo ("<tr class='odd gradeX'>
-                <td>". $value['first_name']." ".$value['last_name'] ."</td>
-                <td> . $value['activity_name']
-                <td>". $value['customer_name'] ."</td>
+                <td>". $value->first_name." ".$value->last_name ."</td>
+                <td>" . $value->activity_name ."</td>
+                <td>". $value->customer_name ."</td>
                 <td><button type='button' worker_id = ".
-                $value['forgen_workers_id'].
-                " class='btn btn-primary'>הצג</button></td>
-                        </tr>");
+                $value->forgen_workers_id.
+                " class='btn btn-primary'>העבר</button></td>
+                </tr>");
 
-                    }
+                }
                 ?>
 
                 </tbody>
