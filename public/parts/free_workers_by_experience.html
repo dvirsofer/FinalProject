@@ -1,4 +1,4 @@
-<label>
+<label xmlns="http://www.w3.org/1999/html">
     עובדים עם ניסיון
 </label>
 <div class="panel panel-default">
@@ -20,21 +20,26 @@
                 <?php
                    foreach($dis_array as $value)
                     {
-                    foreach($workers_in_process_id as $unavailableWorkers)
+                    $isShow =true;
+                    foreach($workers_in_process_id as $unavailableWorkers){
                         if($value->forgen_workers_id == $unavailableWorkers->worker_id)
-                        {
-                            break;
-                        }
+                {
+                $isShow = false;
+                break;
+                }
+                }
 
-                        echo ("<tr class='odd gradeX'>
-                <td>". $value->first_name." ".$value->last_name ."</td>
-                <td>" . $value->activity_name ."</td>
-                <td>". $value->customer_name ."</td>
-                <td><button worker_id = ".$value->forgen_workers_id."  class="btn btn-primary" data-toggle="modal" data-target="#myModalHorizontal">
-                    העבר עובד
-                </button></td>
+                //if($isShow)
+                {
+                echo ("<tr class='odd gradeX'>
+                    <td>". $value->first_name." ".$value->last_name ."</td>
+                    <td>" . $value->activity_name ."</td>
+                    <td>". $value->customer_name ."</td>
+                    <td><button worker_id = ".$value->forgen_workers_id."  class='btn btn-primary' data-toggle='modal' data-target='#myModalHorizontal'>
+                        העבר עובד
+                    </button></td>
                 </tr>");
-
+                }
                 }
                 ?>
 
@@ -60,42 +65,65 @@
                     <span class="sr-only">Close</span>
                 </button>
                 <h4 class="modal-title" id="myModalLabel">
-                    Modal title
+                    בקשה להעברה עובד
                 </h4>
             </div>
 
             <!-- Modal Body -->
             <div class="modal-body">
-
-                <form class="form-horizontal" role="form">
+                <form class="form-horizontal" role="form" method="post">
                     <div class="form-group">
                         <label  class="col-sm-2 control-label"
-                                for="inputEmail3">Email</label>
+                                for="workerName">שם עובד</label>
                         <div class="col-sm-10">
                             <input type="email" class="form-control"
-                                   id="inputEmail3" placeholder="Email"/>
+                                   id="inputWorkerName" placeholder="worker name"/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label"
-                               for="inputPassword3" >Password</label>
+                        <label class="col-sm-2 control-label" for="presentEmployee">
+                            מעסיק נוכחי
+                        </label>
                         <div class="col-sm-10">
                             <input type="password" class="form-control"
-                                   id="inputPassword3" placeholder="Password"/>
+                                   id="inputPresentEmployee" placeholder="Password"/>
                         </div>
                     </div>
+
                     <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"/> Remember me
-                                </label>
-                            </div>
+                        <label class="col-sm-2 control-label" for="newEmployee">
+                            מעסיק חדש
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control"
+                                   id="inputnewEmployee" placeholder="Password"/>
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="dateFrom">
+                            מתאריך
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" id="start_date">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="dateTo">
+                            עד תאריך
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" id="end_date">
+                        </div>
+                    </div>
+
+
+
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default">Sign in</button>
+                            <button type="submit" class="btn btn-primary">אשר בקשה להעברה</button>
                         </div>
                     </div>
                 </form>
@@ -107,25 +135,9 @@
 
             </div>
 
-            <!-- Modal Footer -->
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default"
-                        data-dismiss="modal">
-                    Close
-                </button>
-                <button type="button" class="btn btn-primary">
-                    Save changes
-                </button>
-            </div>
+
         </div>
     </div>
 </div>
 
 
-
-
-
-<!-- Button trigger modal -->
-<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModalNorm">
-    Launch Normal Form
-</button>
