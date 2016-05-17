@@ -199,7 +199,6 @@ function search_worker_by_experience($db,$area,$customer_name_in_hebrew)
 
     $sql2 = "select worker_id from activity where new_customer_id =0 and user_id =  ".$_SESSION['user_id'];
     $workers_in_process_id=$db->sql_query($sql2);
-    $dis_array='';
 
      include('../parts/free_workers_by_experience.html');
     die();
