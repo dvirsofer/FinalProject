@@ -29,7 +29,7 @@ elseif($_POST['workers_fields'] !='אחר')
 
 if($_POST['userOptionsRadios']=='work_experience')
 {
-    search_worker_by_experience($db,$search_area);
+    search_worker_by_experience($db,$search_area,$customer_name_in_hebrew);
 }
 
 else {
@@ -129,7 +129,7 @@ function update_customer_area_fields($fields,$customer_name_in_hebrew,$db)
 
 }
 
-function search_worker_by_experience($db,$area)
+function search_worker_by_experience($db,$area,$customer_name_in_hebrew)
 {
 
     // $field = $db->getTableData("activity_fields",[activity_name=>$area],null,true);
@@ -182,12 +182,37 @@ function search_worker_by_experience($db,$area)
 					FROM
 						mbtm_workers.forgen_workes
                 inner join
-(select id,customer_name from customer where responsible_id = ".$_SESSION['user_id']." ) as customer
+                    (
+                        select
+                        id,customer_name
+                        from
+                        customer
+                        where
+                        responsible_id = ".$_SESSION['user_id']."  and
+                        customer.customer_name  <> ('" . $customer_name_in_hebrew . "')
+                        ) as customer
                 on forgen_workes.current_customer_id = customer.id
                 ) as fw
                  on
                  h.forgen_workers_id = fw.id";
-    $dis_array =$db->sql_query($sql);
+    $temp_dis_array =$db->sql_query($sql);
+
+    $sql = "select worker_id from activity where new_customer_id =0;";
+    $workers_in_process_id=$db->sql_quary($sql);
+    $dis_array='';
+    $i=0;
+    foreach($temp_dis_array as &$value)
+    {
+
+        foreach($workers_in_process_id as $unavailableWorkers)
+            if($value->forgen_workers_id == $unavailableWorkers->worker_id)
+            {
+                $dis_array[$i++] = $value;
+               break;
+            }
+
+
+    }
      include('../parts/free_workers_by_experience.html');
     die();
 
