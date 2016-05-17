@@ -225,6 +225,39 @@ class DB
         }
     }
 
+    public function editWorker($workerId, $firstName, $lastName, $date, $phone, $nation,
+                               $passportNumber, $validPassport, $gender, $arrive, $arrivalDate, $comments)
+    {
+        try{
+            $sql = "UPDATE forgen_workes
+                SET first_name='$firstName', last_name='$lastName', gender='$gender',
+                 entrance_date='$arrivalDate', form_of_eravel='$arrive', birthday_date='$date', phone_number='$phone',
+                 citizen='$nation', note='$comments'
+                WHERE worker_id='$workerId'";
+            $update = self::$db->prepare($sql);
+            $update = $update->execute();
+            return true;
+        }
+        catch (Exception $e) {
+            return false;
+        }
+    }
+
+    public function editWorkerPassport($workerId, $passportNumber, $validPassport)
+    {
+        try{
+            $sql = "UPDATE passport
+                SET passport_number='$passportNumber', validation_date='$validPassport'
+                WHERE worker_id='$workerId'";
+            $update = self::$db->prepare($sql);
+            $update = $update->execute();
+            return true;
+        }
+        catch (Exception $e) {
+            return false;
+        }
+    }
+
     /**
      * @param $typeId
      * @return array - the user type.
@@ -305,6 +338,21 @@ class DB
         $allPassport = self::$db->query($sql);
         $allPassport = $allPassport->fetchAll(PDO::FETCH_OBJ);
         return $allPassport;
+    }
+
+    public function updateWorker($workerId)
+    {
+        try{
+            $sql = "UPDATE forgen_workes
+                SET worker_status='0'
+                WHERE worker_id='$workerId'";
+            $update = self::$db->prepare($sql);
+            $update = $update->execute();
+            return true;
+        }
+        catch (Exception $e) {
+            return false;
+        }
     }
 
     /**
@@ -460,9 +508,10 @@ on customer.settlement_id=settlement.id";
         $birth_country = $nation;
         $userId = intval($userId);
         $customerId = intval($customerId);
+        $status = 1;
         try{
-            $sql = self::$db->prepare("INSERT INTO forgen_workes (worker_id, first_name, last_name, gender, entrance_date, form_of_eravel, birth_country, birthday_date, responsible_id, phone_number, citizen, current_customer_id, note)
-                                VALUES(:workerId, :firstName, :lastName, :gender, :arrivalDate, :arrive, :birth_country, :bDate, :userId, :phone, :nation, :customerId, :comments)");
+            $sql = self::$db->prepare("INSERT INTO forgen_workes (worker_id, first_name, last_name, gender, entrance_date, form_of_eravel, birth_country, birthday_date, responsible_id, phone_number, citizen, current_customer_id, worker_status, note)
+                                VALUES(:workerId, :firstName, :lastName, :gender, :arrivalDate, :arrive, :birth_country, :bDate, :userId, :phone, :nation, :customerId, :status, :comments)");
             $sql->bindParam(':workerId', $workerId);
             $sql->bindParam(':firstName', $firstName);
             $sql->bindParam(':lastName', $lastName);
@@ -475,6 +524,7 @@ on customer.settlement_id=settlement.id";
             $sql->bindParam(':phone', $phone);
             $sql->bindParam(':nation', $nation);
             $sql->bindParam(':customerId', $customerId);
+            $sql->bindParam(':status', $status);
             $sql->bindParam(':comments', $comments);
             $sql->execute();
             //$this->addPassport($workerId, $passportNumber, $validPassport);

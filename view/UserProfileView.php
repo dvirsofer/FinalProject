@@ -122,7 +122,7 @@ class UserProfileView
 
         $html .= '
         <div class="container">
-    <h1>ערוך פרטיים אישיים</h1>
+    <h1>ערוך פרטים אישיים</h1>
   	<hr>
 	<div class="row">
       <!-- edit form column -->
