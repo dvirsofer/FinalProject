@@ -72,16 +72,35 @@ class Worker
         return $worker;
     }
 
+    /**
+     * @return bool
+     * true - if update success
+     * false - else.
+     */
     public function updateWorker()
     {
         $workerId = $_POST['worker_id'];
-        error_log(print_r($workerId, TRUE));
+        $worker = $this->workerModel->updateWorker($workerId);
+        echo $worker;
     }
 
-    /*public function createExcelFile()
+    public function editWorker()
     {
-        error_log(print_r("a", TRUE));
+        $workerId = $_POST['worker_id'];
+        $firstName = $_POST['first_name'];
+        $lastName = $_POST['last_name'];
+        $date = $_POST['date'];
+        $phone = $_POST['phone_number'];
+        $nation = $_POST['nation'];
+        $passportNumber = $_POST['passport_number'];
+        $validPassport = $_POST['valid_passport'];
+        $gender = $_POST['gender'];
+        $arrive = $_POST['arrive'];
+        $arrivalDate = $_POST['arrival_date'];
+        $comments = $_POST['comments'];
+        $worker = $this->workerModel->editWorker($workerId, $firstName, $lastName, $date, $phone, $nation,
+            $passportNumber, $validPassport, $gender, $arrive, $arrivalDate, $comments);
+
     }
-    */
 
 }

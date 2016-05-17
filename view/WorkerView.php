@@ -61,6 +61,7 @@ class WorkerView
         <div class="panel-body col-md-offset-4">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#flight_ticket"><span class="fa fa-plane"></span> כרטיס טיסה</button>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mobility"><span class="glyphicon glyphicon-transfer"></span> ניוד</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#update_worker"><span class="fa fa-edit"></span> עדכן עובד</button>
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#new_worker"><span class="fa fa-plus"></span> הוסף עובד</button>
         </div>
     </div>
@@ -227,7 +228,7 @@ class WorkerView
                 <div class="form-group">
                     <label for="status" class="col-sm-3 control-label">סטטוס</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="status">
+                        <input type="text" class="form-control" id="status" value="פעיל">
                     </div>
                 </div>
 
@@ -326,6 +327,18 @@ class WorkerView
          </div>
     </div>
 </div>';
+
+        $html .= '
+<div class="modal fade" id="update_worker" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">';
+        $html .= $this->requireToVar('./public/popups/UpdateWorker.php');
+        $html .= '
+        </div>
+    </div>
+</div>
+        ';
 
         $html .= '
         <div class="modal fade" id="new_worker" role="dialog">

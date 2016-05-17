@@ -170,6 +170,20 @@ class WorkerModel
     }
 
     /**
+     * @param $workerId - the worker for delete.
+     * @return bool
+     * true - if update success
+     * false - else.
+     */
+    public function updateWorker($workerId)
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $msg = $this->db->updateWorker($workerId);
+        return $msg;
+    }
+
+    /**
      * @param $workerId
      * @param $customerId
      * @return bool
@@ -182,6 +196,18 @@ class WorkerModel
         $db->checkConnection();
         $msg = $this->db->updateCustomerOfWorker($workerId, $customerId);
         return $msg;
+    }
+
+    public function editWorker($workerId, $firstName, $lastName, $date, $phone, $nation,
+                               $passportNumber, $validPassport, $gender, $arrive, $arrivalDate, $comments)
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $worker = $this->db->editWorker($workerId, $firstName, $lastName, $date, $phone, $nation,
+            $passportNumber, $validPassport, $gender, $arrive, $arrivalDate, $comments);
+        $msg = $this->db->editWorkerPassport($workerId, $passportNumber, $validPassport);
+        return $worker;
+
     }
 
 }

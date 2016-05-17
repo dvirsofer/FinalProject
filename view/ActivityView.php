@@ -43,6 +43,8 @@ class ActivityView
 
         $html .= '
         <div class="container">
+        <h1>ערוך פעולות</h1>
+  	    <hr>
             <div class="row">
             <!-- activity table -->
                 <div class="col-md-9 personal-info">
@@ -112,6 +114,8 @@ class ActivityView
 
         $html .= '
         <div class="container">
+        <h1>כל הפעולות</h1>
+  	    <hr>
             <div class="row">
             <!-- activity table -->
                 <div class="col-md-9 personal-info">
