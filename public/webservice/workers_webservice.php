@@ -195,24 +195,12 @@ function search_worker_by_experience($db,$area,$customer_name_in_hebrew)
                 ) as fw
                  on
                  h.forgen_workers_id = fw.id";
-    $temp_dis_array =$db->sql_query($sql);
+    $dis_array =$db->sql_query($sql);
 
-    $sql = "select worker_id from activity where new_customer_id =0;";
-    $workers_in_process_id=$db->sql_quary($sql);
+    $sql2 = "select worker_id from activity where new_customer_id =0 and user_id =  ".$_SESSION['user_id'];
+    $workers_in_process_id=$db->sql_query($sql2);
     $dis_array='';
-    $i=0;
-    foreach($temp_dis_array as &$value)
-    {
 
-        foreach($workers_in_process_id as $unavailableWorkers)
-            if($value->forgen_workers_id == $unavailableWorkers->worker_id)
-            {
-                $dis_array[$i++] = $value;
-               break;
-            }
-
-
-    }
      include('../parts/free_workers_by_experience.html');
     die();
 

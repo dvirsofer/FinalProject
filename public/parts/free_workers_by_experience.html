@@ -20,6 +20,12 @@
                 <?php
                    foreach($dis_array as $value)
                     {
+                    foreach($workers_in_process_id as $unavailableWorkers)
+                        if($value->forgen_workers_id == $unavailableWorkers->worker_id)
+                        {
+                            break;
+                        }
+
                         echo ("<tr class='odd gradeX'>
                 <td>". $value->first_name." ".$value->last_name ."</td>
                 <td>" . $value->activity_name ."</td>
