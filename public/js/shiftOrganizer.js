@@ -127,22 +127,24 @@ $(function() {
 
 })
 
+$(function() {
 
+    $("#shiftWorkerForm").submit(function(e) {
 
-$("#shiftWorkerForm").submit(function(e) {
+        var url = develop_server_name+'/MailController/sendMobility';  // the script where you handle the form input.
 
-    var url = develop_server_name+'/MailController/sendMobility';  // the script where you handle the form input.
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: $("#shiftWorkerForm").serialize(), // serializes the form's elements.
+            success: function(data)
+            {
+                $("#myModalHorizontal").modal('hide');
+                // alert(data); // show response from the php script.
+            }
+        });
 
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: $("#shiftWorkerForm").serialize(), // serializes the form's elements.
-        success: function(data)
-        {
-            $("#myModalHorizontal").modal('hide');
-            // alert(data); // show response from the php script.
-        }
+        e.preventDefault(); // avoid to execute the actual submit of the form.
     });
 
-    e.preventDefault(); // avoid to execute the actual submit of the form.
 });
