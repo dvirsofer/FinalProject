@@ -46,7 +46,8 @@ class ReportView
 
         $html .= '
         <div class="container">
-        <h3>דו"ח רשימות כפולות</h3>
+        <h1>דו"ח רשומות כפולות</h1>
+  	    <hr>
             <div class="row">
             <!-- activity table -->
                 <div class="col-md-9 personal-info">

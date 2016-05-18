@@ -163,6 +163,15 @@ class WorkerView
             $workerInfo = $this->workerModel->getWorkerInfo($id);
             $passport = $this->workerModel->getPassportInfo($id);
             $customerId = $workerInfo[0]->current_customer_id;
+            error_log(print_r($workerInfo[0]->worker_status, TRUE));
+            if($workerInfo[0]->worker_status == 0) {
+                error_log(print_r("a", TRUE));
+                $workerStatus = "פעיל";
+            }
+            else {
+                error_log(print_r("b", TRUE));
+                $workerStatus = "לא פעיל";
+            }
             if(!empty($customerId)) {
                 $customer = $this->customerModel->getCustomerInfo($customerId);
                 $customerName = $customer[0]->customer_name;
@@ -228,7 +237,7 @@ class WorkerView
                 <div class="form-group">
                     <label for="status" class="col-sm-3 control-label">סטטוס</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" id="status" value="פעיל">
+                        <input type="text" class="form-control" id="status" value="'. $workerStatus .'">
                     </div>
                 </div>
 
@@ -385,6 +394,8 @@ class WorkerView
 
         $html .= '
         <div class="container">
+        <h1>טבלת עובדים</h1>
+  	    <hr>
             <div class="row">
             <!-- activity table -->
                 <div class="col-md-12 personal-info">
