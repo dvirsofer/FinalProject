@@ -40,17 +40,19 @@ class ReportController
         $workers = $this->reportModel->getAllWorkers();
         $sameWorkers = array();
 
-        for($i = 0; $i < 500; $i++) {
+        for($i = 0; $i < 1000; $i++) {
             $allWorkers = array();
             $workerName = $workers[$i]->last_name;
             $workerPassport = $workers[$i]->passport_number;
             array_push($allWorkers, $workers[$i]);
-            for($j = $i + 1; $j < 500; $j++) {
+            for($j = $i + 1; $j < 1000; $j++) {
                 $currWorker = $workers[$j];
+                $lengthName = strlen($workerName) * 0.75;
+                $lengthPassport = strlen($workerPassport) * 0.75;
                 $lcsMatrix1 = LCS::LCSAlgorithm($workerName, $currWorker->last_name);
                 $lcsMatrix2 = LCS::LCSAlgorithm($workerPassport, $currWorker->passport_number);
-                if(($lcsMatrix1[strlen($workerName)][strlen($currWorker->last_name)] >= 6) &&
-                    ($lcsMatrix2[strlen($workerPassport)][strlen($currWorker->passport_number)] >= 6)) {
+                if(($lcsMatrix1[strlen($workerName)][strlen($currWorker->last_name)] >= $lengthName) &&
+                    ($lcsMatrix2[strlen($workerPassport)][strlen($currWorker->passport_number)] >= $lengthPassport)) {
                     array_push($allWorkers, $workers[$j]);
                     unset($workers[$j]);
                     $workers = array_values($workers);

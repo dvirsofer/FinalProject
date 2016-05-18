@@ -59,14 +59,6 @@ class LoginView {
                                 <input id="login-password" type="password" class="form-control" name="inputPassword" id="inputPassword" placeholder="סיסמה">
                         </div>
 
-                        <div class="input-group">
-                            <div class="checkbox">
-                                <label>
-                                    <input id="login-remember" type="checkbox" name="remember" value="1">הישאר מחובר
-                                </label>
-                            </div>
-                        </div>
-
                         <div style="margin-top:10px" class="form-group">
                             <div class="col-sm-12 controls">
                                 <button type="submit" class="btn btn-success btn-sm">התחבר</button>

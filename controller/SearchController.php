@@ -52,7 +52,6 @@ class SearchController
         $allWorkers = array();
         if(count($passportInfo) == 1) {
             // get all information of worker
-            error_log(print_r("1", TRUE));
             $workerId = $passportInfo[0]->worker_id;
             $worker = $this->workerModel->getWorkerInfo($workerId);
             array_push($allWorkers, $worker);
@@ -63,22 +62,16 @@ class SearchController
 
             //search in database
             $allPassports = $this->workerModel->getAllPassports();
-            error_log(print_r("2", TRUE));
             foreach($allPassports as $pass) {
                 $passportNumber = $pass->passport_number;
-                //$lcs = $this->LCS($passport, $passportNumber);
+                $length = strlen($passport) * 0.75;
                 $lcs = LCS::LCSAlgorithm($passport, $passportNumber);
-                if($lcs[strlen($passport)][strlen($passportNumber)] >= 6) {
-                    //error_log(print_r($pass, TRUE));
+                if($lcs[strlen($passport)][strlen($passportNumber)] >= $length) {
                     $workerId = $pass->worker_id;
                     $worker = $this->workerModel->getWorkerInfo($workerId);
-                    //error_log(print_r($worker, TRUE));
                     array_push($allWorkers, $worker);
-                    //echo(json_encode($worker));
                 }
             }
-
-            //error_log(print_r($allWorkers, TRUE));
             echo(json_encode($allWorkers));
         }
 
@@ -94,8 +87,10 @@ class SearchController
             $workers = array();
             foreach($allWorkers as $workerInfo) {
                 $workerName = $workerInfo->last_name;
-                $lcs = $this->LCS($name, $workerName);
-                if($lcs[strlen($name)][strlen($workerName)] >= 5) {
+                $length = strlen($name) * 0.75;
+                //$lcs = $this->LCS($name, $workerName);
+                $lcs = LCS::LCSAlgorithm($name, $workerName);
+                if($lcs[strlen($name)][strlen($workerName)] >= $length) {
                     array_push($workers, $workerInfo);
                 }
             }
@@ -116,44 +111,18 @@ class SearchController
         }
         else {
             // LCS algorithm
-
             $allWorkers = $this->workerModel->getAllWorkers();
             $workers = array();
             foreach($allWorkers as $workerInfo) {
                 $workerName = $workerInfo->last_name;
-                //$lcs = $this->LCS($name, $workerName);
+                $length = strlen($name) * 0.75;
                 $lcs = LCS::LCSAlgorithm($name, $workerName);
-                if($lcs[strlen($name)][strlen($workerName)] >= 5) {
+                if($lcs[strlen($name)][strlen($workerName)] >= $length) {
                     array_push($workers, $workerInfo);
                 }
             }
-            error_log(print_r($workers, TRUE));
             echo(json_encode($workers));
         }
     }
-
-    /*function LCS($string1, $string2) {
-        $lcs = array_fill(0, strlen($string1 + 1), array_fill(0, strlen($string2 + 1), 0));
-
-        for($i = 0; $i <= strlen($string1); $i++) {
-            $lcs[$i][0] = 0;
-        }
-        for($j = 0; $j <= strlen($string2); $j++) {
-            $lcs[0][$j] = 0;
-        }
-
-        for($i = 1; $i <= strlen($string1); $i++) {
-            for($j = 1; $j <= strlen($string2); $j++) {
-                if($string1[$i - 1] === $string2[$j - 1]) {
-                    $lcs[$i][$j] = $lcs[$i - 1][$j - 1] + 1;
-                }
-                else {
-                    $lcs[$i][$j] = max($lcs[$i - 1][$j], $lcs[$i][$j - 1]);
-                }
-            }
-        }
-        return $lcs;
-    }*/
-
 
 }

@@ -141,7 +141,7 @@ class DB
      */
     public function getAllWorkersOfCustomer($customerId)
     {
-        $sql = "SELECT * FROM forgen_workes WHERE current_customer_id='$customerId'";
+        $sql = "SELECT * FROM forgen_workes WHERE current_customer_id='$customerId' and (worker_status IS NULL or worker_status=0)";
         $workers = self::$db->query($sql);
         $workers = $workers->fetchAll(PDO::FETCH_OBJ);
         return $workers;
@@ -344,7 +344,7 @@ class DB
     {
         try{
             $sql = "UPDATE forgen_workes
-                SET worker_status='0'
+                SET worker_status='1'
                 WHERE worker_id='$workerId'";
             $update = self::$db->prepare($sql);
             $update = $update->execute();
@@ -360,7 +360,7 @@ class DB
      */
     public function getAllWorkers()
     {
-        $sql = "SELECT * FROM forgen_workes";
+        $sql = "SELECT * FROM forgen_workes where worker_status IS NULL or worker_status=0";
         $workers = self::$db->query($sql);
         $workers = $workers->fetchAll(PDO::FETCH_OBJ);
         return $workers;
@@ -374,7 +374,7 @@ class DB
         $sql = "select forgen_workes.id, forgen_workes.worker_id, forgen_workes.last_name, forgen_workes.first_name, forgen_workes.entrance_date, forgen_workes.start_date_of_work, forgen_workes.phone_number,  passport.passport_number, passport.validation_date
 from forgen_workes
 inner join passport
-on forgen_workes.worker_id=passport.worker_id";
+on forgen_workes.worker_id=passport.worker_id where worker_status IS NULL or worker_status=0";
         $workers = self::$db->query($sql);
         $workers = $workers->fetchAll(PDO::FETCH_OBJ);
         return $workers;
@@ -508,7 +508,7 @@ on customer.settlement_id=settlement.id";
         $birth_country = $nation;
         $userId = intval($userId);
         $customerId = intval($customerId);
-        $status = 1;
+        $status = 0;
         try{
             $sql = self::$db->prepare("INSERT INTO forgen_workes (worker_id, first_name, last_name, gender, entrance_date, form_of_eravel, birth_country, birthday_date, responsible_id, phone_number, citizen, current_customer_id, worker_status, note)
                                 VALUES(:workerId, :firstName, :lastName, :gender, :arrivalDate, :arrive, :birth_country, :bDate, :userId, :phone, :nation, :customerId, :status, :comments)");
