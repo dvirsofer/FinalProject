@@ -146,5 +146,14 @@ $(function() {
 
         e.preventDefault(); // avoid to execute the actual submit of the form.
     });
+    $("#move_worker_btn").click(function(e){
+        $("#worker_id_form_input").val(this.attr("worker_id"));
+        $("#customer_id_form_input").val(this.attr("new_customer_id"));
+        $("#old_employer_name_form_input").val($("#settlement_id").val());
+        $("#new_employer_name_form_input").val(this.attr("new_customer_name"));
+
+
+    });
+
 
 });
