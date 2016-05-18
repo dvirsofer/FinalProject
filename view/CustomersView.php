@@ -330,6 +330,8 @@ $html .= '</div>
 
         $html .= '
         <div class="container">
+        <h1>טבלת לקוחות</h1>
+  	    <hr>
             <div class="row">
             <!-- activity table -->
                 <div class="col-md-12 personal-info">
