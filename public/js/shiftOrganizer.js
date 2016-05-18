@@ -129,7 +129,7 @@ $(function() {
 
 
 
-$("#myModalHorizontal").submit(function(e) {
+$("#shiftWorkerForm").submit(function(e) {
 
     var url = develop_server_name+'/MailController/sendMobility';  // the script where you handle the form input.
 
