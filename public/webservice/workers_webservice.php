@@ -155,7 +155,7 @@ function search_worker_by_experience($db,$area,$customer_name_in_hebrew)
             fw.first_name,
             fw.last_name,
             fw.current_customer_id,
-            fw.customer_name,
+            fw.customer_name
 
             from (
                 select

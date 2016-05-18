@@ -32,14 +32,14 @@
                 //if($isShow)
                 {
                 echo ("<tr class='odd gradeX'>
-                    <td>". $value->first_name." ".$value->last_name ."</td>
-                    <td>" . $value->activity_name ."</td>
-                    <td>". $value->customer_name ."</td>
-                    <td><button worker_name_and_last_name='".$value->first_name." ".$value->last_name."'
-                                new_customer_name=". $value->customer_name."
-                                worker_id = ".$value->forgen_workers_id."
-                                new_customer_id = ".$value->current_customer_id."
-                                id="move_worker_btn"
+                    <td> $value->first_name $value->last_name  </td>
+                    <td> $value->activity_name </td>
+                    <td> $value->customer_name </td>
+                    <td><button worker_name_and_last_name='$value->first_name $value->last_name'
+                                new_customer_name='$value->customer_name'
+                                worker_id = '$value->forgen_workers_id'
+                                new_customer_id ='$value->current_customer_id'
+                                id='move_worker_btn'
                                 class='btn btn-primary'
                                 data-toggle='modal'
                                 data-target='#myModalHorizontal'>
