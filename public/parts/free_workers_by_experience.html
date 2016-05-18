@@ -175,7 +175,8 @@
         $("#old_employer_name_form_input").val($("#settlement_id").val());
         $("#new_employer_name_form_input").val($(this).attr("new_customer_name"));
         $("#worker_name_form_input").val($(this).attr("worker_name_and_last_name"));
-            $('#start_date_form_input').val(new Date().toDateInputValue());
+            var date = Date();
+            $('#start_date_form_input').val(date);
 
 
     });
