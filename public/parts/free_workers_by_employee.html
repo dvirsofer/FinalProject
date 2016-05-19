@@ -1,6 +1,6 @@
 <label xmlns="http://www.w3.org/1999/html">
 עובדים של מעסיק
-
+    <?php echo($list1[0]->customer_name) ?>
 </label>
 <div class="panel panel-default">
 
@@ -17,7 +17,7 @@
                 <tbody>
 
                 <?php
-                   foreach(list1 as $value)
+                   foreach($list1 as $value)
                     {
 
                 echo ("<tr class='odd gradeX'>
