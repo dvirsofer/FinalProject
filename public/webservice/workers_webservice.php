@@ -76,7 +76,7 @@ if(SQL_DEBUG)echo($sql);
 
         $distance = getDistance($list1[0]->latitude, $list1[0]->longitude, $list[$i]->latitude, $list[$i]->longitude);
         $dis_array[$i] = array(
-            customer_id => $list[$i]->customer_id,
+            customer_id => $list[$i]->id,
             customer_name => $list[$i]->customer_name,
             settlement_name => $list[$i]->settlement_name,
             distance => $distance,
