@@ -1,4 +1,4 @@
-﻿[Debugger]
+[Debugger]
 dbgsessions=1
 stopbeginning=1
 excset=Exception
