@@ -1,0 +1,176 @@
+<label xmlns="http://www.w3.org/1999/html">
+עובדים של מעסיק
+    <?php echo(list1[0]->customer_name) ?>
+</label>
+<div class="panel panel-default">
+
+    <!-- /.panel-heading -->
+    <div class="panel-body">
+        <div class="dataTable_wrapper">
+            <table class="table table-striped table-bordered table-hover" data-order='[[ 3, "asc" ]]' id="dataTables-free-workers">
+                <thead>
+                <tr>
+                    <th>שם העובד</th>
+                    <th>בקשה להעברה</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <?php
+                   foreach($dis_array as $value)
+                    {
+
+                echo ("<tr class='odd gradeX'>
+                    <td> $value->first_name $value->last_name  </td>
+                    <td><button worker_name_and_last_name='$value->first_name $value->last_name'
+                                new_customer_name='$value->customer_name'
+                                worker_id = '$value->id'
+                                new_customer_id ='$value->current_customer_id'
+                                id='move_worker_btn'
+                                class='btn btn-primary'
+                                data-toggle='modal'
+                                data-target='#myModalHorizontal'>
+                        העבר עובד
+                    </button></td>
+                </tr>");
+                }
+
+                ?>
+
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <!-- /.panel-body -->
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModalHorizontal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    בקשה להעברה עובד
+                </h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <form id="shiftWorkerForm" class="form-horizontal" role="form" >
+                    <input type="hidden" id="worker_id_form_input" name="worker_id" value="">
+                    <input type="hidden" id="customer_id_form_input" name="new_customer_id" value="">
+
+                    <div class="form-group">
+                        <label  class="col-sm-2 control-label"
+                                for="worker_name_form_input">שם עובד</label>
+                        <div class="col-sm-10">
+                            <input  class="form-control" id="worker_name_form_input" name="worker_name" placeholder="שם העובד" disabled/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"for="old_employer_name_form_input" >
+                            מעסיק נוכחי
+                        </label>
+                        <div class="col-sm-10">
+                            <input class="form-control"
+                                   id="old_employer_name_form_input" name="old_employer_name"  placeholder="מעביד ישן" disabled/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="new_employer_name_form_input" disabled>
+                            מעסיק חדש
+                        </label>
+                        <div class="col-sm-10">
+                            <input  class="form-control" id="new_employer_name_form_input" name="new_employer_name"  placeholder="מעביד חדש" disabled/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="start_date_form_input">
+                            מתאריך
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" name="start_date"  id="start_date_form_input" value="<?php echo date('Y-m-d'); ?>" min="<?php echo date('Y-m-d'); ?>">
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label"  for="end_date_form_input">
+                            עד תאריך
+                        </label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" name="end_date" id="end_date_form_input" value="<?php echo date('Y-m-d'); ?>"   min="<?php echo date('Y-m-d'); ?>">
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button  type="submit" class="btn btn-primary">אשר בקשה להעברה</button>
+                        </div>
+                    </div>
+                </form>
+
+
+
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function() {
+
+        $("#shiftWorkerForm").submit(function(e) {
+
+            var url = '<?php echo(SERVER_NAME) ?>/MailController/sendMobility';  // the script where you handle the form input.
+
+
+            var disabled = $("#shiftWorkerForm").find(':input:disabled').removeAttr('disabled');
+            var serialized = $("#shiftWorkerForm").serialize();
+            disabled.attr('disabled','disabled');
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: serialized, // serializes the form's elements.
+                success: function(data)
+                {
+                    $("#myModalHorizontal").modal('hide');
+                    // alert(data); // show response from the php script.
+                }
+            });
+
+            e.preventDefault(); // avoid to execute the actual submit of the form.
+        });
+        $("#move_worker_btn").click(function(){
+            $("#worker_id_form_input").val($(this).attr("worker_id"));
+            $("#customer_id_form_input").val($(this).attr("new_customer_id"));
+            $("#old_employer_name_form_input").val($("#settlement_id").val());
+            $("#new_employer_name_form_input").val($(this).attr("new_customer_name"));
+            $("#worker_name_form_input").val($(this).attr("worker_name_and_last_name"));
+
+
+
+        });
+
+
+    });
+</script>

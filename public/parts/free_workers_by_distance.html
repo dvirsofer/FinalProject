@@ -26,7 +26,7 @@
                         "<td>".$value['settlement_name']."</td>".
                         "<td>".round($value['distance'], 2)."</td>
                         <td class='center'>".$value['ammount_of_workers']."</td>
-                <td><button customer_id=" .$value['customer_id'] . " type='button' class='btn btn-primary'>הצג</button></td>
+                <td><button customer_id=" .$value['customer_id'] . " type='button' class='btn btn-primary show_distance_workers'>הצג</button></td>
                         </tr>");
 
                     }
@@ -40,11 +40,27 @@
     <!-- /.panel-body -->
 </div>
 
-<!-- Page-Level Demo Scripts - Tables - Use for reference -->
-<!--<script>
-    $(document).ready(function() {
-        $('#dataTables-free-workers').DataTable({
-            responsive: true
+<script>
+    $(function() {
+
+        $(".show_distance_workers").click(function(e) {
+
+            var url = '<?php echo(SERVER_NAME) ?>/public/webservice/distance_workers';
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: $(this).attr('customer_id'), // serializes the form's elements.
+                success: function(data)
+                {
+                    $("#workers_to_choose").html(data);
+                }
+            });
+
+            e.preventDefault(); // avoid to execute the actual submit of the form.
         });
+
+
+
     });
-</script>-->
+</script>
