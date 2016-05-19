@@ -43,6 +43,7 @@ FROM mbtm_workers.customer
  RIGHT join settlement on   customer.settlement_id  = settlement.id
  where responsible_id = " . $_SESSION['user_id'] . " and customer.customer_name  = ('" . $customer_name_in_hebrew . "') LIMIT 0, 1;";
 
+    if(SQL_DEBUG)echo($sql);
     $list1 = $db->sql_query($sql);
 
     if (is_null($list1[0]->setelment_type))
@@ -66,7 +67,7 @@ FROM mbtm_workers.customer
 
  where responsible_id = " . $_SESSION['user_id'] . "  and customer.customer_name  <> ('" . $customer_name_in_hebrew . "')  and  " . $settlement_type_sql . " GROUP BY customer.customer_name ORDER BY customer.customer_name ASC;";
 
-
+if(SQL_DEBUG)echo($sql);
     $list = $db->sql_query($sql);
 
 
