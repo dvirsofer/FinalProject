@@ -17,10 +17,7 @@ $customer_id = $_POST['customer_id'];
 $db = DB::getInstance();
 $db->checkConnection();
 
-
-
-
-$sql ="
+$sql="
 SELECT
                     forgen_workes.id,
 						forgen_workes.first_name,
@@ -28,8 +25,10 @@ SELECT
 						forgen_workes.current_customer_id,
 						customer.customer_name
 					FROM
+                    (select id,first_name,last_name,current_customer_id from
 						mbtm_workers.forgen_workes
-						where current_customer_id =".$customer_id." and responsible_id =  " . $_SESSION['user_id']."
+						where current_customer_id = ".$customer_id." and responsible_id =  " . $_SESSION['user_id']."
+                        ) as forgen_workes
                 inner join
 (
     select
@@ -37,11 +36,14 @@ SELECT
                         from
                         customer
                         where
-                        id =".$customer_id." and
-                        responsible_id = ".$_SESSION['user_id']."
+                        id = ".$customer_id." and
+                        responsible_id = " . $_SESSION['user_id']."
                         ) as customer
                 on forgen_workes.current_customer_id = customer.id
-       ";
+
+
+";
+
 
     if(SQL_DEBUG)echo($sql);
     $list1 = $db->sql_query($sql);
