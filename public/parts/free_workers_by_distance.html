@@ -50,7 +50,7 @@
             $.ajax({
                 type: "POST",
                 url: url,
-                data: $(this).attr('customer_id'), // serializes the form's elements.
+                data: {customer_id:$(this).attr('customer_id')}, // serializes the form's elements.
                 success: function(data)
                 {
                     $("#workers_to_choose").html(data);
