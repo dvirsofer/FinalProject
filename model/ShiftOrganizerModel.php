@@ -48,6 +48,15 @@ class ShiftOrganizerModel {
         return 'sql error';
     }
 
+    public  function  getWorkersInProcessAmount($responsible_id)
+    {
+        $   $this->db->checkConnection();
+        $res= $this->db->getTableData('activity',['user_id'=>$responsible_id,'status_description'=>'open'],'count(*)');
+        if($res != false)
+            return $res[0]->funcColumn;
+        return 'sql error';
+    }
+
 
 
 }
