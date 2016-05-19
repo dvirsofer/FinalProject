@@ -162,8 +162,8 @@
         });
         $("#move_worker_btn").click(function(){
             $("#worker_id_form_input").val($(this).attr("worker_id"));
-            $("#customer_id_form_input").val($(this).attr("new_customer_id"));
-            $("#old_employer_name_form_input").val($("#settlement_id").val());
+            $("#customer_id_form_input").val($("#settlement_id").val());
+            $("#old_employer_name_form_input").val($(this).attr("new_customer_id"));
             $("#new_employer_name_form_input").val($(this).attr("new_customer_name"));
             $("#worker_name_form_input").val($(this).attr("worker_name_and_last_name"));
 
