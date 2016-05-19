@@ -5,4 +5,4 @@
 define("SERVER_NAME","http://52.25.230.58");
 
 
-define("SQL_DEBUG",true);
+define("SQL_DEBUG",false);
