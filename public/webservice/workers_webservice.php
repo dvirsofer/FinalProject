@@ -56,6 +56,7 @@ settlement.latitude,
 settlement.longitude,
 settlement.settlement_name,
 customer.customer_name,
+customer.id,
 settlement.setelment_type,
 forgen_workes.ammount_of_workers
 FROM mbtm_workers.customer
@@ -73,7 +74,6 @@ FROM mbtm_workers.customer
     for ($i = 0; $i < count($list); $i++) {
 
         $distance = getDistance($list1[0]->latitude, $list1[0]->longitude, $list[$i]->latitude, $list[$i]->longitude);
-        // var_dump($list[$i]);
         $dis_array[$i] = array(
             customer_name => $list[$i]->customer_name,
             settlement_name => $list[$i]->settlement_name,

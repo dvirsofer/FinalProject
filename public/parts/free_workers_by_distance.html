@@ -22,11 +22,11 @@
                    foreach($dis_array as $value)
                     {
                         echo ("<tr class='odd gradeX'>
-                        <td>".$value['customer_name']."</td>".
-                        "<td>".$value['settlement_name']."</td>".
-                        "<td>".round($value['distance'], 2)."</td>
-                        <td class='center'>".$value['ammount_of_workers']."</td>
-                <td><button type='button' class='btn btn-primary'>הצג</button></td>
+                        <td>$value['customer_name']</td>
+                        <td>$value['settlement_name']</td>
+                        <td>round($value['distance'], 2)</td>
+                        <td class='center'>$value['ammount_of_workers']</td>
+                <td><button customer_id=$value['id'] type='button' class='btn btn-primary'>הצג</button></td>
                         </tr>");
 
                     }
