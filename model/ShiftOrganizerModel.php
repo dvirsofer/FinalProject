@@ -62,10 +62,10 @@ class ShiftOrganizerModel {
     {
         $this->db->checkConnection();
 
-        $sql = "select first_name,last_name,from_customer,new_customer from
+        $sql = "select first_name,last_name,from_customer,new_customer,activity_id from
             (
                 (
-                    select user_id,worker_id,customer_id,new_customer_id
+                    select user_id,worker_id,customer_id,new_customer_id,id as activity_id
                     from activity
                     where user_id =".$responsible_id." and status_description = 'open'
                 ) as activity
@@ -84,7 +84,7 @@ class ShiftOrganizerModel {
             (
               select id,customer_name as new_customer from customer where responsible_id =".$responsible_id."
             ) as nc
-	on activity.new_customer_id = nc.id);";
+	on activity.new_customer_id = nc.id) order by activity_id desc limit 0,5;";
 
         if(SQL_DEBUG)echo($sql);
 
