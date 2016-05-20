@@ -29,6 +29,7 @@ class ShiftOrganizerView
     public function showMainPage()
     {
         $_SESSION['user_id'] = unserialize($_SESSION['user'])[0]->id;
+        $user_type =  unserialize($_SESSION['user'])[0]->user_type;
         $workersCount=  $this->shiftOrganizerModel->getWorkerAmount($_SESSION['user_id']);
         $employeeCount=  $this->shiftOrganizerModel->getEmployeeAmount($_SESSION['user_id']);
         $citiesCount=  $this->shiftOrganizerModel->getCitiesAmount($_SESSION['user_id']);
