@@ -25,7 +25,7 @@
                     <td><button worker_name_and_last_name='$value->first_name $value->last_name'
                                 new_customer_name='$value->customer_name'
                                 worker_id = '$value->id'
-                                new_customer_id ='$value->current_customer_id'
+                                customer_id_from_list ='$value->current_customer_id'
                                 id='move_worker_btn'
                                 class='btn btn-primary'
                                 data-toggle='modal'
@@ -166,14 +166,18 @@
             e.preventDefault(); // avoid to execute the actual submit of the form.
         });
         $("#move_worker_btn").click(function(){
-            $("#worker_id_form_input").val($(this).attr("worker_id"));//worker id
-            $("#customer_id_form_input").val($("#settlement_id").attr("customer_id"));//old customer id
+
+          //  $("#customer_id_form_input").val($("#settlement_id").attr("customer_id"));//old customer id
             $("#new_employer_name_form_input").val($("#settlement_id").val());//old employer name
 
-            $("#new_employer_id").val($(this).attr("new_customer_id"));//new employer id
+            //$("#new_employer_id").val($(this).attr("new_customer_id"));//new employer id
+
+            $("#worker_id_form_input").val($(this).attr("worker_id"));//worker id --
+            $("#new_employer_id").val($("#settlement_id").attr("customer_id"));//new employer id ---
+            $("#customer_id_form_input").val($(this).attr("customer_id_from_list"));//old customer id ---
 
             $("#old_employer_name_form_input").val($(this).attr("new_customer_name"));
-            $("#worker_name_form_input").val($(this).attr("worker_name_and_last_name"));
+            $("#worker_name_form_input").val($(this).attr("worker_name_and_last_name")); //worker name---
 
 
 
