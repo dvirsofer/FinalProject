@@ -25,6 +25,7 @@
                 <ul class="dropdown-menu">
                     <li><a href=<?php echo(SERVER_NAME) ."/Worker/index"?>><span class="fa fa-book"></span> אלפון</a></li>
                     <li><a href=<?php echo(SERVER_NAME) ."/Worker/showWorkersTable"?>><span class="fa fa-table"></span> טבלה</a></li>
+                    <li><a href=<?php echo(SERVER_NAME) ."/ShiftOrganizer/showWorkers"?>><span class="fa fa-tasks"></span> שיבוץ עובדים</a></li>
                 </ul>
             </li>
 

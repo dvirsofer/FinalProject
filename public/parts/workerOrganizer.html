@@ -252,13 +252,14 @@
                     <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
-                    </li>
+
+                    <li><a href=<?php echo(SERVER_NAME)?>/UserProfileController/index><span class="fa fa-user"></span>פרופיל</a></i></li>
+                    <li><a href=<?php echo(SERVER_NAME)?>/UserProfileController/settings><span class="fa fa-wrench"></span>הגדרות</a></li>
+                    <?php if($user[0]->type_id == 1)?>
+                    <li><a href=<?php echo(SERVER_NAME)?>/UserProfileController/addUser><span class="fa fa-plus"></span>הוסף משתמש</a></li>
+
+                    <li><a href=<?php echo(SERVER_NAME)?>/Login/logout><span class="glyphicon glyphicon-log-out"></span>התנתק</a></li>
+
                 </ul>
                 <!-- /.dropdown-user -->
             </li>
