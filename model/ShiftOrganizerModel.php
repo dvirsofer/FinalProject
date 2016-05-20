@@ -84,7 +84,7 @@ class ShiftOrganizerModel {
             (
               select id,customer_name as new_customer from customer where responsible_id =".$responsible_id."
             ) as nc
-	on activity.new_customer_id = nc.id;";
+	on activity.new_customer_id = nc.id);";
 
         if(SQL_DEBUG)echo($sql);
 
