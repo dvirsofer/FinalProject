@@ -68,6 +68,8 @@
                 <form id="shiftWorkerForm" class="form-horizontal" role="form" >
                     <input type="hidden" id="worker_id_form_input" name="worker_id" value="">
                     <input type="hidden" id="customer_id_form_input" name="customer_id" value="">
+                    <input type="hidden" id="new_employer_id" name="new_employer_name" value="">
+
 
                     <div class="form-group">
                         <label  class="col-sm-2 control-label"
@@ -164,9 +166,12 @@
             e.preventDefault(); // avoid to execute the actual submit of the form.
         });
         $("#move_worker_btn").click(function(){
-            $("#worker_id_form_input").val($(this).attr("worker_id"));
-            $("#customer_id_form_input").val($(this).attr("new_customer_id"));
-            $("#old_employer_name_form_input").val($("#settlement_id").val());
+            $("#worker_id_form_input").val($(this).attr("worker_id"));//worker id
+            $("#customer_id_form_input").val($("#settlement_id").attr("customer_id"));//old customer id
+            $("#old_employer_name_form_input").val($("#settlement_id").val());//old employer name
+
+            $("#new_employer_id").val($(this).attr("new_customer_id"));//new employer id
+
             $("#new_employer_name_form_input").val($(this).attr("new_customer_name"));
             $("#worker_name_form_input").val($(this).attr("worker_name_and_last_name"));
 
