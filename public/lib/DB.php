@@ -817,13 +817,15 @@ on customer.settlement_id=settlement.id";
 
     /**
      * get table data
-     * @param $table
-     * @param null $keysArray
-     * @param null $sqlFunction  - is sql is function
-     * @param bool $sqlSingleRow - to return single row
+     * @param string  $table
+     * @param null|Array $keysArray
+     * @param null|string $sqlFunction - is sql is function
+     * @param integer|bool $numberOfRows - to return specific amount of rows
+     * @param Array $sqlOrderByArray - to return in order
+     * @param bool $SqlDescOrder - z to a order
      * @return array|bool|PDOStatement
      */
-    function getTableData($table, $keysArray = null, $sqlFunction = null,$sqlSingleRow = false)
+    function getTableData($table, $keysArray = null, $sqlFunction = null,$numberOfRows = false,$sqlOrderByArray =null,$SqlDescOrder= false)
     {
 
 
@@ -840,9 +842,12 @@ on customer.settlement_id=settlement.id";
 
                 if(isset($keysArray) && $keysArray != null)
                      $sql .= $this->getSQLWhere($keysArray);
-
-            if($sqlSingleRow)
-                $sql .=' Limit 0,1';
+            if(!$numberOfRows && $sqlOrderByArray != null) {
+                $sql .= ' order by ' . implode(' ', $sqlOrderByArray);
+                $sql .=($SqlDescOrder)?' desc ':' asc ';
+            }
+            if($numberOfRows != false)
+                $sql .=' Limit 0,'. $numberOfRows;
 
             $query = self::$db->query($sql);
 

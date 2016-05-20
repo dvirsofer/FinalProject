@@ -33,7 +33,7 @@ class ShiftOrganizerView
         $workersCount=  $this->shiftOrganizerModel->getWorkerAmount($_SESSION['user_id']);
         $employeeCount=  $this->shiftOrganizerModel->getEmployeeAmount($_SESSION['user_id']);
         $citiesCount=  $this->shiftOrganizerModel->getCitiesAmount($_SESSION['user_id']);
-        $workersInProcess =  $this->shiftOrganizerModel->getWorkersInProcessAmount($_SESSION['user_id']);
+        $workersInProcessHtml =  $this->shiftOrganizerModel->getWorkersInProcessAmount($_SESSION['user_id']);
         include('./public/parts/workerOrganizer.html');
     }
 
