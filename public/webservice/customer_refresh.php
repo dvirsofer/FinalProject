@@ -23,7 +23,7 @@ $columnLookIn = (mb_detect_encoding($_POST['keyword'])== 'UTF-8')?'customer_name
 
 
 
-$sql = "select customer.customer_name,customer.name_in_english,customer.settlement_id,settlement.latitude,settlement.longitude from customer
+$sql = "select customer.id,customer.customer_name,customer.name_in_english,customer.settlement_id,settlement.latitude,settlement.longitude from customer
 left join (select * from settlement) as settlement
 on customer.settlement_id = settlement.id
  where responsible_id =  ". $_SESSION['user_id'] . " and (customer.".$columnLookIn." like ('".$keyword."')) ORDER BY customer.".$columnLookIn." ASC LIMIT 0, 10;";
@@ -39,7 +39,7 @@ foreach ($list as $result) {
     $hebrewCustomerName =str_replace("'", "\'", $result->customer_name);
     $hebrewCustomerName =str_replace('"', '&quot', $hebrewCustomerName);
     // add new option
-   echo '<li onclick="set_item(\''.$hebrewCustomerName.'\',{lat: '.$result->latitude.', lng: '.$result->longitude.'})">'.$customer_name.'</li>';
+   echo '<li onclick="set_item(\''.$hebrewCustomerName.'\','.$result->id.',{lat: '.$result->latitude.', lng: '.$result->longitude.'})">'.$customer_name.'</li>';
 }
 
 ?>

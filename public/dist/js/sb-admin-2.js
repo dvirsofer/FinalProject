@@ -14,6 +14,7 @@ function autoCompleteEmployer() {
             success: function (data) {
                 $('#settlement_list_id').show();
                 $('#settlement_list_id').html(data);
+                $('#settlement_list_id').val(data);
             }
         });
     } else {
@@ -41,9 +42,10 @@ function autoCompleteField() {
     }
 }
 
-function set_item(item,latlog) {
+function set_item(item,latlog,customer_id) {
     // change input value
     $('#settlement_id').val(item);
+    $('#settlement_id').attr('customer_id',customer_id);
     // hide proposition list
     $('#settlement_list_id').hide();
 
