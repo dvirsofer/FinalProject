@@ -7,6 +7,7 @@
  */
 require_once('./public/lib/Response.php');
 require_once('./public/lib/DB.php');
+require_once('./Configure.php');
 
 class ShiftOrganizerModel {
     private $db;
@@ -60,8 +61,8 @@ class ShiftOrganizerModel {
     public  function  getWorkersInProcess($responsible_id)
     {
         $this->db->checkConnection();
-        $res= $this->db->sql_query(
-            "select first_name,last_name,from_customer,new_customer from
+
+        $sql = "select first_name,last_name,from_customer,new_customer from
             (
                 (
                     select user_id,worker_id,customer_id,new_customer_id
@@ -83,7 +84,11 @@ class ShiftOrganizerModel {
             (
               select id,customer_name as new_customer from customer where responsible_id =".$responsible_id."
             ) as nc
-	on activity.new_customer_id = nc.id;");
+	on activity.new_customer_id = nc.id;";
+
+        if(SQL_DEBUG)echo($sql);
+
+        $res= $this->db->sql_query($sql);
 
 
 
