@@ -36,9 +36,9 @@
                     <td> $value->activity_name </td>
                     <td> $value->customer_name </td>
                     <td><button worker_name_and_last_name='$value->first_name $value->last_name'
-                                new_customer_name='$value->customer_name'
+                                customer_name_from_list='$value->customer_name'
                                 worker_id = '$value->forgen_workers_id'
-                                new_customer_id ='$value->current_customer_id'
+                                customer_id_from_list ='$value->current_customer_id'
                                 id='move_worker_btn'
                                 class='btn btn-primary'
                                 data-toggle='modal'
@@ -80,7 +80,9 @@
             <div class="modal-body">
                 <form id="shiftWorkerForm" class="form-horizontal" role="form" >
                     <input type="hidden" id="worker_id_form_input" name="worker_id" value="">
-                    <input type="hidden" id="customer_id_form_input" name="new_customer_id" value="">
+                    <input type="hidden" id="customer_id_form_input" name="customer_id" value="">
+                    <input type="hidden" id="new_employer_id" name="new_employer_name" value="">
+
 
                     <div class="form-group">
                         <label  class="col-sm-2 control-label"
@@ -90,23 +92,24 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label"for="old_employer_name_form_input" >
+                        <label class="col-sm-2 control-label"for="new_employer_name_form_input" >
                             מעסיק חדש
                         </label>
                         <div class="col-sm-10">
                             <input class="form-control"
-                                   id="old_employer_name_form_input" name="old_employer_name"  placeholder="מעביד ישן" disabled/>
+                                   id="new_employer_name_form_input" name="new_employer_name_display"  placeholder="מעסיק חדש" disabled/>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label class="col-sm-2 control-label" for="new_employer_name_form_input" disabled>
+                        <label class="col-sm-2 control-label" for="old_employer_name_form_input" disabled>
+
 
 
                             מעסיק נוכחי
                         </label>
                         <div class="col-sm-10">
-                            <input  class="form-control" id="new_employer_name_form_input" name="new_employer_name"  placeholder="מעביד חדש" disabled/>
+                            <input  class="form-control" id="old_employer_name_form_input" name="old_employer_name"  placeholder="מעסיק ישן"  disabled/>
                         </div>
                     </div>
 
@@ -176,11 +179,19 @@
     e.preventDefault(); // avoid to execute the actual submit of the form.
     });
         $("#move_worker_btn").click(function(){
-        $("#worker_id_form_input").val($(this).attr("worker_id"));
-        $("#customer_id_form_input").val($(this).attr("new_customer_id"));
-        $("#old_employer_name_form_input").val($("#settlement_id").val());
-        $("#new_employer_name_form_input").val($(this).attr("new_customer_name"));
-        $("#worker_name_form_input").val($(this).attr("worker_name_and_last_name"));
+      //  $("#worker_id_form_input").val($(this).attr("worker_id"));
+       // $("#customer_id_form_input").val($(this).attr("new_customer_id"));
+       // $("#old_employer_name_form_input").val($("#settlement_id").val());
+       // $("#new_employer_name_form_input").val($(this).attr("new_customer_name"));
+        //$("#worker_name_form_input").val($(this).attr("worker_name_and_last_name"));
+
+
+            $("#new_employer_name_form_input").val($("#settlement_id").val());//old employer name
+            $("#worker_id_form_input").val($(this).attr("worker_id"));//worker id --
+            $("#new_employer_id").val($("#settlement_id").attr("customer_id"));//new employer id ---
+            $("#customer_id_form_input").val($(this).attr("customer_id_from_list"));//old customer id ---
+            $("#old_employer_name_form_input").val($(this).attr("customer_name_from_list"));
+            $("#worker_name_form_input").val($(this).attr("worker_name_and_last_name")); //worker name---
 
 
 
