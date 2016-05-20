@@ -42,7 +42,7 @@ function autoCompleteField() {
     }
 }
 
-function set_item(item,latlog,customer_id) {
+function set_item(item,customer_id,latlog) {
     // change input value
     $('#settlement_id').val(item);
     $('#settlement_id').attr('customer_id',customer_id);
