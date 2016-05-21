@@ -99,31 +99,30 @@ $("#get_worker_form").submit(function(e) {
 
     }
 
-    else {
+    else
+    {
         $("#workers_fields_names").css('border-color', '#ccc');
-        if ($("#workers_fields_names option:selected").val() == 'אחר')
-        {
-            if($("[name='new_area_field']").val() == '')
-            {
+        if ($("#workers_fields_names option:selected").val() == 'אחר') {
+            if ($("[name='new_area_field']").val() == '') {
                 alert('אנא הזן תחום עיסוק נדרש');
             }
-
-            else
-            {
-                var url = "http://52.25.230.58/public/webservice/workers_webservice.php";  // the script where you handle the form input.
-
-                $.ajax({
-                    type: "POST",
-                    url: url,
-                    data: $("#get_worker_form").serialize(), // serializes the form's elements.
-                    success: function(data)
-                    {
-                        $("#workers_to_choose").html(data);
-                        // alert(data); // show response from the php script.
-                    }
-                });
-            }
         }
+        else
+        {
+            var url = "http://52.25.230.58/public/webservice/workers_webservice.php";  // the script where you handle the form input.
+
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: $("#get_worker_form").serialize(), // serializes the form's elements.
+                success: function(data)
+                {
+                    $("#workers_to_choose").html(data);
+                    // alert(data); // show response from the php script.
+                }
+            });
+        }
+
     }
 
     e.preventDefault(); // avoid to execute the actual submit of the form.
