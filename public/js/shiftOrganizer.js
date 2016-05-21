@@ -130,7 +130,7 @@ $(function() {
 
 
 $(function() {
-    if('ontouchstart' in document.documentElement)
+    if('ontouchstart' in document.documentElement == false)
         $("[name='workers_amount']").attr('multiple','');
 
 
