@@ -89,6 +89,8 @@ $(function() {
 
 $("#get_worker_form").submit(function(e) {
 
+    e.preventDefault(); // avoid to execute the actual submit of the form.
+
     if ($("#workers_fields_names option:selected").length == 0)
     {
         $("#workers_fields_names").css('border-color','red');
@@ -125,7 +127,7 @@ $("#get_worker_form").submit(function(e) {
 
 
 
-    e.preventDefault(); // avoid to execute the actual submit of the form.
+
 });
 
 
