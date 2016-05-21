@@ -32,8 +32,8 @@
 <script>
     function is_new_field_show()
     {
-        selectBox=$("[name='new_area_field']");
-        action= selectBox.options[selectBox.selectedIndex].attr('is_new_field_show');
+      //  selectBox=$("[name='new_area_field']");
+        action= $("[name='new_area_field']").options[$("[name='new_area_field']").selectedIndex].attr('is_new_field_show');
         if(action == true)
             $('#new_area_field_form-group').show();
         else
