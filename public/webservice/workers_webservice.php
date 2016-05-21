@@ -143,10 +143,11 @@ function search_worker_by_experience($db,$area,$customer_name_in_hebrew)
         $likeSql .= "activity_name like '%". $value . "%' or ";
     }
     $likeSql= rtrim($likeSql,"or ");
+    $likeSql = "(" . $likeSql .")";
 
 
 
-    $fieldArr =$db->sql_query("select group_concat(id) as fields_id from activity_fields WHERE  " . $likeSql);
+    $fieldArr =$db->sql_query("select group_concat(id) as fields_id from activity_fields WHERE (status in('cur_emp','prv_emp')) and   " . $likeSql);
 
 
 
