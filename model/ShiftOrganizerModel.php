@@ -17,6 +17,23 @@ class ShiftOrganizerModel {
         $this->db = DB::getInstance();
     }
 
+
+    public function updateHistory($workerId,$status)
+    {
+        if($status == 'Approve')
+        {
+            $this->db->update('history', [status => 'prv_emp'], [forgen_workers_id => $workerId, status => 'pad_old']);
+            $this->db->update('history', [status => 'cur_emp'], [forgen_workers_id => $workerId, status => 'pad_new']);
+            die();
+        }
+        else if($status == 'Cancel')
+        {
+            $this->db->update('history', [to_date => '', status => 'cur_emp'], [forgen_workers_id =>$workerId, status => 'pad_old']);
+            die();
+        }
+
+    }
+
     public function getWorkerAmount($responsible_id)
     {
 

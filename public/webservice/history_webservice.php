@@ -28,7 +28,6 @@ if($_POST['history_update'] == 'insert') {
     }
 
     $list = $db->getTableData('activity_fields', [activity_name => $activity_name], null, 1);
-    // var_dump($list);exit;
     $activityId = $list[0]->id;
 
     $db->update('history', [to_date => $_POST['start_date'], status => 'pad_old'], [forgen_workers_id => $_POST['worker_id'], employer_id=>$_POST['customer_id']]);
@@ -47,16 +46,6 @@ if($_POST['history_update'] == 'insert') {
         echo 'הועברה בקשה למעבר עובד!';
     die();
 }
-else if($_POST['history_update'] == 'approve')
-{
-    $db->update('history', [status => 'prv_emp'], [forgen_workers_id => $_POST['worker_id'], status => 'pad_old']);
-    $db->update('history', [status => 'cur_emp'], [forgen_workers_id => $_POST['worker_id'], status => 'pad_new']);
-    die();
-}
-else if($_POST['history_update'] == 'cancel')
-{
-    $db->update('history', [to_date => '', status => 'cur_emp'], [forgen_workers_id => $_POST['worker_id'], status => 'pad_old']);
-    die();
-}
+
 
 ?>

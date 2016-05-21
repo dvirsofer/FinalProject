@@ -10,6 +10,7 @@
 require_once('./model/ActivityModel.php');
 require_once('./model/WorkerModel.php');
 require_once("./view/ActivityView.php");
+require_once('./model/ShiftOrganizerModel.php');
 
 /**
  * Class ActivityController
@@ -19,6 +20,7 @@ class ActivityController
     private $activityModel;
     private $activityView;
     private $workerModel;
+    private $shiftOrganizer;
 
     /**
      * constructor
@@ -28,6 +30,7 @@ class ActivityController
         $this->activityModel = new ActivityModel();
         $this->activityView = new ActivityView();
         $this->workerModel = new WorkerModel();
+        $this->shiftOrganizer = new ShiftOrganizerModel();
     }
 
     /**
@@ -70,6 +73,8 @@ class ActivityController
             $customerId = $activity[0]->new_customer_id;
             $this->activityModel->editActivity($activityId);
             $this->workerModel->updateCustomerOfWorker($workerId, $customerId);
+            //for update history
+            $this->shiftOrganizer->updateHistory($workerId,'Approve');
         }
     }
 
@@ -81,6 +86,11 @@ class ActivityController
         if($_SERVER['REQUEST_METHOD'] === 'POST') {
             $activityId = $_POST['activity_id'];
             $this->activityModel->updateCancelActivity($activityId);
+            //for update history
+            $activity = $this->activityModel->getActivity($activityId);
+            $workerId = $activity[0]->worker_id;
+            $customerId = $activity[0]->new_customer_id;
+            $this->shiftOrganizer->updateHistory($workerId,'Cancel');
         }
     }
 
