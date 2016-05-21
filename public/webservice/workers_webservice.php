@@ -143,11 +143,10 @@ function search_worker_by_experience($db,$area,$customer_name_in_hebrew)
         $likeSql .= "activity_name like '%". $value . "%' or ";
     }
     $likeSql= rtrim($likeSql,"or ");
-    $likeSql = "(" . $likeSql .")";
 
 
 
-    $fieldArr =$db->sql_query("select group_concat(id) as fields_id from activity_fields WHERE (status in('cur_emp','prv_emp')) and   " . $likeSql);
+    $fieldArr =$db->sql_query("select group_concat(id) as fields_id from activity_fields WHERE  " . $likeSql);
 
 
 
@@ -167,14 +166,20 @@ function search_worker_by_experience($db,$area,$customer_name_in_hebrew)
 					activity_fields.activity_name
 					from
 					history INNER JOIN
-(
-    SELECT activity_name,id from activity_fields WHERE id in (" .$fieldArr[0]->fields_id .")
+                    (
+                      SELECT
+                      activity_name,id
+                      from
+                      activity_fields
+                      WHERE id in (" .$fieldArr[0]->fields_id .")
 					)
 					as activity_fields
 					on  activity_fields.id = history.working_field
 
                 where
                 working_field in (" .$fieldArr[0]->fields_id .")
+                and
+                 history.status in  ('cur_emp','pre_emp')
                 ) as h
                 inner join
 (
