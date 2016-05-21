@@ -102,7 +102,7 @@ class ReportView
         for($i = 0; $i < count($workers); $i++) {
             for($j = 0; $j < count($workers[$i]); $j++) {
                 if($i % 2 == 0) {
-                    $str .= "<tr class='success'>";
+                    $str .= "<tr class=''>";
                 }
                 else {
                     $str .= "<tr class='info'>";
