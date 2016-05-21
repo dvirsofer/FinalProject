@@ -882,6 +882,9 @@ on customer.settlement_id=settlement.id";
 
             foreach ($keysArray as $k => $v) {
                 $v=str_replace("'","\'",$v);
+                if($v == 'is null')
+                    $sql .= $k . ' ' . $v . ' and ';
+                else
                 $sql .= $k . ' = ' . $this->createQuotation($v) . ' and ';
             }
             // removing "and" from the end of $selectSuffix

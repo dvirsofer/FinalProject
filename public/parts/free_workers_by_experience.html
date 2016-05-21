@@ -82,6 +82,9 @@
                     <input type="hidden" id="worker_id_form_input" name="worker_id" value="">
                     <input type="hidden" id="customer_id_form_input" name="customer_id" value="">
                     <input type="hidden" id="new_employer_id" name="new_employer_name" value="">
+                    <input type="hidden" id="new_working_field_input" name="new_area_field_form" value="">
+                    <input type="hidden" id="old_working_field_input" name="old_area_field_form" value="">
+                    <input type="hidden"  name="history_update" value="insert">
 
 
                     <div class="form-group">
@@ -164,34 +167,40 @@
         var disabled = $("#shiftWorkerForm").find(':input:disabled').removeAttr('disabled');
         var serialized = $("#shiftWorkerForm").serialize();
         disabled.attr('disabled','disabled');
-
+//update activity
     $.ajax({
     type: "POST",
     url: url,
     data: serialized, // serializes the form's elements.
     success: function(data)
     {
-    $("#myModalHorizontal").modal('hide');
-    // alert(data); // show response from the php script.
+        $("#myModalHorizontal").modal('hide');
     }
+    });
+
+        var url2 = '<?php echo(SERVER_NAME) ?>/public/webservice/history_webservice.php';  // the script where you handle the form input.
+    //update history
+    $.ajax({
+        type: "POST",
+        url: url2,
+        data: serialized, // serializes the form's elements.
+        success: function(data)
+        {
+            $("#myModalHorizontal").modal('hide');
+        }
     });
 
     e.preventDefault(); // avoid to execute the actual submit of the form.
     });
         $("#move_worker_btn").click(function(){
-      //  $("#worker_id_form_input").val($(this).attr("worker_id"));
-       // $("#customer_id_form_input").val($(this).attr("new_customer_id"));
-       // $("#old_employer_name_form_input").val($("#settlement_id").val());
-       // $("#new_employer_name_form_input").val($(this).attr("new_customer_name"));
-        //$("#worker_name_form_input").val($(this).attr("worker_name_and_last_name"));
-
-
             $("#new_employer_name_form_input").val($("#settlement_id").val());//old employer name
             $("#worker_id_form_input").val($(this).attr("worker_id"));//worker id --
             $("#new_employer_id").val($("#settlement_id").attr("customer_id"));//new employer id ---
             $("#customer_id_form_input").val($(this).attr("customer_id_from_list"));//old customer id ---
             $("#old_employer_name_form_input").val($(this).attr("customer_name_from_list"));
             $("#worker_name_form_input").val($(this).attr("worker_name_and_last_name")); //worker name---
+            $('#new_working_field_input').val( $("[name='new_area_field']").val());
+            ('#old_working_field_input').val( $("#workers_fields_names option:selected").val());
 
 
 
