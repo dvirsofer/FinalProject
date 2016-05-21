@@ -32,7 +32,7 @@
 <script>
     function is_new_field_show()
     {
-        action= selectBox.options[selectBox.selectedIndex].attr('is_new_field_show');
+        action=  $("[name='new_area_field']").options[selectBox.selectedIndex].attr('is_new_field_show');
         if(action == true)
             $('#new_area_field_form-group').show();
         else
