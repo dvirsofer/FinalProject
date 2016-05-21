@@ -31,7 +31,7 @@ class ShiftOrganizerModel {
         else if($status == 'Cancel')
         {
             $this->db->update('history', [to_date => '', status => 'cur_emp'], [forgen_workers_id =>$workerId, status => 'pad_old']);
-            die();
+            $this->db->sql_query("delete from history WHERE forgen_workers_id =". $workerId . "and status = 'pad_new'" );
         }
 
     }
