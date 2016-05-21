@@ -32,7 +32,7 @@ $workerList = $db->sql_query($sql);
 
 
 
-
+$selectMulti=($_POST['isTouch']==false)?'multiple':'';
 
 $dis_array = array_slice($dis_array,0,10);
 
