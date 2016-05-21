@@ -20,7 +20,7 @@ class ShiftOrganizerModel {
 
     public function updateHistory($oldWorkerId,$status)
     {
-        $worker=$this->db->getTableData('forgen_workers',[worker_id=>$oldWorkerId],null,1);
+        $worker=$this->db->getTableData('forgen_workers',['worker_id'=>$oldWorkerId],null,1);
        $workerId =  $worker[0]->id;
         if($status == 'Approve')
         {
