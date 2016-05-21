@@ -26,8 +26,7 @@
                                 customer_name_from_list='$value->customer_name'
                                 worker_id = '$value->id'
                                 customer_id_from_list ='$value->current_customer_id'
-                                id='move_worker_btn'
-                                class='btn btn-primary'
+                                class='btn btn-primary move_worker_btn'
                                 data-toggle='modal'
                                 data-target='#myModalHorizontal'>
                         העבר עובד
@@ -180,7 +179,7 @@
 
             e.preventDefault(); // avoid to execute the actual submit of the form.
         });
-        $("#move_worker_btn").click(function(){
+        $(".move_worker_btn").click(function(){
 
             $("#new_employer_name_form_input").val($("#settlement_id").val());//old employer name
             $("#worker_id_form_input").val($(this).attr("worker_id"));//worker id --
