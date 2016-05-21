@@ -18,7 +18,7 @@
 
 <div class="form-group">
     <label>תחום העיסוק המבוקש:</label>
-    <select multiple class="form-control" name="workers_fields">
+    <select <?php echo(($_POST['isTouch'])'multiple':'');?> class="form-control" name="workers_fields">
         <?php
                                     foreach ($workerList as $value)
                                        echo ('<option onclick=is_new_field_show(false)>'.$value->activity_name.'</option>');

@@ -8,6 +8,7 @@ var infoWindow;
 
 $(function() {
 
+
     initMap();
 
     downloadUrl("http://52.25.230.58/public/webservice/googleMapWebService.php");
