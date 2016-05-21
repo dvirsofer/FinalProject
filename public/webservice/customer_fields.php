@@ -29,10 +29,7 @@ $sql ="select activity_name from activity_fields right join
 
 $workerList = $db->sql_query($sql);
 
-
-
-
-$selectMulti=($_POST['isTouch']==false)?'multiple':'';
+$selectMulti=($_POST['isTouch']=='false')?'multiple':'';
 
 $dis_array = array_slice($dis_array,0,10);
 
