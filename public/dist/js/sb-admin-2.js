@@ -54,7 +54,7 @@ function set_item(item,customer_id,latlog) {
     $.ajax({
         url: 'http://52.25.230.58/public/webservice/customer_fields.php',
         type: 'POST',
-        data: {customer_name: item},
+        data: {customer_name: item,isTouch: 'ontouchstart' in document.documentElement},
         success: function (data) {
             $('#extra-form-group').html(data);
         }
