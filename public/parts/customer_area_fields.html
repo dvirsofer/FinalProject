@@ -18,7 +18,7 @@
 
 <div class="form-group">
     <label>תחום העיסוק המבוקש:</label>
-    <select <?php echo($selectMulti);?> class="form-control"  onchange="is_new_field_show();" name="workers_fields">
+    <select <?php echo($selectMulti);?> class="form-control" id="workers_fields_names"  onchange="is_new_field_show();" name="workers_fields">
         <?php
                                     foreach ($workerList as $value)
                                        echo ('<option is_new_field_show="false">'.$value->activity_name.'</option>');
@@ -33,7 +33,7 @@
     function is_new_field_show()
     {
       //  selectBox=$("[name='new_area_field']");
-        action= $("[name='new_area_field'] option:selected").attr('is_new_field_show');
+        action= $("#workers_fields_names option:selected").attr('is_new_field_show');
         if(action == true)
             $('#new_area_field_form-group').show();
         else
