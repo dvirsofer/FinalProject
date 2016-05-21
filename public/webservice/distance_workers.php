@@ -20,12 +20,13 @@ $db->checkConnection();
 $sql="
 SELECT
                     forgen_workes.id,
+                    forgen_workes.worker_id,
 						forgen_workes.first_name,
 						forgen_workes.last_name,
 						forgen_workes.current_customer_id,
 						customer.customer_name
 					FROM
-                    (select id,first_name,last_name,current_customer_id from
+                    (select id,worker_id,first_name,last_name,current_customer_id from
 						mbtm_workers.forgen_workes
 						where current_customer_id = ".$customer_id." and responsible_id =  " . $_SESSION['user_id']."
                         ) as forgen_workes

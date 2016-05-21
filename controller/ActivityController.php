@@ -89,7 +89,6 @@ class ActivityController
             //for update history
             $activity = $this->activityModel->getActivity($activityId);
             $workerId = $activity[0]->worker_id;
-            $customerId = $activity[0]->new_customer_id;
             $this->shiftOrganizer->updateHistory($workerId,'Cancel');
         }
     }

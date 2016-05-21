@@ -157,7 +157,8 @@ function search_worker_by_experience($db,$area,$customer_name_in_hebrew)
             fw.first_name,
             fw.last_name,
             fw.current_customer_id,
-            fw.customer_name
+            fw.customer_name,
+            fw.worker_id
 
             from (
                 select
@@ -177,7 +178,8 @@ function search_worker_by_experience($db,$area,$customer_name_in_hebrew)
                 inner join
 (
     SELECT
-                    forgen_workes.id,
+                        forgen_workes.id,
+                        forgen_workes.worker_id,
 						forgen_workes.first_name,
 						forgen_workes.last_name,
 						forgen_workes.current_customer_id,

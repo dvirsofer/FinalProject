@@ -38,6 +38,7 @@
                     <td><button worker_name_and_last_name='$value->first_name $value->last_name'
                                 customer_name_from_list='$value->customer_name'
                                 worker_id = '$value->forgen_workers_id'
+                                old_worker_id = '$value->worker_id'
                                 customer_id_from_list ='$value->current_customer_id'
                                 class='btn btn-primary move_worker_btn'
                                 data-toggle='modal'
@@ -79,6 +80,7 @@
             <div class="modal-body">
                 <form id="shiftWorkerForm" class="form-horizontal" role="form" >
                     <input type="hidden" id="worker_id_form_input" name="worker_id" value="">
+                    <input type="hidden" id="worker_id_new_form_input" name="new_worker_id" value="">
                     <input type="hidden" id="customer_id_form_input" name="customer_id" value="">
                     <input type="hidden" id="new_employer_id" name="new_employer_name" value="">
                     <input type="hidden" id="new_working_field_input" name="new_area_field_form" value="">
@@ -160,7 +162,8 @@
     $(function(){
         $(".move_worker_btn").click(function(){
             $("#new_employer_name_form_input").val($("#settlement_id").val());//old employer name
-            $("#worker_id_form_input").val($(this).attr("worker_id"));//worker id --
+            $("#worker_id_form_input").val($(this).attr("old_worker_id"));//old_worker id --
+            $("#worker_id_new_form_input").val($(this).attr("worker_id"));//new_worker id --
             $("#new_employer_id").val($("#settlement_id").attr("customer_id"));//new employer id ---
             $("#customer_id_form_input").val($(this).attr("customer_id_from_list"));//old customer id ---
             $("#old_employer_name_form_input").val($(this).attr("customer_name_from_list"));
