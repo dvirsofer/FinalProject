@@ -103,22 +103,27 @@ $("#get_worker_form").submit(function(e) {
             {
                 $.alert('אנא הזן תחום עיסוק נדרש');
             }
+
+            else
+            {
+                var url = "http://52.25.230.58/public/webservice/workers_webservice.php";  // the script where you handle the form input.
+
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: $("#get_worker_form").serialize(), // serializes the form's elements.
+                    success: function(data)
+                    {
+                        $("#workers_to_choose").html(data);
+                        // alert(data); // show response from the php script.
+                    }
+                });
+            }
         }
     }
 
 
-    var url = "http://52.25.230.58/public/webservice/workers_webservice.php";  // the script where you handle the form input.
 
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: $("#get_worker_form").serialize(), // serializes the form's elements.
-        success: function(data)
-        {
-            $("#workers_to_choose").html(data);
-            // alert(data); // show response from the php script.
-        }
-    });
 
     e.preventDefault(); // avoid to execute the actual submit of the form.
 });
