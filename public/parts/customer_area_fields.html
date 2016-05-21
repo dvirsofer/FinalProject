@@ -18,20 +18,21 @@
 
 <div class="form-group">
     <label>תחום העיסוק המבוקש:</label>
-    <select <?php echo($selectMulti);?> class="form-control" name="workers_fields">
+    <select <?php echo($selectMulti);?> class="form-control"  onchange="is_new_field_show();" name="workers_fields">
         <?php
                                     foreach ($workerList as $value)
-                                       echo ('<option onclick=is_new_field_show(false)>'.$value->activity_name.'</option>');
+                                       echo ('<option is_new_field_show="false">'.$value->activity_name.'</option>');
 
 
         ?>
-        <option onclick=is_new_field_show(true)>אחר</option>
+        <option is_new_field_show="true">אחר</option>
     </select>
 </div>
 
 <script>
-    function is_new_field_show(action)
+    function is_new_field_show()
     {
+        action= selectBox.options[selectBox.selectedIndex].attr('is_new_field_show');
         if(action == true)
             $('#new_area_field_form-group').show();
         else
