@@ -89,6 +89,24 @@ $(function() {
 
 $("#get_worker_form").submit(function(e) {
 
+    if ($("#workers_fields_names option:selected").length == 0)
+    {
+        $("#workers_fields_names").css('border-color','red');
+        $.alert('אנא בחר תחום עיסוק או הקלד תחום עיסוק חדש');
+    }
+
+    else {
+        $("#workers_fields_names").css('border-color', '#ccc');
+        if ($("#workers_fields_names option:selected").val() == 'אחר')
+        {
+            if($("[name='new_area_field']").val() == '')
+            {
+                $.alert('אנא הזן תחום עיסוק נדרש');
+            }
+        }
+    }
+
+
     var url = "http://52.25.230.58/public/webservice/workers_webservice.php";  // the script where you handle the form input.
 
     $.ajax({

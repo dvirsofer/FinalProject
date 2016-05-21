@@ -28,6 +28,9 @@ if($_POST['history_update'] == 'insert') {
         $activity_name = $_POST['new_area_field_form'];
     }
 
+    if(empty($activity_name))
+        die('Error: Enter activity name');
+
     $list = $db->getTableData('activity_fields', [activity_name => $activity_name], null, 1);
     $activityId = $list[0]->id;
 
