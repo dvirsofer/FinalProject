@@ -94,8 +94,14 @@ $("#get_worker_form").submit(function(e) {
     if ($("#workers_fields_names option:selected").length == 0)
     {
         $("#workers_fields_names").css('border-color','red');
-        //alert('אנא בחר תחום עיסוק או הקלד תחום עיסוק חדש');
-        $("#myAlert").alert();
+
+        BootstrapDialog.alert({
+            title: 'WARNING',
+            message: 'אנא בחר תחום עיסוק או הקלד תחום עיסוק חדש',
+            type: BootstrapDialog.TYPE_WARNING
+
+        });
+
 
     }
 
@@ -105,7 +111,13 @@ $("#get_worker_form").submit(function(e) {
         {
             if($("[name='new_area_field']").val() == '')
             {
-                alert('אנא הזן תחום עיסוק נדרש');
+                BootstrapDialog.alert({
+                    title: 'WARNING',
+                    message:    'אנא הזן תחום עיסוק נדרש',
+                    type: BootstrapDialog.TYPE_WARNING
+
+                });
+
             }
 
             else
