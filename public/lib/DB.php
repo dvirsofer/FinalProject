@@ -148,6 +148,18 @@ class DB
     }
 
     /**
+     * @param $workerId
+     * @return array - worker.
+     */
+    public function getWorkerHistory($workerId)
+    {
+        $sql = "SELECT * FROM history WHERE forgen_workers_id='$workerId'";
+        $worker = self::$db->query($sql);
+        $worker = $worker->fetchAll(PDO::FETCH_OBJ);
+        return $worker;
+    }
+
+    /**
      * @param $userId
      * @return array - all customer for this user.
      */

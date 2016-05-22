@@ -304,10 +304,23 @@ class WorkerView
         </div>
         <div id="collapseThree" class="panel-collapse collapse">
             <div class="panel-body">
-                <div>';
+                <div class="dataTable_wrapper">
+                    <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="contacts">
+                        <thead>
+                            <tr>
+                            <th> מעסיק</th>
+                            <th> מתאריך</th>
+                            <th> עד תאריך</th>
+                            </tr>
+                        </thead>
 
-        $html .= '</div>
+                        <tbody>';
 
+        $html .= $this->createWorkerHistory();
+
+        $html .= '</tbody>
+                  </table>
+                </div>
             </div>
         </div>
     </div>';
@@ -450,6 +463,23 @@ class WorkerView
         foreach($customers as $row)
         {
             $str .= "<option value=" .$row->id .">" .$row->customer_name . "</option>";
+        }
+        return $str;
+    }
+
+    private function createWorkerHistory()
+    {
+        $worker = $this->workerModel->getWorkerHistory($this->workerId);
+        $str = "";
+
+        foreach($worker as $row){   //Creates a loop to loop through results
+            $customer = $this->customerModel->getCustomerInfo($row->employer_id);
+            $customerName = $customer[0]->customer_name;
+            $str .= "<tr><td>" .
+                $customerName . "</td><td>" .
+                $row->from_date . "</td><td>" .
+                $row->to_date .
+                "</td></tr>";
         }
         return $str;
     }

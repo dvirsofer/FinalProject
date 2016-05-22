@@ -210,4 +210,12 @@ class WorkerModel
 
     }
 
+    public function getWorkerHistory($workerId)
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $worker = $this->db->getWorkerHistory($workerId);
+        return $worker;
+    }
+
 }
