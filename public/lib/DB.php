@@ -153,7 +153,7 @@ class DB
      */
     public function getAllCustomersOfUser($userId)
     {
-        $sql = "SELECT * FROM customer WHERE responsible_id='$userId'";
+        $sql = "SELECT * FROM customer WHERE responsible_id='$userId' ORDER BY customer_name";
         $customers = self::$db->query($sql);
         $customers = $customers->fetchAll(PDO::FETCH_OBJ);
         return $customers;
