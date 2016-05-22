@@ -436,15 +436,12 @@ $html .= '</div>
         $user = unserialize($_SESSION['user']);
         $userId = $user[0]->id;
         $userType = $user[0]->type_id;
-        error_log(var_export($userType, TRUE));
         $str = "";
         if($userType == 2) {
             $customers = $this->customerModel->getAllCustomersOfUser($userId);
-            error_log(var_export("a", TRUE));
         }
         else {
             $customers = $this->customerModel->getCustomers();
-            error_log(var_export("b", TRUE));
         }
         $str .= '<option value="">בחר לקוח</option>';
         foreach($customers as $row)
