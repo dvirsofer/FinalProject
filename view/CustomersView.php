@@ -435,7 +435,7 @@ $html .= '</div>
     {
         $user = unserialize($_SESSION['user']);
         $userId = $user[0]->id;
-        $userType = $userId[0]->type_id;
+        $userType = $user[0]->type_id;
         error_log(var_export($userType, TRUE));
         $str = "";
         if($userType == 2) {
