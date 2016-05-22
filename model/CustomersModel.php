@@ -156,4 +156,12 @@ class CustomersModel
         return $csv;
     }
 
+    public function getAllCustomersOfUser($userId)
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $customers = $this->db->getAllCustomersOfUser($userId);
+        return $customers;
+    }
+
 }

@@ -433,9 +433,16 @@ $html .= '</div>
      */
     private function getCustomers($id = '')
     {
+        $user = unserialize($_SESSION['user']);
+        $userId = $user[0]->id;
+        $userType = $userId[0]->type_id;
         $str = "";
-        $customers = $this->customerModel->getCustomers();
-
+        if($userType == 2) {
+            $customers = $this->customerModel->getAllCustomersOfUser($userId);
+        }
+        else {
+            $customers = $this->customerModel->getCustomers();
+        }
         $str .= '<option value="">בחר לקוח</option>';
         foreach($customers as $row)
         {

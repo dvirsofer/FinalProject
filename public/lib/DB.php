@@ -148,6 +148,18 @@ class DB
     }
 
     /**
+     * @param $userId
+     * @return array - all customer for this user.
+     */
+    public function getAllCustomersOfUser($userId)
+    {
+        $sql = "SELECT * FROM customer WHERE responsible_id='$userId'";
+        $customers = self::$db->query($sql);
+        $customers = $customers->fetchAll(PDO::FETCH_OBJ);
+        return $customers;
+    }
+
+    /**
      * @param $id
      * @param $userName
      * @param $userEmail
