@@ -40,12 +40,12 @@ class ReportController
         $workers = $this->reportModel->getAllWorkers();
         $sameWorkers = array();
 
-        for($i = 0; $i < count($workers); $i++) {
+        for($i = 0; $i < 2000; $i++) {
             $allWorkers = array();
             $workerName = $workers[$i]->last_name;
             $workerPassport = $workers[$i]->passport_number;
             array_push($allWorkers, $workers[$i]);
-            for($j = $i + 1; $j < count($workers); $j++) {
+            for($j = $i + 1; $j < 2000; $j++) {
                 $currWorker = $workers[$j];
                 $lengthName = strlen($workerName) * 0.75;
                 $lengthPassport = strlen($workerPassport) * 0.75;
