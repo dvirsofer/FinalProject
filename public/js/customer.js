@@ -20,6 +20,12 @@ $("#update_customer_form").submit(function(event){
     updateCustomer(event);
 });
 
+$("#new_contact_form").submit(function(event){
+    // cancels the form submission
+    event.preventDefault();
+    addContact(event);
+});
+
 function customerDropdownEvent(event) {
     var $form = $(this).parent();
     $form.submit();
@@ -36,6 +42,21 @@ function updateCustomer(event) {
         success: function(result) {
             console.log(result);
             $("#update_customer").modal('hide');
+        }
+    });
+}
+
+function addContact(event) {
+    var $form = $(event.currentTarget);
+    var data = $form.serialize();
+
+    $.ajax({
+        type: "POST",
+        url: develop_server_name+'/Customers/addContact',
+        data: data,
+        success: function(result) {
+            console.log(result);
+            $("#add_contact").modal('hide');
         }
     });
 }

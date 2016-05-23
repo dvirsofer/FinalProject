@@ -33,7 +33,9 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">פעולות<b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                    <li><a href=<?php echo(SERVER_NAME) ."/ActivityController/index"?>><span class="fa fa-table"></span> אישור פעולות</a></li>
+                    <?php if($user[0]->type_id == 1) { ?>
+                        <li><a href=<?php echo(SERVER_NAME) ."/ActivityController/index"?>><span class="fa fa-table"></span> אישור פעולות</a></li>
+                    <?php } ?>
                     <li><a href=<?php echo(SERVER_NAME) ."/ActivityController/allActivities"?>><span class="fa fa-table"></span> כל הפעולות</a></li>
                 </ul>
             </li>

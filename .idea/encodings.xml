@@ -9,6 +9,7 @@
     <file url="file://$PROJECT_DIR$/public/lib/DB.php" charset="windows-1255" />
     <file url="file://$PROJECT_DIR$/public/popups/AddCustomer.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/public/popups/FlightTicket.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/public/popups/NewContact.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/public/popups/NewWorker.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/public/popups/UpdateCustomer.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/public/popups/UpdateWorker.php" charset="UTF-8" />

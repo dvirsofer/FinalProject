@@ -203,7 +203,9 @@ class CustomersView
             </h4>
         </div>
         <div id="collapseThree" class="panel-collapse collapse">
-            <div class="panel-body">
+            <div class="panel-body">';
+        if(!empty($id)) {
+            $html .= '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#add_contact"><span class="fa fa-plus"></span> הוסף איש קשר</button>
                 <div class="dataTable_wrapper">
                     <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="contacts">
                         <thead>
@@ -219,16 +221,14 @@ class CustomersView
 
                         <tbody>';
 
-        if(!empty($id))
-        {
             $html .= $this->createContactsTable($id);
-        }
 
-        $html .= ' </tbody>
+            $html .= ' </tbody>
 
                     </table>
-                </div>
-            </div>
+                </div>';
+        }
+            $html .= '</div>
         </div>
     </div>
 
@@ -289,6 +289,18 @@ class CustomersView
         <!-- Modal content-->
         <div class="modal-content">';
         $html .= $this->requireToVar('./public/popups/UpdateCustomer.php');
+        $html .= '
+        </div>
+    </div>
+</div>
+        ';
+
+        $html .= '
+<div class="modal fade" id="add_contact" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">';
+        $html .= $this->requireToVar('./public/popups/NewContact.php');
         $html .= '
         </div>
     </div>

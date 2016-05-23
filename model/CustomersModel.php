@@ -164,4 +164,12 @@ class CustomersModel
         return $customers;
     }
 
+    public function addContact($customerId, $contactName, $phone, $fax, $contactPosition, $mail, $comment)
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $contact = $this->db->addContact($customerId, $contactName, $phone, $fax, $contactPosition, $mail, $comment);
+        return $contact;
+    }
+
 }

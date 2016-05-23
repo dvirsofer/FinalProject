@@ -171,6 +171,27 @@ class DB
         return $customers;
     }
 
+    public function addContact($customerId, $contactName, $phone, $fax, $contactPosition, $mail, $comment)
+    {
+        $customerId = intval($customerId);
+        try{
+            $sql = self::$db->prepare("INSERT INTO contacts (customer_id, contact_name, positon, phone_number, email, fax, comment)
+                                VALUES(:customerId, :contactName, :contactPosition, :phone, :mail, :fax, :comment)");
+            $sql->bindParam(':customerId', $customerId);
+            $sql->bindParam(':contactName', $contactName);
+            $sql->bindParam(':contactPosition', $contactPosition);
+            $sql->bindParam(':phone', $phone);
+            $sql->bindParam(':mail', $mail);
+            $sql->bindParam(':fax', $fax);
+            $sql->bindParam(':comment', $comment);
+            $sql->execute();
+            return "success";
+        }
+        catch (Exception $e) {
+            return 'Caught exception: ' . $e->getMessage();
+        }
+    }
+
     /**
      * @param $id
      * @param $userName

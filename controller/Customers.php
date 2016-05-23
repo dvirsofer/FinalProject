@@ -91,4 +91,17 @@ class Customers
 
     }
 
+    public function addContact()
+    {
+        $customerId = $_POST['customer_id'];
+        $contactName = $_POST['contact_name'];
+        $phone = $_POST['phone_number'];
+        $fax = $_POST['contact_fax'];
+        $contactPosition = $_POST['position'];
+        $mail = $_POST['contact_mail'];
+        $comment = $_POST['comments'];
+        $msg = $this->model->addContact($customerId, $contactName, $phone, $fax, $contactPosition, $mail, $comment);
+        return $msg;
+    }
+
 }
