@@ -206,6 +206,7 @@ class CustomersView
             <div class="panel-body">';
         if(!empty($id)) {
             $html .= '<button type="button" class="btn btn-success" data-toggle="modal" data-target="#add_contact"><span class="fa fa-plus"></span> הוסף איש קשר</button>
+                <div class="col-md-12">
                 <div class="dataTable_wrapper">
                     <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="contacts">
                         <thead>
@@ -226,6 +227,7 @@ class CustomersView
             $html .= ' </tbody>
 
                     </table>
+                </div>
                 </div>';
         }
             $html .= '</div>
@@ -243,6 +245,7 @@ class CustomersView
             </h4>
         </div>
         <div id="collapseFour" class="panel-collapse collapse">
+        <div class="col-md-12">
             <div class="panel-body">
                 <div class="dataTable_wrapper">
                 <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="workers">
@@ -267,6 +270,7 @@ class CustomersView
         $html .= '</tbody></table>
                 </div>
 
+            </div>
             </div>
         </div>
     </div>';
@@ -350,6 +354,7 @@ $html .= '</div>
                 <form class="form-horizontal" id="customer_table" role="form" method="post">
                     <div class="panel-body">
                     <button class="btn btn-primary" type="submit" id="excel_button"><span class="fa fa-file-excel-o"></span> excel</button>
+                        <div class="col-md-12">
                         <div class="dataTable_wrapper">
                         <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="workers">
                             <thead>
@@ -370,6 +375,7 @@ $html .= '</div>
                             $html .= '</tbody>
 
                         </table>
+                        </div>
                         </div>
                     </div>
                 </form>

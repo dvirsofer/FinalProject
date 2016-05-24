@@ -303,6 +303,7 @@ class WorkerView
             </h4>
         </div>
         <div id="collapseThree" class="panel-collapse collapse">
+            <div class="col-md-12">
             <div class="panel-body">
                 <div class="dataTable_wrapper">
                     <table class="table table-striped table-bordered table-hover dataTable no-footer dtr-inline" id="contacts">
@@ -321,6 +322,7 @@ class WorkerView
         $html .= '</tbody>
                   </table>
                 </div>
+            </div>
             </div>
         </div>
     </div>';
@@ -413,6 +415,7 @@ class WorkerView
             <!-- activity table -->
                 <div class="col-md-12 personal-info">
                 <form class="form-horizontal" id="worker_table" role="form" method="post">
+                    <div class="col-md-12">
                     <div class="panel-body">
                     <button class="btn btn-primary" type="submit" id="excel_button"><span class="fa fa-file-excel-o"></span> excel</button>
                         <div class="dataTable_wrapper">
@@ -438,6 +441,7 @@ class WorkerView
 
                         </table>
                         </div>
+                    </div>
                     </div>
                 </form>
                 </div>
