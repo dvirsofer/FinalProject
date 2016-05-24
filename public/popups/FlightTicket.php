@@ -124,6 +124,11 @@ if(!empty($id)) { ?>
             </form>
         </div>
     </div>
+
+    <div id="message_div" class="panel alert alert-danger" style="display: none">
+        <label id="message" class="control-label"></label>
+    </div>
+
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
     </div>

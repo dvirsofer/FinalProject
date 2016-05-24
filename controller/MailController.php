@@ -55,36 +55,34 @@ class MailController
         $dereliction_date = $_POST['dereliction_date_FT'];
         $arrival_date = $_POST['arrival_date_FT'];
 
-        //$from = 'dvir.sofer90@gmil.com';
+        if((!empty($target)) || (!empty($type)) || (!empty($dereliction_date)) || (!empty($arrival_date))) {
+            $to = $_POST['mail-address'];
+            $subject = 'כרטיס טיסה';
+            $body = "הפרטים של הכרטיס טיסה"  . "\n";
+            $body .= "שם העובד ". $first_name . " " . $last_name . "\n";
+            $body .= "מספר דרכון" . $passport . "\n";
+            $body .= "מספר פלאפון" . $phone . "\n";
+            $body .= "סוג כרטיס" . $type . "\n";
+            $body .= "ליעד ". $target . "\n";
+            $body .= "מתאריך " .$dereliction_date . " " . "עד תאריך " . $arrival_date;
+            $body = wordwrap($body, 70, "\r\n");
 
-        $to = $_POST['mail-address'];
-        $subject = 'הזמנת כרטיס טיסה לעובד.';
-        $body = "הפרטים של הכרטיס טיסה"  . "\n";
-        $body .= "שם העובד ". $first_name . " " . $last_name . "\n";
-        $body .= "מספר דרכון" . $passport . "\n";
-        $body .= "מספר פלאפון" . $phone . "\n";
-        $body .= "סוג כרטיס" . $type . "\n";
-        $body .= "ליעד ". $target . "\n";
-        $body .= "מתאריך " .$dereliction_date . " " . "עד תאריך " . $arrival_date;
-        $body = wordwrap($body, 70, "\r\n");
+            $headers = 'From: '.$from."\r\n".
+                'Reply-To: '.$from."\r\n" .
+                'X-Mailer: PHP/' . phpversion();
 
-        $headers = 'From: '.$from."\r\n".
-            'Reply-To: '.$from."\r\n" .
-            'X-Mailer: PHP/' . phpversion();
+            ini_set("sendmail_from", $from);
 
-        ini_set("sendmail_from", $from);
+            $this->sendMail($to,$from,$subject,$body);
 
-        $this->sendMail($to,$from,$subject,$body);
-
-        //$mailResult = mail($to, $subject, $body, $headers);
-        //error_log(print_r($mailResult, TRUE));
-
-        // if mail is true
-        $descriptionId = 1;
-        $description = "כרטיס טיסה לעובד ". $first_name . " " . $last_name;
-        $status = "open";
-        $msg = $this->userModel->addActivity($descriptionId, $status, $userId, $workerId, $description);
-
+            $descriptionId = 1;
+            $description = "כרטיס טיסה לעובד ". $first_name . " " . $last_name;
+            $status = "open";
+            $msg = $this->userModel->addActivity($descriptionId, $status, $userId, $workerId, $description);
+        }
+        else {
+            $msg = false;
+        }
 
         echo($msg);
     }

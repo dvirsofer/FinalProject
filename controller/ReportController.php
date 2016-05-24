@@ -47,7 +47,21 @@ class ReportController
             array_push($allWorkers, $workers[$i]);
             for($j = $i + 1; $j < count($workers); $j++) {
                 $currWorker = $workers[$j];
-                $lengthName = strlen($workerName) * 0.75;
+                $length1 = strlen($workerName);
+                $length2 = strlen($currWorker->last_name);
+                if(($length1 - $length2 <= 1) && $length1 - $length2 >= -1) {
+                    $lengthName = strlen($workerName) * 0.75;
+                    $lengthPassport = strlen($workerPassport) * 0.75;
+                    $lcsMatrix1 = LCS::LCSAlgorithm($workerName, $currWorker->last_name);
+                    $lcsMatrix2 = LCS::LCSAlgorithm($workerPassport, $currWorker->passport_number);
+                    if(($lcsMatrix1[strlen($workerName)][strlen($currWorker->last_name)] >= $lengthName) &&
+                        ($lcsMatrix2[strlen($workerPassport)][strlen($currWorker->passport_number)] >= $lengthPassport)) {
+                        array_push($allWorkers, $workers[$j]);
+                        unset($workers[$j]);
+                        $workers = array_values($workers);
+                    }
+                }
+                /*$lengthName = strlen($workerName) * 0.75;
                 $lengthPassport = strlen($workerPassport) * 0.75;
                 $lcsMatrix1 = LCS::LCSAlgorithm($workerName, $currWorker->last_name);
                 $lcsMatrix2 = LCS::LCSAlgorithm($workerPassport, $currWorker->passport_number);
@@ -58,7 +72,7 @@ class ReportController
                     $workers = array_values($workers);
                     //error_log(print_r($workers[$j], TRUE));
                     //error_log(print_r(count($workers), TRUE));
-                }
+                }*/
             }
             if(count($allWorkers) > 1) {
                 array_push($sameWorkers, $allWorkers);

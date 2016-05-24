@@ -1,6 +1,6 @@
 (function() {
     $("#hilel-turs-btn").on("click", function() {
-        //sendMail("avishay89@gmail.com");
+        sendMail("avishay89@gmail.com");
     });
     $("#alon-turs-btn").on("click", function() {
         sendMail("dvir.sofer90@gmail.com");
@@ -26,7 +26,13 @@ function sendMail($mailAddress) {
         data: data,
         success: function(result) {
             console.log(result);
-            $("#flight_ticket").modal('hide');
+            if(result == false) {
+                document.getElementById("message_div").style.display = "block";
+                document.getElementById("message").innerHTML = "error";
+            }
+            else {
+                $("#flight_ticket").modal('hide');
+            }
         }
     });
 
