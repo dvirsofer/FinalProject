@@ -61,24 +61,11 @@ class ReportController
                         $workers = array_values($workers);
                     }
                 }
-                /*$lengthName = strlen($workerName) * 0.75;
-                $lengthPassport = strlen($workerPassport) * 0.75;
-                $lcsMatrix1 = LCS::LCSAlgorithm($workerName, $currWorker->last_name);
-                $lcsMatrix2 = LCS::LCSAlgorithm($workerPassport, $currWorker->passport_number);
-                if(($lcsMatrix1[strlen($workerName)][strlen($currWorker->last_name)] >= $lengthName) &&
-                    ($lcsMatrix2[strlen($workerPassport)][strlen($currWorker->passport_number)] >= $lengthPassport)) {
-                    array_push($allWorkers, $workers[$j]);
-                    unset($workers[$j]);
-                    $workers = array_values($workers);
-                    //error_log(print_r($workers[$j], TRUE));
-                    //error_log(print_r(count($workers), TRUE));
-                }*/
             }
             if(count($allWorkers) > 1) {
                 array_push($sameWorkers, $allWorkers);
             }
             error_log(var_export($i, TRUE));
-            //error_log(print_r($sameWorkers, TRUE));
         }
         return $sameWorkers;
     }
