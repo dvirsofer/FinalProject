@@ -138,7 +138,6 @@ class WorkerView
 
             </div>
         </div>
-
     </div>';
 
         $html .= '
