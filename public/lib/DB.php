@@ -548,7 +548,7 @@ on customer.settlement_id=settlement.id";
     public function newWorker($firstName, $lastName, $bDate, $phone, $nation, $passportNumber, $validPassport, $gender,
                        $arrive, $arrivalDate, $comments, $userId, $customerId)
     {
-        $workerId = $this->getMaxWorkerId();
+        $workerId = $this->getMaxPassportId();
         //error_log(print_r($workerId, TRUE));
         $workerId = intval($workerId) + 1;
         //error_log(print_r($workerId, TRUE));
@@ -574,7 +574,7 @@ on customer.settlement_id=settlement.id";
             $sql->bindParam(':status', $status);
             $sql->bindParam(':comments', $comments);
             $sql->execute();
-            $id = $this->getMaxId();
+            $id = $this->getMaxWorkerId();
             //$this->addPassport($workerId, $passportNumber, $validPassport);
             return $id;
         }
@@ -809,7 +809,7 @@ on customer.settlement_id=settlement.id";
     /**
      * @return PDOStatement = worker id.
      */
-    public function getMaxWorkerId()
+    public function getMaxPassportId()
     {
         $sql = "SELECT MAX(worker_id) FROM passport";
         $workerId = self::$db->prepare($sql);
@@ -818,7 +818,7 @@ on customer.settlement_id=settlement.id";
         return $workerId;
     }
 
-    public function getMaxId()
+    public function getMaxWorkerId()
     {
         $sql = "SELECT MAX(id) FROM forgen_workes";
         $workerId = self::$db->prepare($sql);
