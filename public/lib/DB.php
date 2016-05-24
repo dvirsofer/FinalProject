@@ -549,7 +549,9 @@ on customer.settlement_id=settlement.id";
                        $arrive, $arrivalDate, $comments, $userId, $customerId)
     {
         $workerId = $this->getMaxWorkerId();
+        //error_log(print_r($workerId, TRUE));
         $workerId = intval($workerId) + 1;
+        //error_log(print_r($workerId, TRUE));
         $birth_country = $nation;
         $userId = intval($userId);
         $customerId = intval($customerId);
@@ -572,8 +574,9 @@ on customer.settlement_id=settlement.id";
             $sql->bindParam(':status', $status);
             $sql->bindParam(':comments', $comments);
             $sql->execute();
+            $id = $this->getMaxId();
             //$this->addPassport($workerId, $passportNumber, $validPassport);
-            return $workerId;
+            return $id;
         }
         catch (Exception $e) {
             return 'Caught exception: ' . $e->getMessage();
@@ -617,6 +620,8 @@ on customer.settlement_id=settlement.id";
      */
     public function addPassport($workerId, $passportNumber, $validPassport)
     {
+        error_log(print_r($workerId, TRUE));
+        error_log(print_r($passportNumber, TRUE));
         try{
             $sql = self::$db->prepare("INSERT INTO passport (worker_id, passport_number, validation_date)
                                 VALUES(:workerId, :passportNumber, :validPassport)");
@@ -807,6 +812,15 @@ on customer.settlement_id=settlement.id";
     public function getMaxWorkerId()
     {
         $sql = "SELECT MAX(worker_id) FROM passport";
+        $workerId = self::$db->prepare($sql);
+        $workerId->execute();
+        $workerId = $workerId->fetchColumn();
+        return $workerId;
+    }
+
+    public function getMaxId()
+    {
+        $sql = "SELECT MAX(id) FROM forgen_workes";
         $workerId = self::$db->prepare($sql);
         $workerId->execute();
         $workerId = $workerId->fetchColumn();

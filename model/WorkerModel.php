@@ -153,9 +153,16 @@ class WorkerModel
         $db->checkConnection();
         $worker = $this->db->newWorker($firstName, $lastName, $date, $phone, $nation, $passportNumber, $validPassport, $gender,
             $arrive, $arrivalDate, $comments, $userId, $customerId);
-        $result = $this->db->addPassport($worker, $passportNumber, $validPassport);
-        return $result;
+        //$result = $this->db->addPassport($worker, $passportNumber, $validPassport);
+        return $worker;
+    }
 
+    public function addPassport($worker, $passportNumber, $validPassport)
+    {
+        $db = DB::getInstance();
+        $db->checkConnection();
+        $msg = $this->db->addPassport($worker, $passportNumber, $validPassport);
+        return $msg;
     }
 
     /**

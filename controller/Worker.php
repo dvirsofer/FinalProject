@@ -69,6 +69,8 @@ class Worker
         $customerId = $_POST['customer_id'];
         $worker =  $this->workerModel->newWorker($firstName, $lastName, $date, $phone, $nation, $passportNumber, $validPassport, $gender,
             $arrive, $arrivalDate, $comments, $userId, $customerId);
+        $workerPassport = $this->workerModel->addPassport($worker, $passportNumber, $validPassport);
+        error_log(print_r($workerPassport, TRUE));
         return $worker;
     }
 
