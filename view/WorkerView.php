@@ -281,7 +281,7 @@ class WorkerView
                         <input type="text" class="form-control" id="valid_passport" value="'. $passport[0]->validation_date .'">
                     </div>
                 </div>
-                
+
             </div>';
         }
         $html .= '
@@ -323,6 +323,7 @@ class WorkerView
                 </div>
             </div>
             </div>
+            
         </div>
     </div>';
 
