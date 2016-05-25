@@ -63,7 +63,7 @@ $allAgent = $this->customerModel->getAllAgent();
                     <label for="dealer" class="col-md-4 control-label">רכז</label>
                     <div class="col-md-8">
                         <select class="form-control" id="dealer" name="dealer">
-                            <option value="0">בחר ישוב</option>
+                            <option value="0">בחר רכז</option>
                             <?php foreach($allAgent as $agent) { ?>
                                 <option value="<?php echo $agent->id ?>"><?php echo $agent->user_name ?></option>
                             <?php } ?>
